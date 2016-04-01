@@ -1,0 +1,8 @@
+target = ssh://server-name:port
+dirs =  /home/user
+exclude_files =  
+exclude_dirs = ^/home/user/(?!Documents[/]?).*
+threads =  5
+ssh_username =  ssh_user
+ssh_password =  ssh_pass
+end_config = True

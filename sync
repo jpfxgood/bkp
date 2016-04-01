@@ -1,0 +1,46 @@
+#!/usr/bin/python -u
+# Copyright 2013-2014 James P Goodwin bkp@jlgoodwin.com
+# This is a backup program created by James
+import sys                        
+import os     
+import re
+import sync_mod
+import sync_conf
+import traceback
+import stackdump
+from optparse import OptionParser
+import signal
+
+def main(options, args):
+    """ The main driver for the sync utility """
+    if options.dryrun:
+        sync_mod.set_dryrun(True)
+        
+    if options.verbose:
+        sync_mod.set_verbose(True)
+        
+    if options.configure:
+        return sync_conf.configure()
+        
+    if options.config_file:
+        sync_conf.config(options.config_file,options.verbose)
+        
+    return sync_mod.synchronize()
+    
+if __name__ == '__main__':
+    parser = OptionParser(usage="usage: %prog [options]", description="A syncronization script for syncronizing directories with remote directories on {file or sftp}, configuration in ~/.sync/sync_config")
+    parser.add_option("-c","--configure", dest="configure", action="store_true", default=False, help="Prompt to create initial ~/.sync/sync_config")
+    parser.add_option("-v","--verbose", dest="verbose", action="store_true", default=False, help="Log all activity to console")
+    parser.add_option("-d","--dryrun", dest="dryrun", action="store_true", default=False, help="Do everything except actually perform actions")
+    parser.add_option("-f","--file", dest="config_file",default="~/.sync/sync_config", help="Load config from this file default is ~/.sync/sync_config")
+    
+    (options,args) = parser.parse_args()
+                           
+    try:
+        ret = main(options,args)
+    except:
+        tb = traceback.format_exc()
+        print >>sys.stderr, tb
+        exit(1)
+        
+    exit(ret)

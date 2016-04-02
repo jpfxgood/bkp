@@ -120,28 +120,28 @@ rstr Options
 
 Most of the options are self expanatory, more information below.
 
--m MACHINE, --machine=MACHINE If you are restoring onto a machine whose machine name is different this is the source machine's name.
-This is the name returned by python's platform.node() method and the linux hostname command.
-
--p RESTORE_PATH, --path=RESTORE_PATH If you are restoring to a different directory than the original backup path, then this is the new root path.
-All target paths will be created as subdirectories of this path.
+    -m MACHINE, --machine=MACHINE If you are restoring onto a machine whose machine name is different this is the source machine's name.
+    This is the name returned by python's platform.node() method and the linux hostname command.
+    
+    -p RESTORE_PATH, --path=RESTORE_PATH If you are restoring to a different directory than the original backup path, then this is the new root path.
+    All target paths will be created as subdirectories of this path.
 
 Sync
 ====
 
-Usage: sync [options]
-
-A synchronization script for synchronizing local and remote directories in {sftp, or file}, configuration in
-~/.sync/sync_config
-
-Options:
-  -h, --help            show this help message and exit
-  -c, --configure       Prompt to create initial ~/.sync/sync_config
-  -v, --verbose         Log all activity to console
-  -d, --dryrun          Do everything except actually perform actions
-  -f CONFIG_FILE, --file=CONFIG_FILE
-                        Load config from this file default is
-                        ~/.sync/sync_config
+    Usage: sync [options]
+    
+    A synchronization script for synchronizing local and remote directories in {sftp, or file}, configuration in
+    ~/.sync/sync_config
+    
+    Options:
+      -h, --help            show this help message and exit
+      -c, --configure       Prompt to create initial ~/.sync/sync_config
+      -v, --verbose         Log all activity to console
+      -d, --dryrun          Do everything except actually perform actions
+      -f CONFIG_FILE, --file=CONFIG_FILE
+                            Load config from this file default is
+                            ~/.sync/sync_config
 
 Sync compares the a list of local directories on the local machine with their counterparts on the remote machine and if they are newer it puts them to the remote machine, if they are older it gets them from the remote machine, and if there are files on the remote machine that don't exist it will get them.
 These actions are subject to the exlude_files and exclude_dirs filters in the configuration. 
@@ -149,41 +149,39 @@ Any files deleted on the client machine (the one running sync) will not be synce
 
 Sync config template:
 
-target = ssh://server-name:port
-dirs =  /home/user
-exclude_files =  
-exclude_dirs = ^/home/user/(?!Documents[/]?).*
-threads =  5
-ssh_username =  ssh_user
-ssh_password =  ssh_pass
-end_config = True
+    target = ssh://server-name:port
+    dirs =  /home/user
+    exclude_files =
+    exclude_dirs = ^/home/user/(?!Documents[/]?).*
+    threads =  5
+    ssh_username =  ssh_user
+    ssh_password =  ssh_pass
+    end_config = True
 
 Example crontab
 ===============
 
-# Edit this file to introduce tasks to be run by cron.
-# 
-# Each task to run has to be defined through a single line
-# indicating with different fields when the task will be run
-# and what command to run for the task
-# 
-# To define the time you can provide concrete values for
-# minute (m), hour (h), day of month (dom), month (mon),
-# and day of week (dow) or use '*' in these fields (for 'any').# 
-# Notice that tasks will be started based on the cron's system
-# daemon's notion of time and timezones.
-# 
-# Output of the crontab jobs (including errors) is sent through
-# email to the user the crontab file belongs to (unless redirected).
-# 
-# For example, you can run a backup of all your user accounts
-# at 5 a.m every week with:
-# 0 5 * * 1 tar -zcf /var/backups/home.tgz /home/
-# 
-# For more information see the manual pages of crontab(5) and cron(8)
-# 
-# m h  dom mon dow   command
-0 6,10,14,18,22 * * * /bkp/bkp
-*/30 * * * * /bkp/sync
-
-
+    # Edit this file to introduce tasks to be run by cron.
+    #
+    # Each task to run has to be defined through a single line
+    # indicating with different fields when the task will be run
+    # and what command to run for the task
+    #
+    # To define the time you can provide concrete values for
+    # minute (m), hour (h), day of month (dom), month (mon),
+    # and day of week (dow) or use '*' in these fields (for 'any').#
+    # Notice that tasks will be started based on the cron's system
+    # daemon's notion of time and timezones.
+    #
+    # Output of the crontab jobs (including errors) is sent through
+    # email to the user the crontab file belongs to (unless redirected).
+    #
+    # For example, you can run a backup of all your user accounts
+    # at 5 a.m every week with:
+    # 0 5 * * 1 tar -zcf /var/backups/home.tgz /home/
+    #
+    # For more information see the manual pages of crontab(5) and cron(8)
+    #
+    # m h  dom mon dow   command
+    0 6,10,14,18,22 * * * /bkp/bkp
+    */30 * * * * /bkp/sync

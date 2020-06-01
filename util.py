@@ -11,7 +11,8 @@ import traceback
 import bkp_conf
 import platform
 import datetime
-import smtplib
+#import smtplib
+import subprocess
 import time
 
 def get_contents( path, name, verbose = False, get_config=bkp_conf.get_config ):
@@ -40,6 +41,21 @@ def put_contents( path, name, contents, dryrun = False, get_config=bkp_conf.get_
             fs_mod.fs_utime( path+"/"+name, (t,t), get_config )
     os.remove(t_file_name)
     return
+                 
+def send_email( mime_msg ):
+    """ given a mime message with From: To: Subject: headers """
+    cmd = "/usr/sbin/ssmtp %s"%mime_msg['To']
+    p = subprocess.Popen(cmd,
+                        shell=True,
+                        bufsize=1024,
+                        stdout=subprocess.PIPE,
+                        stderr=subprocess.STDOUT,
+                        stdin=subprocess.PIPE)
+    output = p.communicate(input=mime_msg.as_string())[0]
+    result = p.wait()
+    if result:
+        raise Exception(cmd,output,result)
+    return output
     
 def mail_error( error, log_file=None, verbose = False, get_config=bkp_conf.get_config ):
     """ e-mail an error report to the error e-mail account """
@@ -48,6 +64,7 @@ def mail_error( error, log_file=None, verbose = False, get_config=bkp_conf.get_c
 def mail_log( log, log_file=None, is_error = False, verbose = False, get_config=bkp_conf.get_config ):
     """ e-mail a log file to the log e-mail account """
     tries = 3
+    log_text = ""
     while tries:
         try:
             if log != None:
@@ -73,10 +90,11 @@ def mail_log( log, log_file=None, is_error = False, verbose = False, get_config=
     
             msg['Date'] = datetime.datetime.now().strftime( "%m/%d/%Y %H:%M" )
     
-            s = smtplib.SMTP_SSL(get_config()["smtp_server"])
-            s.login(get_config()["smtp_username"],get_config()["smtp_password"])
-            s.sendmail(msg['From'],msg['To'],msg.as_string())
-            s.quit()
+#            s = smtplib.SMTP_SSL(get_config()["smtp_server"])
+#            s.login(get_config()["smtp_username"],get_config()["smtp_password"])
+#            s.sendmail(msg['From'],msg['To'],msg.as_string())
+#            s.quit()
+            send_email(msg)
             return 0
         except:
             time.sleep(tries*10.0)

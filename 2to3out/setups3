@@ -1,0 +1,6 @@
+#!/bin/sh
+# Copyright 2013-2014 James P Goodwin bkp@jlgoodwin.com
+wget -O- -q http://s3tools.org/repo/deb-all/stable/s3tools.key | sudo apt-key add -
+sudo wget -O/etc/apt/sources.list.d/s3tools.list http://s3tools.org/repo/deb-all/stable/s3tools.list
+sudo apt-get update && sudo apt-get install s3cmd
+s3cmd --configure

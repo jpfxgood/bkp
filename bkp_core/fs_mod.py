@@ -12,11 +12,15 @@ def fs_utime( remote_path, times, get_config=bkp_conf.get_config ):
     if remote_path.startswith("ssh://"):
         return ssh_mod.ssh_utime( remote_path, times, get_config )
     elif remote_path.startswith("s3://"):
-        raise Exception("Not supported for s3 yet!")
+        # Not implemented for s3, however s3 defaults to copying all
+        # file attributes so we don't have to do it for our use cases
+        return
     elif remote_path.startswith("file://"):
         return file_mod.file_utime( remote_path, times )
+    elif re.match(r"\w*://.*",remote_path):
+        raise Exception("fs_utime: Unknown remote file system",remote_path)
     else:
-        raise Exception("fs_get: Unknown remote file system",remote_path)
+        return file_mod.file_utime( remote_path, times )
 
 
 def fs_get( remote_path, local_path, get_config=bkp_conf.get_config ):
@@ -27,8 +31,10 @@ def fs_get( remote_path, local_path, get_config=bkp_conf.get_config ):
         return s3_mod.s3_get( remote_path, local_path )
     elif remote_path.startswith("file://"):
         return file_mod.file_get( remote_path, local_path )
-    else:
+    elif re.match(r"\w*://.*",remote_path):
         raise Exception("fs_get: Unknown remote file system",remote_path)
+    else:
+        return file_mod.file_get( remote_path, local_path )
 
 def fs_put( local_path, remote_path, get_config=bkp_conf.get_config, verbose = False  ):
     """ use the appropriate function to copy a file from the local_path to the remote_path """
@@ -38,8 +44,10 @@ def fs_put( local_path, remote_path, get_config=bkp_conf.get_config, verbose = F
         return s3_mod.s3_put( local_path, remote_path)
     elif remote_path.startswith("file://"):
         return file_mod.file_put( local_path, remote_path )
-    else:
+    elif re.match(r"\w*://.*",remote_path):
         raise Exception("fs_put: Unknown remote file system",remote_path)
+    else:
+        return file_mod.file_put( local_path, remote_path )
 
 
 def fs_ls( remote_path, recurse=False, get_config = bkp_conf.get_config ):
@@ -50,8 +58,10 @@ def fs_ls( remote_path, recurse=False, get_config = bkp_conf.get_config ):
         return s3_mod.s3_ls( remote_path, recurse)
     elif remote_path.startswith("file://"):
         return file_mod.file_ls( remote_path, recurse )
-    else:
+    elif re.match(r"\w*://.*",remote_path):
         raise Exception("fs_ls: Unknown remote file system",remote_path)
+    else:
+        return file_mod.file_ls( remote_path, recurse )
 
 
 def fs_del( remote_path, recurse=False, get_config=bkp_conf.get_config ):
@@ -62,8 +72,10 @@ def fs_del( remote_path, recurse=False, get_config=bkp_conf.get_config ):
         return s3_mod.s3_del( remote_path, recurse)
     elif remote_path.startswith("file://"):
         return file_mod.file_del( remote_path, recurse )
-    else:
+    elif re.match(r"\w*://.*",remote_path):
         raise Exception("fs_del: Unknown remote file system",remote_path)
+    else:
+        return file_mod.file_del( remote_path, recurse )
 
 
 def fs_stat( remote_path, get_config = bkp_conf.get_config ):
@@ -82,13 +94,14 @@ def fs_stat( remote_path, get_config = bkp_conf.get_config ):
         size = int(parts[2])
 
         return (mtime, size)
-    else:
+    elif re.match(r"\w*://.*",remote_path):
         raise Exception("fs_stat: Unknown remote file system", remote_path )
+    else:
+        return file_mod.file_stat( remote_path )
 
 def fs_test( remote_path, verbose = False, get_config = bkp_conf.get_config ):
     """ use the appropriate function to test if file system is accessable  """
     if remote_path.startswith("ssh://"):
         return ssh_mod.ssh_test( remote_path, verbose, get_config)
     else:
-        # TODO: add appropriate tests for s3 and local file system
-        return True
+        return (fs_stat( remote_path, get_config ) != (-1,-1))

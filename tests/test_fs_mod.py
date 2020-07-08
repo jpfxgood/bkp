@@ -29,7 +29,7 @@ def test_fs_mod_ssh(fs_testdir):
     fs_mod.fs_put(test_filename,test_remote_filename,get_config)
     fs_mod.fs_utime(test_remote_filename,(file_stat[0],file_stat[0]),get_config)
     assert(fs_mod.fs_stat(test_remote_filename,get_config) == file_stat)
-    fs_mod.fs_del(test_remote_filename,get_config)
+    fs_mod.fs_del(test_remote_filename,False,get_config)
     assert(not fs_mod.fs_test(test_remote_filename,get_config))
 
     test_filename = local_path(fs_testdir["remote_files"][2])

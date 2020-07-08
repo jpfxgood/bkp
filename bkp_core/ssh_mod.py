@@ -6,6 +6,7 @@ import socket
 import traceback
 import stat
 import time
+import math
 from bkp_core import bkp_conf
 from bkp_core.file_mod import safe_path
 import threading
@@ -280,7 +281,7 @@ def ssh_stat( remote_path, get_config= bkp_conf.get_config ):
     sftp = sftp_open( host, port, get_config()['ssh_username'], get_config()['ssh_password'] )
     try:
         st = sftp.lstat(path)
-        return (st.st_mtime,st.st_size)
+        return (math.floor(st.st_mtime),st.st_size)
     except:
         pass
     finally:

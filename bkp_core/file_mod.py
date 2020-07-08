@@ -7,6 +7,7 @@ import time
 from io import StringIO
 import threading
 import sys
+import math
 
 file_safe_path_lock = threading.Lock()
 
@@ -92,7 +93,7 @@ def file_stat( remote_path ):
     remote_path = strip_protocol(remote_path)
     try:
         st = os.lstat(remote_path)
-        return (st.st_mtime,st.st_size)
+        return (math.floor(st.st_mtime),st.st_size)
     except:
         pass
     return (-1,-1)

@@ -6,6 +6,7 @@ from bkp_core import file_mod
 from bkp_core import bkp_conf
 import time
 import re
+import math
 
 def fs_utime( remote_path, times, get_config=bkp_conf.get_config ):
     """ use the appropriate function to set the access and modified times on a file """
@@ -93,7 +94,7 @@ def fs_stat( remote_path, get_config = bkp_conf.get_config ):
         parts = re.split("\s+",ls_out,3)
         size = int(parts[2])
 
-        return (mtime, size)
+        return (math.floor(mtime), size)
     elif re.match(r"\w*://.*",remote_path):
         raise Exception("fs_stat: Unknown remote file system", remote_path )
     else:

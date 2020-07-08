@@ -18,9 +18,6 @@ def save_config( config_file, for_restart = False ):
     print("log_email = ",bkp_config["log_email"], file=config_file)
     print("error_email = ",bkp_config["error_email"], file=config_file)
     print("threads = ",bkp_config["threads"], file=config_file)
-    print("smtp_server = ",bkp_config["smtp_server"], file=config_file)
-    print("smtp_username = ",bkp_config["smtp_username"], file=config_file)
-    print("smtp_password = ",bkp_config["smtp_password"], file=config_file)
     print("ssh_username = ",bkp_config["ssh_username"], file=config_file)
     print("ssh_password = ",bkp_config["ssh_password"], file=config_file)
     if for_restart:
@@ -28,7 +25,7 @@ def save_config( config_file, for_restart = False ):
         print("end_time = ",bkp_config["end_time"], file=config_file)
     print("end_config = True", file=config_file)
     return 0
-    
+
 def configure ():
     """ prompt for configuration parameters to build initial ~/.bkp/bkp_config """
     bkp_config["bucket"] = input("Enter the name of your Amazon S3 bucket, file path, or ssh path:")
@@ -37,18 +34,15 @@ def configure ():
     bkp_config["exclude_dirs"] = input("Enter a semicolon (;) delimited list of directories to exclude (including subdirectories):").split(";")
     bkp_config["log_email"] = input("Enter an e-mail address to send log files to:")
     bkp_config["error_email"] = input("Enter an e-mail address to send errors to:")
-    bkp_config["smtp_server"] = input("Enter your smtp server name:")
-    bkp_config["smtp_username"] = input("Enter your smtp user name:")
-    bkp_config["smtp_password"] = input("Enter your smtp password:")
     bkp_config["ssh_username"] = input("Enter your ssh user name:")
     bkp_config["ssh_password"] = input("Enter your ssh password:")
     bkp_config["threads"] = input("Enter the number of threads to use for transfers:")
-                
+
     bkp_dir = os.path.expanduser("~/.bkp")
     if not os.path.exists(bkp_dir):
         os.mkdir(bkp_dir)
     save_config(open(os.path.join(bkp_dir,"bkp_config"), "w"))
-    return 0                    
+    return 0
 
 def config( config_file, verbose = False ):
     """ load configuration for a backup from a config file """
@@ -58,7 +52,7 @@ def config( config_file, verbose = False ):
         l = l.strip()
         if l :
             key, value = l.split("=",1)
-            key = key.strip().lower() 
+            key = key.strip().lower()
             if key == "end_config":
                 break
             value = value.strip()
@@ -67,7 +61,7 @@ def config( config_file, verbose = False ):
             if verbose:
                 print("config key =",key,"value =", value, file=sys.stderr)
             bkp_config[key] = value
-            
+
     bucket = bkp_config["bucket"]
     if not (bucket.startswith("ssh://") or bucket.startswith("file://") or bucket.startswith("s3://")):
         bkp_config["bucket"] = "s3://"+bucket

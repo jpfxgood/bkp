@@ -16,6 +16,7 @@ def fs_testdir(request,testdir):
 
     shutil.copyfile(s3_config,os.path.join(str(testdir.tmpdir),".s3cfg"))
 
+    remote_fs_path = testdir.mkdir("remote_fs_path")
     local_files = []
     remote_files = []
     local_file_names = []
@@ -32,6 +33,7 @@ def fs_testdir(request,testdir):
         fs_mod.fs_put( str(f), sftp_basepath+str(f),lambda : { "ssh_username" : sftp_username, "ssh_password" : sftp_password})
         fs_mod.fs_utime( sftp_basepath+str(f), (file_stat[0],file_stat[0]), lambda : { "ssh_username" : sftp_username, "ssh_password" : sftp_password})
         fs_mod.fs_put( str(f), s3_bucket+str(f),lambda : { "ssh_username" : sftp_username, "ssh_password" : sftp_password})
+        fs_mod.fs_put( str(f), "file://"+str(remote_fs_path)+str(f),lambda : { "ssh_username" : sftp_username, "ssh_password" : sftp_password})
         remote_file_names.append(f.basename)
         f.remove()
     for f in local_files:
@@ -47,7 +49,8 @@ def fs_testdir(request,testdir):
     return {"ssh_username" : sftp_username,
             "ssh_password" : sftp_password,
             "ssh_basepath": sftp_basepath+str(testdir.tmpdir),
-            "s3_basedpath": s3_bucket+str(testdir.tmpdir),
+            "s3_basepath": s3_bucket+str(testdir.tmpdir),
+            "remote_fs_basepath": "file://"+str(remote_fs_path)+str(testdir.tmpdir),
             "local_path": str(testdir.tmpdir),
             "local_files" : local_file_names,
             "remote_files" : remote_file_names,

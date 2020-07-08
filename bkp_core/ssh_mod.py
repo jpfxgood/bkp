@@ -276,7 +276,7 @@ def ssh_test( remote_path, verbose = False, get_config= bkp_conf.get_config ):
         return False
 
 def ssh_stat( remote_path, get_config= bkp_conf.get_config ):
-    """ return tuple (mtime, size) for a file return (-1,-1) if no file """
+    """ return tuple (mtime, size) for a file return (-1,-1) if no file mtime resolution is seconds """
     host, port, path = split_hostpath( remote_path )
     sftp = sftp_open( host, port, get_config()['ssh_username'], get_config()['ssh_password'] )
     try:

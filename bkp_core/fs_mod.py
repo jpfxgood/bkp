@@ -4,9 +4,7 @@ from bkp_core import s3_mod
 from bkp_core import ssh_mod
 from bkp_core import file_mod
 from bkp_core import bkp_conf
-import time
 import re
-import math
 
 def fs_utime( remote_path, times, get_config=bkp_conf.get_config ):
     """ use the appropriate function to set the access and modified times on a file """
@@ -80,29 +78,24 @@ def fs_del( remote_path, recurse=False, get_config=bkp_conf.get_config ):
 
 
 def fs_stat( remote_path, get_config = bkp_conf.get_config ):
-    """ return tuple ( mtime, size ) for a path to a file, returns (-1,-1) if doesn't exist """
+    """ return tuple ( mtime, size ) for a path to a file, returns (-1,-1) if doesn't exist resolution of mtime is seconds """
     if remote_path.startswith("ssh://"):
         return ssh_mod.ssh_stat( remote_path, get_config )
     elif remote_path.startswith("file://"):
         return file_mod.file_stat( remote_path )
     elif remote_path.startswith("s3://"):
-        ls_out = fs_ls( remote_path, False, get_config )
-        if not ls_out:
-            return (-1,-1)
-
-        mtime = time.mktime(time.strptime(ls_out[:16],"%Y-%m-%d %H:%M"))
-        parts = re.split("\s+",ls_out,3)
-        size = int(parts[2])
-
-        return (math.floor(mtime), size)
+        return s3_mod.s3_stat( remote_path )
     elif re.match(r"\w*://.*",remote_path):
         raise Exception("fs_stat: Unknown remote file system", remote_path )
     else:
         return file_mod.file_stat( remote_path )
 
 def fs_test( remote_path, verbose = False, get_config = bkp_conf.get_config ):
-    """ use the appropriate function to test if file system is accessable  """
+    """ use the appropriate function to test if file system is accessable, does NOT mean the path exists just that a host is listening  """
     if remote_path.startswith("ssh://"):
         return ssh_mod.ssh_test( remote_path, verbose, get_config)
+    elif remote_path.startswith("s3://"):
+        return s3_mod.s3_test( remote_path, verbose )
     else:
-        return (fs_stat( remote_path, get_config ) != (-1,-1))
+        # We assume the filesystem is always available
+        return True

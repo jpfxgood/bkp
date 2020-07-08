@@ -89,7 +89,7 @@ def file_del( remote_path, recurse=False ):
 
 
 def file_stat( remote_path ):
-    """ perform stat on the remote path and return tuple of ( mtime, size ) or (-1,-1) if doesn't exist """
+    """ perform stat on the remote path and return tuple of ( mtime, size ) or (-1,-1) if doesn't exist mtime resolution is seconds """
     remote_path = strip_protocol(remote_path)
     try:
         st = os.lstat(remote_path)

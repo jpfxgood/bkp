@@ -76,6 +76,7 @@ def ssh_transport( hostname, port, username, password, force = False ):
     transport_pool = getattr(thread_local, "transport_pool", None)
     if transport_pool == None:
         thread_local.transport_pool = {}
+        transport_pool = thread_local.transport_pool
 
     if (not force) and (( hostname, port, username, password ) in transport_pool):
         t = transport_pool[( hostname, port, username, password )]

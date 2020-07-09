@@ -29,22 +29,27 @@ def start_logger( action = perform_log ):
     global logger_thread
     logger_thread = threading.Thread(target=action)
     logger_thread.start()
-    
+
 def stop_logger():
     """ stop the restore logger """
     global logger_stop
     logger_stop = True
-    if logger_thread:
-        logger_thread.join()
-    
+
 def wait_for_logger():
     """ wait until the restore log queue is empty """
+    global logger_thread
+    global logger_stop
+    global logger_queue
+
     if not logger_queue.empty():
-        logger_queue.join() 
+        logger_queue.join()
     stop_logger()
     if logger_thread and logger_thread.is_alive():
         logger_thread.join()
-    
+    logger_thread = None
+    logger_stop = False
+    logger_queue = queue.Queue()
+
 
 def log( msg ):
     """ log a message to the restore logger """
@@ -58,7 +63,7 @@ def get():
     except queue.Empty:
         line = None
     return line
-    
+
 
 def stopped():
     """ test to see if we need to stop """

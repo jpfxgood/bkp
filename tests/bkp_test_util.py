@@ -94,7 +94,8 @@ def bkp_testdir(request,testdir):
     def cleanup_sftp_testdir():
         fs_mod.fs_del( sftp_basepath+str(testdir.tmpdir.parts()[1]),True, lambda : { "ssh_username" : sftp_username, "ssh_password" : sftp_password })
         fs_mod.fs_del( s3_bucket+str(testdir.tmpdir.parts()[1]),True, lambda : { "ssh_username" : sftp_username, "ssh_password" : sftp_password })
-        fs_mod.fs_del( os.path.join(file_basepath,"bkp"),True )
+        if os.path.exists(os.path.join(file_basepath,"bkp")):
+            fs_mod.fs_del( os.path.join(file_basepath,"bkp"),True )
         os.remove(os.path.join(str(testdir.tmpdir),".s3cfg"))
 
     request.addfinalizer(cleanup_sftp_testdir)

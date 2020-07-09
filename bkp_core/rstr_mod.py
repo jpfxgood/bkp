@@ -57,13 +57,22 @@ def stop_restore_workers():
     """ set a flag that causes all of the restore workers to exit """
     global restore_workers_stop
     restore_workers_stop = True
-    for r in restore_worker_thread_pool:
-        r.join()
 
 def wait_for_restore_workers():
     """ wait until the restore queue clears """
+    global restore_worker_thread_pool
+    global restore_worker_stop
+    global restore_work_queue
+
     if not restore_work_queue.empty():
         restore_work_queue.join()
+    stop_restore_workers()
+    for r in restore_worker_thread_pool:
+        if r.is_alive():
+            r.join()
+    restore_worker_thread_pool = []
+    restore_worker_stop = False
+    restore_work_queue = queue.Queue()
 
 
 
@@ -216,9 +225,11 @@ def restore( machine=platform.node(), restore_path = "", exclude_pats = [], asof
 
         # wait for logging to complete
         wait_for_logger()
-    finally:
+    except:
         # stop the restore workers
         stop_restore_workers()
 
         # stop the restore logger
         stop_logger()
+        raise
+

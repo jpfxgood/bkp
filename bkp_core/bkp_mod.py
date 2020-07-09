@@ -168,6 +168,9 @@ def log_error( from_path, to_path, tb ):
 
 def process_backup():
     """ thread body for worker thread, loop processing the queue until killed """
+    global work_queue
+    global worker_stop
+
     start_time = time.time()
     while not worker_stop:
         try:
@@ -205,7 +208,6 @@ def start_workers():
         worker_thread_pool.append(t)
         num_threads = num_threads - 1
 
-
 def stop_workers():
     """ stop the workers """
     global worker_stop
@@ -213,6 +215,10 @@ def stop_workers():
 
 def wait_for_workers():
     """ wait for the worker queue to be empty """
+    global worker_thread_pool
+    global worker_stop
+    global work_queue
+    
     if verbose:
         print("waiting for workers to finish", file=sys.stderr)
     if not work_queue.empty():
@@ -221,6 +227,9 @@ def wait_for_workers():
     for t in worker_thread_pool:
         if t.is_alive():
             t.join()
+    worker_thread_pool = []
+    worker_stop = False
+    work_queue = queue.Queue()
     if verbose:
         print("workers are done", file=sys.stderr)
 
@@ -331,8 +340,8 @@ def backup():
         end_time = time.time()
         put_contents( machine_path, "next", end_time, dryrun, bkp_conf.get_config, verbose )
         end_time_t = time.localtime(end_time)
-        bkp_conf.get_config()["start_time"] = start_time
-        bkp_conf.get_config()["end_time"] = end_time
+        bkp_conf.get_config()["start_time"] = str(start_time)
+        bkp_conf.get_config()["end_time"] = str(end_time)
 
         # the backup root path is  s3://bucket/bkp/machine_name/datetime
         timestamp = "%04d.%02d.%02d.%02d.%02d.%02d"%(end_time_t.tm_year, end_time_t.tm_mon, end_time_t.tm_mday, end_time_t.tm_hour, end_time_t.tm_min, end_time_t.tm_sec)
@@ -365,9 +374,10 @@ def backup():
         # snapshot the log
         if not dryrun:
             fs_mod.fs_put(local_log_name,remote_log_name, verbose=verbose)
-    finally:
+    except:
         stop_workers()
         stop_logger()
+        raise
 
     # send the log to the logging e-mail
     if errors_count:

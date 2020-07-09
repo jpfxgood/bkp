@@ -103,12 +103,18 @@ def stop_workers():
 
 def wait_for_workers():
     """ wait for the worker queue to be empty """
+    global worker_stop
+    global work_queue
+    global worker_thread_pool
     if not work_queue.empty():
         work_queue.join()
     stop_workers()
     for t in worker_thread_pool:
         if t.is_alive():
             t.join()
+    worker_stop = False
+    worker_thread_pool = []
+    work_queue = queue.Queue()
 
 def sync_directory( path ):
     """ enqueue the files to be synced for a given directory path, apply filters on datetime, pattern, non-hidden files only, recurse visible subdirs """
@@ -286,9 +292,10 @@ def synchronize():
         # wait for the logger to finish
         wait_for_logger()
 
-    finally:
+    except:
         stop_workers()
         stop_logger()
+        raise
 
     if errors_count:
         return 1

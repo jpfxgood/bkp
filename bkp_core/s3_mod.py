@@ -214,4 +214,4 @@ def s3_info( remote_path ):
 def s3_stat( remote_path ):
     """ return the modified time and size of an object at remote_path mtime resolution is seconds """
     meta = s3_info(remote_path)
-    return (int(meta["File size"]),int(meta["mtime"]))
+    return (int(meta["mtime"]),int(meta["File size"]))

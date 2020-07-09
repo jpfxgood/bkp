@@ -7,6 +7,7 @@ import platform
 import os
 import time
 from io import StringIO
+import math
 
 def test_bkp_mod_fs(bkp_testdir):
     """ test suite for the bkp_mod module covering file system functionality """
@@ -31,7 +32,7 @@ def test_bkp_mod_fs(bkp_testdir):
     else:
         bkp_time = 0.0
 
-    assert(bkp_time >= end_time)
+    assert(math.floor(bkp_time) >= math.floor(end_time))
 
     backed_up_count = 0
     backedup = bkp_mod.get_backedup_files(machine_path)
@@ -51,12 +52,12 @@ def test_bkp_mod_fs(bkp_testdir):
     backed_up_count = 0
     backup_count = 0
     for bkp in backups:
-        assert(bk.time >= end_time)
-        bkp_log = get_contents(machine_path,bk.timestamp+"/bkp/bkp."+bk.timestamp+".log",False)
+        assert(math.floor(bkp.time) >= math.floor(end_time))
+        bkp_log = util.get_contents(machine_path,bkp.timestamp+"/bkp/bkp."+bkp.timestamp+".log",False)
+        backup_count += 1
 
         past_config = False
-        for l in bkp_log:
-            backup_count += 1
+        for l in StringIO(bkp_log):
             if not past_config:
                 name,value = l.strip().split("=",1)
                 name = name.strip()
@@ -64,7 +65,10 @@ def test_bkp_mod_fs(bkp_testdir):
                 if name == "end_config" and value == "True":
                     past_config = True
                     continue
-                assert(bkp_conf.bkp_config[name] == value)
+                if name in ["dirs","exclude_dirs"]:
+                    value = [f.strip() for f in value.split(";")]
+                if name not in ["start_time","end_time"]:
+                    assert(bkp_conf.bkp_config[name] == value)
             else:
                 local_path,remote_path,status,msg = l.split(";",3)
                 assert(status != "error")
@@ -75,7 +79,7 @@ def test_bkp_mod_fs(bkp_testdir):
     assert(backed_up_count == len(bkp_testdir["local_files"])-1)
     assert(backup_count == 1)
 
-    print("Overwrite the first local file!",open(os.path.join(bkp_testdir["local_path"],bkp_testdir["local_files"][0]),"w"))
+    print("Overwrite the first local file!",file=open(os.path.join(bkp_testdir["local_path"],bkp_testdir["local_files"][0]),"w"))
 
     end_time = time.time()
 
@@ -87,8 +91,8 @@ def test_bkp_mod_fs(bkp_testdir):
     else:
         second_bkp_time = 0.0
 
-    assert(second_bkp_time >= end_time)
-    assert(second_bkp_time > bkp_time)
+    assert(math.floor(second_bkp_time) >= math.floor(end_time))
+    assert(math.floor(second_bkp_time) > math.floor(bkp_time))
 
     backed_up_count = 0
     backedup = bkp_mod.get_backedup_files(machine_path)
@@ -108,12 +112,12 @@ def test_bkp_mod_fs(bkp_testdir):
     backed_up_count = 0
     backup_count = 0
     for bkp in backups:
-        assert(bk.time >= bkp_time or bk.time >= second_bkp_time)
-        bkp_log = get_contents(machine_path,bk.timestamp+"/bkp/bkp."+bk.timestamp+".log",False)
+        assert(math.floor(bkp.time) >= math.floor(bkp_time) or math.floor(bkp.time) >= math.floor(second_bkp_time))
+        bkp_log = util.get_contents(machine_path,bkp.timestamp+"/bkp/bkp."+bkp.timestamp+".log",False)
+        backup_count += 1
 
         past_config = False
-        for l in bkp_log:
-            backup_count += 1
+        for l in StringIO(bkp_log):
             if not past_config:
                 name,value = l.strip().split("=",1)
                 name = name.strip()
@@ -121,7 +125,10 @@ def test_bkp_mod_fs(bkp_testdir):
                 if name == "end_config" and value == "True":
                     past_config = True
                     continue
-                assert(bkp_conf.bkp_config[name] == value)
+                if name in ["dirs","exclude_dirs"]:
+                    value = [f.strip() for f in value.split(";")]
+                if name not in ["start_time","end_time"]:
+                    assert(bkp_conf.bkp_config[name] == value)
             else:
                 local_path,remote_path,status,msg = l.split(";",3)
                 assert(status != "error")

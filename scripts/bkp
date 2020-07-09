@@ -15,28 +15,29 @@ from bkp_core.util import mail_error
 
 def main(options, args):
     """ The main driver for the bkp utility """
-    if options.dryrun:
-        bkp_mod.set_dryrun(True)
-
-    if options.verbose:
-        bkp_mod.set_verbose(True)
-
     if options.configure:
         return bkp_conf.configure()
 
-    if options.restart_file:
-        return bkp_mod.restart(options.restart_file)
-
-    if options.config_file:
-        bkp_conf.config(options.config_file)
+    config =  bkp_conf.config(options.config_file)
 
     if options.compact:
-        return bkp_mod.compact()
+        return bkp_mod.compact(config,options.verbose)
 
     if options.list:
-        return bkp_mod.list()
+        return bkp_mod.list(config) 
+        
+    bkp_job = BackupJob(config)
+    
+    if options.dryrun:
+        bkp_job.set_dryrun(True)
 
-    return bkp_mod.backup()
+    if options.verbose:
+        bkp_job.set_verbose(True)
+
+    if options.restart_file:
+        return bkp_job.restart(options.restart_file)
+
+    return bkp_job.backup()
 
 if __name__ == '__main__':
     parser = OptionParser(usage="usage: %prog [options]", description="A backup script for backing up files to {s3,file, or sftp}, configuration in ~/.bkp/bkp_config")

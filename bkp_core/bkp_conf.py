@@ -3,13 +3,7 @@
 import os
 import sys
 
-bkp_config = {}
-
-def get_config():
-    global bkp_config
-    return bkp_config
-
-def save_config( config_file, for_restart = False ):
+def save_config( bkp_config, config_file, for_restart = False ):
     """ save the configuration to the file object passed as a parameter """
     print("bucket =", bkp_config["bucket"], file=config_file)
     print("dirs = ", ";".join(bkp_config["dirs"]), file=config_file)
@@ -27,6 +21,7 @@ def save_config( config_file, for_restart = False ):
     return 0
 
 def configure ():
+    bkp_config = {}
     """ prompt for configuration parameters to build initial ~/.bkp/bkp_config """
     bkp_config["bucket"] = input("Enter the name of your Amazon S3 bucket, file path, or ssh path:")
     bkp_config["dirs"] = input("Enter a semicolon (;) delimited list of directories to backup (will include subdirectories):").split(";")
@@ -41,12 +36,12 @@ def configure ():
     bkp_dir = os.path.expanduser("~/.bkp")
     if not os.path.exists(bkp_dir):
         os.mkdir(bkp_dir)
-    save_config(open(os.path.join(bkp_dir,"bkp_config"), "w"))
+    save_config(bkp_config,open(os.path.join(bkp_dir,"bkp_config"), "w"))
     return 0
 
 def config( config_file, verbose = False ):
     """ load configuration for a backup from a config file """
-    global bkp_config
+    bkp_config = {}
     config_path = os.path.expanduser(config_file)
     for l in open(config_path,"r"):
         l = l.strip()
@@ -65,4 +60,4 @@ def config( config_file, verbose = False ):
     bucket = bkp_config["bucket"]
     if not (bucket.startswith("ssh://") or bucket.startswith("file://") or bucket.startswith("s3://")):
         bkp_config["bucket"] = "s3://"+bucket
-    return
+    return bkp_config

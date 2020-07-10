@@ -25,6 +25,7 @@ def do_bkp_test( t_dir, base_path ):
     end_time = time.time()
 
     bkp_job = bkp_mod.BackupJob(bkp_config)
+    bkp_job.set_verbose(True)
 
     assert(not bkp_job.backup())
 
@@ -87,6 +88,7 @@ def do_bkp_test( t_dir, base_path ):
     end_time = time.time()
 
     bkp_job_1 = bkp_mod.BackupJob(bkp_config)
+    bkp_job_1.set_verbose(True)
 
     assert(not bkp_job_1.backup())
 

@@ -13,12 +13,9 @@ from io import StringIO
 import paramiko
 import socket
 
-
+sftp_safe_path_lock = threading.Lock()
 thread_local = threading.local()
-
-safe_path_lock = threading.Lock()
 transport_lock = threading.Lock()
-safe_path_cache = {}
 host_keys = {}
 
 # paramiko.util.log_to_file(os.path.expanduser("~/.bkp/ssh_mod.log"))
@@ -103,24 +100,23 @@ def sftp_open( hostname, port, username, password ):
 def sftp_safe_path( sftp, path ):
     """ make sure target sub directories exist """
     try:
-        safe_path_lock.acquire()
+        sftp_safe_path_lock.acquire()
+        
         parts = path.split('/')[1:-1]
         pkey = "/".join(parts)
-        if not pkey in safe_path_cache:
-            spath = ''
-            for p in parts:
-                spath = spath + '/' + p
-                try:
-                    st = sftp.stat( spath )
-                except:
-                    sftp.mkdir(spath)
-                    st = sftp.stat( spath )
-
-                if not stat.S_ISDIR( st.st_mode ):
-                    raise Exception("sftp_safe_path: path element is not a directory!",spath)
-            safe_path_cache[pkey] = True
+        spath = ''
+        for p in parts:
+            spath = spath + '/' + p
+            try:
+                st = sftp.stat( spath )
+            except:
+                sftp.mkdir(spath)
+                st = sftp.stat( spath )
+    
+            if not stat.S_ISDIR( st.st_mode ):
+                raise Exception("sftp_safe_path: path element is not a directory!",spath)
     finally:
-        safe_path_lock.release()
+        sftp_safe_path_lock.release()
 
     return path
 

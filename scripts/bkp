@@ -19,25 +19,31 @@ def main(options, args):
         return bkp_conf.configure()
 
     config =  bkp_conf.config(options.config_file)
-
-    if options.compact:
-        return bkp_mod.compact(config,options.verbose)
-
-    if options.list:
-        return bkp_mod.list(config) 
-        
-    bkp_job = BackupJob(config)
+                      
+    try:
+        if options.compact:
+            return bkp_mod.compact(config,options.verbose)
     
-    if options.dryrun:
-        bkp_job.set_dryrun(True)
-
-    if options.verbose:
-        bkp_job.set_verbose(True)
-
-    if options.restart_file:
-        return bkp_job.restart(options.restart_file)
-
-    return bkp_job.backup()
+        if options.list:
+            return bkp_mod.list(config)
+    
+        bkp_job = bkp_mod.BackupJob(config)
+    
+        if options.dryrun:
+            bkp_job.set_dryrun(True)
+    
+        if options.verbose:
+            bkp_job.set_verbose(True)
+    
+        if options.restart_file:
+            return bkp_job.restart(options.restart_file)
+    
+        return bkp_job.backup()
+    except:
+        tb = traceback.format_exc()
+        print(tb, file=sys.stderr)
+        mail_error( tb, None, bkp_mod.verbose, lambda: config )
+        return 1
 
 if __name__ == '__main__':
     parser = OptionParser(usage="usage: %prog [options]", description="A backup script for backing up files to {s3,file, or sftp}, configuration in ~/.bkp/bkp_config")
@@ -51,12 +57,4 @@ if __name__ == '__main__':
 
     (options,args) = parser.parse_args()
 
-    try:
-        ret = main(options,args)
-    except:
-        tb = traceback.format_exc()
-        print(tb, file=sys.stderr)
-        mail_error( tb, None, bkp_mod.verbose )
-        exit(1)
-
-    exit(ret)
+    exit(main(options,args))

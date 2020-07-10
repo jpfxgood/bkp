@@ -6,24 +6,25 @@ import sys
 import os
 import re
 from optparse import OptionParser
-from bkp_core import bkp_mod
 from bkp_core import bkp_conf
-from bkp_core import rstr_mod
+from bkp_core.rstr_mod import RestoreJob
 import traceback
 import platform
 
 def main(options, args):
     """ The main driver for the bkp utility """
+
+    confing = bkp_conf.config(options.config_file)
+    
+    restore_job = RestoreJob(config)
+
     if options.dryrun:
-        bkp_mod.set_dryrun(True)
+        restore_job.set_dryrun(True)
 
     if options.verbose:
-        bkp_mod.set_verbose(True)
+        restore_job.set_verbose(True)
 
-    if options.config_file:
-        bkp_conf.config(options.config_file)
-
-    return rstr_mod.restore(options.machine,options.restore_path,options.exclude,options.asof,args)
+    return restore_job.restore(options.machine,options.restore_path,options.exclude,options.asof,args)
 
 
 if __name__ == '__main__':

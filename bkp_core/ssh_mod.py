@@ -7,7 +7,6 @@ import traceback
 import stat
 import time
 import math
-from bkp_core import bkp_conf
 from bkp_core.file_mod import safe_path
 import threading
 from io import StringIO
@@ -125,7 +124,7 @@ def sftp_safe_path( sftp, path ):
 
     return path
 
-def ssh_utime( remote_path, times, get_config = bkp_conf.get_config ):
+def ssh_utime( remote_path, times, get_config = lambda: {} ):
     """ set the modified time for a remote file using sftp """
     host, port, path = split_hostpath( remote_path )
     sftp = sftp_open( host, port, get_config()['ssh_username'], get_config()['ssh_password'] )
@@ -135,7 +134,7 @@ def ssh_utime( remote_path, times, get_config = bkp_conf.get_config ):
         sftp.close()
 
 
-def ssh_get( remote_path, local_path, get_config = bkp_conf.get_config ):
+def ssh_get( remote_path, local_path, get_config = lambda: {} ):
     """ copy from remote path to local_path using sftp """
     host, port, path = split_hostpath( remote_path )
     sftp = sftp_open( host, port, get_config()['ssh_username'], get_config()['ssh_password'] )
@@ -144,7 +143,7 @@ def ssh_get( remote_path, local_path, get_config = bkp_conf.get_config ):
     finally:
         sftp.close()
 
-def ssh_put( local_path, remote_path, get_config = bkp_conf.get_config, verbose = False ):
+def ssh_put( local_path, remote_path, get_config = lambda: {}, verbose = False ):
     """ copy to remote path from local_path using sftp """
     host, port, path = split_hostpath( remote_path )
     sftp = sftp_open( host, port, get_config()['ssh_username'], get_config()['ssh_password'] )
@@ -166,7 +165,7 @@ def ssh_put( local_path, remote_path, get_config = bkp_conf.get_config, verbose 
         sftp.close()
 
 
-def ssh_ls( remote_path, recurse=False, get_config= bkp_conf.get_config, verbose=False ):
+def ssh_ls( remote_path, recurse=False, get_config= lambda: {}, verbose=False ):
     """ list directories and files perhaps recursively using sftp """
     host, port, path = split_hostpath( remote_path )
     sftp = sftp_open( host, port, get_config()['ssh_username'], get_config()['ssh_password'] )
@@ -226,7 +225,7 @@ def ssh_ls( remote_path, recurse=False, get_config= bkp_conf.get_config, verbose
         sftp.close()
     return output
 
-def ssh_del( remote_path, recurse=False, get_config= bkp_conf.get_config ):
+def ssh_del( remote_path, recurse=False, get_config= lambda: {} ):
     """ remove files or directories perhaps recursively using sftp """
     host, port, path = split_hostpath( remote_path )
     sftp = sftp_open( host, port, get_config()['ssh_username'], get_config()['ssh_password'] )
@@ -258,7 +257,7 @@ def ssh_del( remote_path, recurse=False, get_config= bkp_conf.get_config ):
     return ""
 
 
-def ssh_test( remote_path, verbose = False, get_config= bkp_conf.get_config ):
+def ssh_test( remote_path, verbose = False, get_config= lambda: {} ):
     """ test to make sure that we can access the remote path """
 
     try:
@@ -276,7 +275,7 @@ def ssh_test( remote_path, verbose = False, get_config= bkp_conf.get_config ):
             print(traceback.format_exc(), file=sys.stderr)
         return False
 
-def ssh_stat( remote_path, get_config= bkp_conf.get_config ):
+def ssh_stat( remote_path, get_config= lambda: {} ):
     """ return tuple (mtime, size) for a file return (-1,-1) if no file mtime resolution is seconds """
     host, port, path = split_hostpath( remote_path )
     sftp = sftp_open( host, port, get_config()['ssh_username'], get_config()['ssh_password'] )

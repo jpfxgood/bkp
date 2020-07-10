@@ -6,7 +6,7 @@ from bkp_core import file_mod
 from bkp_core import bkp_conf
 import re
 
-def fs_utime( remote_path, times, get_config=bkp_conf.get_config ):
+def fs_utime( remote_path, times, get_config = lambda: {} ):
     """ use the appropriate function to set the access and modified times on a file """
     if remote_path.startswith("ssh://"):
         return ssh_mod.ssh_utime( remote_path, times, get_config )
@@ -22,7 +22,7 @@ def fs_utime( remote_path, times, get_config=bkp_conf.get_config ):
         return file_mod.file_utime( remote_path, times )
 
 
-def fs_get( remote_path, local_path, get_config=bkp_conf.get_config ):
+def fs_get( remote_path, local_path, get_config = lambda: {} ):
     """ use the appropriate function to copy a file from the remote_path to the local_path """
     if remote_path.startswith("ssh://"):
         return ssh_mod.ssh_get( remote_path, local_path, get_config )
@@ -35,7 +35,7 @@ def fs_get( remote_path, local_path, get_config=bkp_conf.get_config ):
     else:
         return file_mod.file_get( remote_path, local_path )
 
-def fs_put( local_path, remote_path, get_config=bkp_conf.get_config, verbose = False  ):
+def fs_put( local_path, remote_path, get_config = lambda: {}, verbose = False  ):
     """ use the appropriate function to copy a file from the local_path to the remote_path """
     if remote_path.startswith("ssh://"):
         return ssh_mod.ssh_put( local_path, remote_path, get_config, verbose)
@@ -49,7 +49,7 @@ def fs_put( local_path, remote_path, get_config=bkp_conf.get_config, verbose = F
         return file_mod.file_put( local_path, remote_path )
 
 
-def fs_ls( remote_path, recurse=False, get_config = bkp_conf.get_config ):
+def fs_ls( remote_path, recurse=False, get_config = lambda: {} ):
     """ use the appropriate function to get a file listing of the path """
     if remote_path.startswith("ssh://"):
         return ssh_mod.ssh_ls( remote_path, recurse, get_config)
@@ -63,7 +63,7 @@ def fs_ls( remote_path, recurse=False, get_config = bkp_conf.get_config ):
         return file_mod.file_ls( remote_path, recurse )
 
 
-def fs_del( remote_path, recurse=False, get_config=bkp_conf.get_config ):
+def fs_del( remote_path, recurse=False, get_config = lambda: {} ):
     """ use the appropriate function to delete a file or directory at the path """
     if remote_path.startswith("ssh://"):
         return ssh_mod.ssh_del( remote_path, recurse, get_config)
@@ -77,7 +77,7 @@ def fs_del( remote_path, recurse=False, get_config=bkp_conf.get_config ):
         return file_mod.file_del( remote_path, recurse )
 
 
-def fs_stat( remote_path, get_config = bkp_conf.get_config ):
+def fs_stat( remote_path, get_config = lambda: {} ):
     """ return tuple ( mtime, size ) for a path to a file, returns (-1,-1) if doesn't exist resolution of mtime is seconds """
     if remote_path.startswith("ssh://"):
         return ssh_mod.ssh_stat( remote_path, get_config )
@@ -90,7 +90,7 @@ def fs_stat( remote_path, get_config = bkp_conf.get_config ):
     else:
         return file_mod.file_stat( remote_path )
 
-def fs_test( remote_path, verbose = False, get_config = bkp_conf.get_config ):
+def fs_test( remote_path, verbose = False, get_config = lambda: {} ):
     """ use the appropriate function to test if file system is accessable, does NOT mean the path exists just that a host is listening  """
     if remote_path.startswith("ssh://"):
         return ssh_mod.ssh_test( remote_path, verbose, get_config)

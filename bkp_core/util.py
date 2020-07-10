@@ -8,18 +8,17 @@ import os
 import tempfile
 import re
 import traceback
-from bkp_core import bkp_conf
 import platform
 import datetime
 import subprocess
 import time
 
-def get_contents( path, name, verbose = False, get_config=bkp_conf.get_config ):
+def get_contents( path, name, verbose = False, get_config=lambda: {} ):
     """ fetch the contents of an s3 file and return it's contents as a string """
     t_file_fh, t_file_name = tempfile.mkstemp()
     os.close(t_file_fh)
     try:
-        fs_mod.fs_get( path+"/"+name, t_file_name, get_config=bkp_conf.get_config )
+        fs_mod.fs_get( path+"/"+name, t_file_name, get_config )
     except:
         if verbose:
             print("get_contents exception:",traceback.format_exc(), file=sys.stderr)
@@ -28,7 +27,7 @@ def get_contents( path, name, verbose = False, get_config=bkp_conf.get_config ):
     os.remove(t_file_name)
     return contents
 
-def put_contents( path, name, contents, dryrun = False, get_config=bkp_conf.get_config, verbose=False ):
+def put_contents( path, name, contents, dryrun = False, get_config=lambda: {}, verbose=False ):
     """ put the contents string to the s3 file at path, name  """
     t_file_fh, t_file_name = tempfile.mkstemp()
     os.close(t_file_fh)
@@ -57,11 +56,11 @@ def send_email( mime_msg ):
         raise Exception(cmd,output,result)
     return output
 
-def mail_error( error, log_file=None, verbose = False, get_config=bkp_conf.get_config ):
+def mail_error( error, log_file=None, verbose = False, get_config=lambda: {} ):
     """ e-mail an error report to the error e-mail account """
     return mail_log( error, log_file, True, verbose, get_config=get_config )
 
-def mail_log( log, log_file=None, is_error = False, verbose = False, get_config=bkp_conf.get_config ):
+def mail_log( log, log_file=None, is_error = False, verbose = False, get_config=lambda: {} ):
     """ e-mail a log file to the log e-mail account """
     tries = 3
     log_text = ""

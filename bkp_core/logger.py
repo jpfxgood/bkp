@@ -1,12 +1,9 @@
 # Copyright 2013-2014 James P Goodwin bkp@jlgoodwin.com
 import sys
 import os
-import re
 import traceback
 import queue
 import threading
-import platform
-import time
 
 class Logger:
     def __init__( self ):
@@ -23,19 +20,19 @@ class Logger:
                     print(line, file=sys.stderr)
                 except:
                     print("Invalid Log Line!", file=sys.stderr)
-    
+
     def start_logger( self, action = self.perform_log ):
         """ start the restore logger thread """
         self.logger_thread = threading.Thread(target=action)
         self.logger_thread.start()
-    
+
     def stop_logger( self ):
         """ stop the restore logger """
         self.logger_stop = True
-    
+
     def wait_for_logger( self ):
         """ wait until the restore log queue is empty """
-    
+
         if not self.logger_queue.empty():
             self.logger_queue.join()
         self.stop_logger()
@@ -44,11 +41,11 @@ class Logger:
         self.logger_thread = None
         self.logger_stop = False
         self.logger_queue = queue.Queue()
-    
+
     def log( self, msg ):
         """ log a message to the restore logger """
         self.logger_queue.put(msg)
-    
+
     def get( self ):
         """ get a message off the queue """
         try:
@@ -57,7 +54,7 @@ class Logger:
         except queue.Empty:
             line = None
         return line
-    
+
     def stopped():
         """ test to see if we need to stop """
         return self.logger_stop

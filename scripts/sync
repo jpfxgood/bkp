@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 # code=UTF-8
-# Copyright 2013-2014 James P Goodwin bkp@jlgoodwin.com
+# Copyright 2020 James P Goodwin
 # This is a backup program created by James
 import sys
 import os
 import re
-from bkp_core import sync_mod
+from bkp_core.sync_mod import SyncJob
 from bkp_core import sync_conf
 import traceback
 from bkp_core import stackdump
@@ -14,19 +14,20 @@ import signal
 
 def main(options, args):
     """ The main driver for the sync utility """
-    if options.dryrun:
-        sync_mod.set_dryrun(True)
-
-    if options.verbose:
-        sync_mod.set_verbose(True)
-
     if options.configure:
         return sync_conf.configure()
 
-    if options.config_file:
-        sync_conf.config(options.config_file,options.verbose)
+    config = sync_conf.config(options.config_file,options.verbose)
 
-    return sync_mod.synchronize()
+    sync_job = SyncJob(config)
+
+    if options.dryrun:
+        sync_job.set_dryrun(True)
+
+    if options.verbose:
+        sync_job.set_verbose(True)
+
+    return sync_job.synchronize()
 
 if __name__ == '__main__':
     parser = OptionParser(usage="usage: %prog [options]", description="A syncronization script for syncronizing directories with remote directories on {file or sftp}, configuration in ~/.sync/sync_config")

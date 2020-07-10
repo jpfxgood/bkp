@@ -42,9 +42,6 @@ def main(options, args):
                     ssh_mod.ssh_get( path, out_path, get_config )
                     break
 
-
-
-
 if __name__ == '__main__':
     parser = OptionParser(usage="usage: %prog [options]", description="A script to collect files matching a given pattern into one target directory")
     parser.add_option("-u","--username", dest="username", help="ssh username for source")

@@ -157,7 +157,7 @@ def compact( config, verbose = False):
 
     return 0
 
-def check_interrupted( verbose ):
+def check_interrupted( verbose, config ):
     """ check for interrupted backups and send e-mail to error e-mail """
     message = ""
     for (dirpath, dirnames, filenames) in os.walk(os.path.expanduser("~/.bkp")):
@@ -165,7 +165,7 @@ def check_interrupted( verbose ):
             if re.match("bkp\.[0-9][0-9][0-9][0-9]\.[0-9][0-9]\.[0-9][0-9]\.[0-9][0-9]\.[0-9][0-9]\.[0-9][0-9]\.log", f):
                 message = message + f + "\n"
     if message:
-        mail_error("Aborted backups found you may want to restart them!\n"+message, None, verbose )
+        mail_error("Aborted backups found you may want to restart them!\n"+message, None, verbose, lambda: config )
 
 
 class BackupJob:
@@ -379,7 +379,7 @@ class BackupJob:
 
         try:
             # check for any aborted backups and send an e-mail about them
-            check_interrupted(self.verbose)
+            check_interrupted(self.verbose,self.config)
 
             # the backups for a given machine will be in s3://bucket/bkp/machine_name
             self.machine_path = self.config["bucket"]+"/bkp/"+platform.node()
@@ -440,11 +440,11 @@ class BackupJob:
 
         # send the log to the logging e-mail
         if self.errors_count:
-            mail_error( None, open(self.local_log_name,"r"), self.verbose )
+            mail_error( None, open(self.local_log_name,"r"), self.verbose, lambda: self.config )
             os.remove(self.local_log_name)
             return 1
         else:
-            mail_log( None, open(self.local_log_name,"r"), False, self.verbose )
+            mail_log( None, open(self.local_log_name,"r"), False, self.verbose, lambda: self.config )
             os.remove(self.local_log_name)
             return 0
 
@@ -506,10 +506,10 @@ class BackupJob:
 
         # send the log to the logging e-mail
         if self.errors_count:
-            mail_error( None, open(self.local_log_name,"r"), self.verbose )
+            mail_error( None, open(self.local_log_name,"r"), self.verbose, lambda: self.config )
             os.remove(self.local_log_name)
             return 1
         else:
-            mail_log( None, open(self.local_log_name,"r"), False, self.verbose )
+            mail_log( None, open(self.local_log_name,"r"), False, self.verbose, lambda: self.config )
             os.remove(self.local_log_name)
             return 0

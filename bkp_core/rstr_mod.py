@@ -30,18 +30,22 @@ class Restore:
         self.time = time
 
 class RestoreJob:
-    def __init__(config):
+    def __init__( self, config):
+        self.init( config )
+
+    def init( self, config ):
+        """ initialize the internal state for another run """
         self.config = config
         self.restore_worker_thread_pool = []
         self.restore_work_queue = queue.Queue()
         self.restore_workers_stop = False
         self.dryrun = False
         self.logger = Logger()
-        
+
     def set_dryrun( self, dr ):
         """ set the dryrun flag to true to have it just log all the actions but not perform them """
         self.dryrun = dr
-        
+
     def set_verbose( self, vb ):
         """ set the verbose flag to log a lot more detail about the process """
         self.verbose = vb
@@ -63,24 +67,24 @@ class RestoreJob:
                     self.restore_work_queue.task_done()
             except queue.Empty:
                 continue
-    
+
     def start_restore_workers(self):
         """ start the right number of restore worker threads to perform the restoring """
         num_threads = int(self.config["threads"])
-    
+
         while num_threads:
             t = threading.Thread(target=self.perform_restore)
             t.start()
             self.restore_worker_thread_pool.append(t)
             num_threads = num_threads - 1
-    
+
     def stop_restore_workers(self):
         """ set a flag that causes all of the restore workers to exit """
         self.restore_workers_stop = True
-    
+
     def wait_for_restore_workers(self):
         """ wait until the restore queue clears """
-    
+
         if not self.restore_work_queue.empty():
             self.restore_work_queue.join()
         self.stop_restore_workers()
@@ -90,52 +94,55 @@ class RestoreJob:
         self.restore_worker_thread_pool = []
         self.restore_worker_stop = False
         self.restore_work_queue = queue.Queue()
-    
+
     def restore( self, machine=platform.node(), restore_path = "", exclude_pats = [], asof = "", restore_pats = [] ):
         """ main restore driver, will loop over all backups for this server and restore all files to the restore path that match the restore_pats and are not excluded by the exlcude patterns up to the asof date """
         try:
+            # initialize our internal state to begin a new run
+            self.init(self.config)
+            
             # start the logger
             self.logger.start_logger()
-    
+
             # expand user path references in restore_path
             restore_path = os.path.expanduser(restore_path)
-    
+
             # if asof is not specified then restore as of now
             if not asof:
                 end_time_t = time.localtime(time.time())
                 asof = "%04d.%02d.%02d.%02d.%02d.%02d"%(end_time_t.tm_year, end_time_t.tm_mon, end_time_t.tm_mday, end_time_t.tm_hour, end_time_t.tm_min, end_time_t.tm_sec)
-    
+
             # get asof as a time value
             asof_time = bkp_mod.timestamp2time( asof )
-    
+
             # the backups for a given machine will be in s3://bucket/bkp/machine_name
             machine_path = self.config["bucket"]+"/bkp/"+machine
-    
+
             try:
                 # get backup paths and timestamps returns Backup objects with  (time, timestamp, path)
                 backups = bkp_mod.get_backups( machine_path, self.config, self.verbose )
-    
+
                 # loop over the backups, process the log files and collect the correct versions of matching files
                 restore_map = {}
                 for bk in backups:
                     if self.verbose:
                         self.logger.log("Examining backup: %s"%(bk.path))
-    
+
                     # if the backup is after the asof date then skip it
                     if bk.time > asof_time:
                         if self.verbose:
                             self.logger.log("Skipping because it is newer than asof backup: %s"%(bk.path))
                         continue
-    
+
                     # fetch the contents of the backup log
                     contents = get_contents(machine_path,bk.timestamp+"/bkp/bkp."+bk.timestamp+".log",self.verbose, lambda: self.config)
-    
+
                     # collect the newest version less than the asof time and apply all the filters
                     # if there's a backup log then we do this the easy way
                     if contents:
                         if self.verbose:
                             self.log("Found log file and processing it")
-    
+
                         past_config = False
                         for l in io.StringIO(contents):
                             if not past_config:
@@ -171,7 +178,7 @@ class RestoreJob:
                                     continue
                                 if self.verbose:
                                     self.log("Including: %s"%(local_path))
-    
+
                                 restore_map[local_path] = Restore(remote_path,local_path,os.path.join(restore_path,local_path[1:]),bk.time)
                     else:
                         if self.verbose:
@@ -212,25 +219,25 @@ class RestoreJob:
                             restore_map[local_path] = Restore(remote_path,local_path,os.path.join(restore_path,local_path[1:]),bk.time)
             except:
                 self.log("Exception while processing: "+traceback.format_exc())
-    
+
             # if we have things to restore then go for it
             if restore_map:
                 # start up the restore workers
                 self.start_restore_workers()
-    
+
                 # enqueue all of the restore tasks
                 for rest in restore_map.values():
                     self.restore_work_queue.put(rest)
-    
+
                 # wait for the restore workers
                 self.wait_for_restore_workers()
-    
+
             # wait for logging to complete
             self.logger.wait_for_logger()
         except:
             # stop the restore workers
             self.stop_restore_workers()
-    
+
             # stop the restore logger
             self.logger.stop_logger()
             raise

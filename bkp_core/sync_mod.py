@@ -23,7 +23,11 @@ class WorkerParams:
         self.mtime = mtime
 
 class SyncJob:
-    def __init__( config ):
+    def __init__( self, config ):
+        self.init( config )
+
+    def init( self, config ):
+        """ initialize our internal state for a new run """
         self.config = config
         self.dryrun = False
         self.verbose = False
@@ -240,6 +244,9 @@ class SyncJob:
         """ driver to perform syncrhonize """
 
         try:
+            # initialize our internal state for a new run
+            self.init( self.config )
+            
             # the sync target a given machine will be target
             self.machine_path = self.config["target"]
 

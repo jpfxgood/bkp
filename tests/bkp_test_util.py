@@ -92,8 +92,8 @@ def bkp_testdir(request,testdir):
         local_file_names.append(f.basename)
 
     def cleanup_sftp_testdir():
-        fs_mod.fs_del( sftp_basepath+str(testdir.tmpdir.parts()[1]),True, lambda : { "ssh_username" : sftp_username, "ssh_password" : sftp_password })
-        fs_mod.fs_del( s3_bucket+str(testdir.tmpdir.parts()[1]),True, lambda : { "ssh_username" : sftp_username, "ssh_password" : sftp_password })
+        fs_mod.fs_del( sftp_basepath+'/tmp',True, lambda : { "ssh_username" : sftp_username, "ssh_password" : sftp_password })
+        fs_mod.fs_del( s3_bucket+'/tmp',True, lambda : { "ssh_username" : sftp_username, "ssh_password" : sftp_password })
         if os.path.exists(os.path.join(file_basepath,"bkp")):
             fs_mod.fs_del( os.path.join(file_basepath,"bkp"),True )
         os.remove(os.path.join(str(testdir.tmpdir),".s3cfg"))
@@ -102,8 +102,8 @@ def bkp_testdir(request,testdir):
 
     return {"ssh_username" : sftp_username,
             "ssh_password" : sftp_password,
-            "ssh_basepath": sftp_basepath,
-            "s3_basepath": s3_bucket,
+            "ssh_basepath": sftp_basepath+'/tmp',
+            "s3_basepath": s3_bucket+'/tmp',
             "file_basepath": file_basepath,
             "test_email": test_email,
             "local_path": str(testdir.tmpdir),

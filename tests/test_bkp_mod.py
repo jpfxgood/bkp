@@ -1,4 +1,4 @@
-from bkp_core.bkp_mod import BackupJob
+from bkp_core import bkp_mod
 from bkp_core import bkp_conf
 from bkp_core import fs_mod
 from bkp_core import util
@@ -9,22 +9,22 @@ import time
 from io import StringIO
 import math
 
-def test_bkp_mod_fs(bkp_testdir):
-    """ test suite for the bkp_mod module covering file system functionality """
+def do_bkp_test( t_dir, base_path ):
+    """ driver to test backup on different targets """
     bkp_config = {}
-    bkp_config["bucket"] = bkp_testdir["file_basepath"]
-    bkp_config["dirs"] = [bkp_testdir["local_path"]]
-    bkp_config["exclude_files"] = "local_3\.txt"
+    bkp_config["bucket"] = base_path
+    bkp_config["dirs"] = [t_dir["local_path"]]
+    bkp_config["exclude_files"] = r"local_3\.txt"
     bkp_config["exclude_dirs"] = ["not_subdir_path"]
-    bkp_config["log_email"] = bkp_testdir["test_email"]
-    bkp_config["error_email"] = bkp_testdir["test_email"]
-    bkp_config["ssh_username"] = bkp_testdir["ssh_username"]
-    bkp_config["ssh_password"] = bkp_testdir["ssh_password"]
+    bkp_config["log_email"] = t_dir["test_email"]
+    bkp_config["error_email"] = t_dir["test_email"]
+    bkp_config["ssh_username"] = t_dir["ssh_username"]
+    bkp_config["ssh_password"] = t_dir["ssh_password"]
     bkp_config["threads"] = "5"
 
     end_time = time.time()
-    
-    bkp_job = BackupJob(bkp_config)
+
+    bkp_job = bkp_mod.BackupJob(bkp_config)
 
     assert(not bkp_job.backup())
 
@@ -42,13 +42,13 @@ def test_bkp_mod_fs(bkp_testdir):
     for lpath,dates in list(backedup.items()):
         date_count = 0
         for d in dates:
-            assert(os.path.basename(lpath) in bkp_testdir["local_files"])
+            assert(os.path.basename(lpath) in t_dir["local_files"])
             assert("local_3.txt" not in lpath)
             assert("not_subdir_path" not in lpath)
             date_count += 1
             backed_up_count += 1
         assert(date_count == 1)
-    assert(backed_up_count == len(bkp_testdir["local_files"])-1)
+    assert(backed_up_count == len(t_dir["local_files"])-1)
 
     backups = bkp_mod.get_backups( machine_path, bkp_config )
 
@@ -75,18 +75,18 @@ def test_bkp_mod_fs(bkp_testdir):
             else:
                 local_path,remote_path,status,msg = l.split(";",3)
                 assert(status != "error")
-                assert(os.path.basename(local_path) in bkp_testdir["local_files"])
+                assert(os.path.basename(local_path) in t_dir["local_files"])
                 assert("local_3.txt" not in local_path)
                 assert("not_subdir_path" not in local_path)
                 backed_up_count += 1
-    assert(backed_up_count == len(bkp_testdir["local_files"])-1)
+    assert(backed_up_count == len(t_dir["local_files"])-1)
     assert(backup_count == 1)
 
-    print("Overwrite the first local file!",file=open(os.path.join(bkp_testdir["local_path"],bkp_testdir["local_files"][0]),"w"))
+    print("Overwrite the first local file!",file=open(os.path.join(t_dir["local_path"],t_dir["local_files"][0]),"w"))
 
     end_time = time.time()
-    
-    bkp_job_1 = BackupJob(bkp_config)
+
+    bkp_job_1 = bkp_mod.BackupJob(bkp_config)
 
     assert(not bkp_job_1.backup())
 
@@ -104,13 +104,13 @@ def test_bkp_mod_fs(bkp_testdir):
     for lpath,dates in list(backedup.items()):
         date_count = 0
         for d in dates:
-            assert(os.path.basename(lpath) in bkp_testdir["local_files"])
+            assert(os.path.basename(lpath) in t_dir["local_files"])
             assert("local_3.txt" not in lpath)
             assert("not_subdir_path" not in lpath)
             date_count += 1
             backed_up_count += 1
-        assert(date_count == 1 or os.path.basename(lpath) == bkp_testdir["local_files"][0])
-    assert(backed_up_count == len(bkp_testdir["local_files"]))
+        assert(date_count == 1 or os.path.basename(lpath) == t_dir["local_files"][0])
+    assert(backed_up_count == len(t_dir["local_files"]))
 
     backups = bkp_mod.get_backups( machine_path, bkp_config )
 
@@ -137,9 +137,21 @@ def test_bkp_mod_fs(bkp_testdir):
             else:
                 local_path,remote_path,status,msg = l.split(";",3)
                 assert(status != "error")
-                assert(os.path.basename(local_path) in bkp_testdir["local_files"])
+                assert(os.path.basename(local_path) in t_dir["local_files"])
                 assert("local_3.txt" not in local_path)
                 assert("not_subdir_path" not in local_path)
                 backed_up_count += 1
-    assert(backed_up_count == len(bkp_testdir["local_files"]))
+    assert(backed_up_count == len(t_dir["local_files"]))
     assert(backup_count == 2)
+
+def test_bkp_mod_fs(bkp_testdir):
+    """ test suite for the bkp_mod module covering file system functionality """
+    do_bkp_test(bkp_testdir, bkp_testdir["file_basepath"])
+
+def test_bkp_mod_ssh(bkp_testdir):
+    """ test suite for the bkp_mod module covering ssh functionality """
+    do_bkp_test(bkp_testdir, bkp_testdir["ssh_basepath"])
+
+def test_bkp_mod_s3(bkp_testdir):
+    """ test suite for the bkp_mod module covering s3 functionality """
+    do_bkp_test(bkp_testdir, bkp_testdir["s3_basepath"])

@@ -57,6 +57,6 @@ class Logger:
             line = None
         return line
 
-    def stopped():
+    def stopped( self ):
         """ test to see if we need to stop """
         return self.logger_stop

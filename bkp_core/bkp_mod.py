@@ -79,7 +79,7 @@ def get_backedup_files( machine_path, config, verbose = False ):
     backups = get_backups( machine_path, config, verbose )
     for bk in backups:
         # fetch the contents of the backup log
-        contents = get_contents(machine_path,bk.timestamp+"/bkp/bkp."+bk.timestamp+".log",verbose)
+        contents = get_contents(machine_path,bk.timestamp+"/bkp/bkp."+bk.timestamp+".log",verbose, lambda: config)
 
         # collect the newest version
         if contents:
@@ -169,7 +169,11 @@ def check_interrupted( verbose, config ):
 
 
 class BackupJob:
-    def __init__( config ):
+    def __init__( self, config ):
+        self.init(config)
+
+    def init( self, config ):
+        """ reset or initialize the internal state for another job run """
         self.config = config
         self.dryrun = False
         self.verbose = False
@@ -278,7 +282,7 @@ class BackupJob:
         num_threads = int(self.config["threads"])
 
         while num_threads:
-            t = threading.Thread(target=process_backup)
+            t = threading.Thread(target=self.process_backup)
             t.start()
             self.worker_thread_pool.append(t)
             num_threads = num_threads - 1
@@ -378,6 +382,9 @@ class BackupJob:
         """ driver to perform backup """
 
         try:
+            # reset our internal state for another run of backup
+            self.init(self.config)
+
             # check for any aborted backups and send an e-mail about them
             check_interrupted(self.verbose,self.config)
 
@@ -391,13 +398,13 @@ class BackupJob:
             # if it is empty or doesn't exist then we start from the beginning of time
             # first thing we do is write the current time to the "next" file for the next backup
             # even if two backups are running concurrently they shouldn't interfere since the files shouldn't overlap
-            next = get_contents( self.machine_path, "next", self.verbose)
+            next = get_contents( self.machine_path, "next", self.verbose, lambda: self.config )
             if next:
                 self.start_time = float(next)
             else:
                 self.start_time = 0.0
             self.end_time = time.time()
-            put_contents( self.machine_path, "next", self.end_time, self.dryrun, self.get_config, self.verbose )
+            put_contents( self.machine_path, "next", self.end_time, self.dryrun, lambda: self.config, self.verbose )
             end_time_t = time.localtime(self.end_time)
             self.config["start_time"] = str(self.start_time)
             self.config["end_time"] = str(self.end_time)
@@ -412,7 +419,7 @@ class BackupJob:
             self.local_log_name = os.path.expanduser("~/.bkp/bkp."+timestamp+".log")
 
             # write config and restart info to the start of the local log
-            bkp_conf.save_config(open(self.local_log_name,"a+"),True)
+            bkp_conf.save_config(self.config,open(self.local_log_name,"a+"),True)
 
             # start the logger thread
             self.logger.start_logger( self.perform_logging )
@@ -455,6 +462,9 @@ class BackupJob:
             # load the saved config from the log file
             # restore the original start and end time
             self.config = bkp_conf.config(restart_file, self.verbose)
+
+            # initialize our internal state for this run
+            self.init(self.config)
 
             # the backups for a given machine will be in s3://bucket/bkp/machine_name
             self.machine_path = self.config["bucket"]+"/bkp/"+platform.node()

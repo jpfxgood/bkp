@@ -100,7 +100,7 @@ class RestoreJob:
         try:
             # initialize our internal state to begin a new run
             self.init(self.config)
-            
+
             # start the logger
             self.logger.start_logger()
 
@@ -141,7 +141,7 @@ class RestoreJob:
                     # if there's a backup log then we do this the easy way
                     if contents:
                         if self.verbose:
-                            self.log("Found log file and processing it")
+                            self.logger.log("Found log file and processing it")
 
                         past_config = False
                         for l in io.StringIO(contents):
@@ -152,11 +152,11 @@ class RestoreJob:
                                 local_path,remote_path,status,msg = l.split(";",3)
                                 if status == "error":
                                     if self.verbose:
-                                        self.log("Skipping because of error: %s"%(local_path))
+                                        self.logger.log("Skipping because of error: %s"%(local_path))
                                     continue
                                 if local_path in restore_map and restore_map[local_path].time > bk.time:
                                     if self.verbose:
-                                        self.log("Skipping because we already have a newer one: %s"%(local_path))
+                                        self.logger.log("Skipping because we already have a newer one: %s"%(local_path))
                                     continue
                                 exclude = False
                                 for ex in exclude_pats:
@@ -165,7 +165,7 @@ class RestoreJob:
                                         break
                                 if exclude:
                                     if self.verbose:
-                                        self.log("Skipping because of exclude %s %s"%(ex,local_path))
+                                        self.logger.log("Skipping because of exclude %s %s"%(ex,local_path))
                                     continue
                                 restore = False
                                 for rs in restore_pats:
@@ -174,15 +174,15 @@ class RestoreJob:
                                         break
                                 if not restore:
                                     if self.verbose:
-                                        self.log("Skipping because not included: %s"%(local_path))
+                                        self.logger.log("Skipping because not included: %s"%(local_path))
                                     continue
                                 if self.verbose:
-                                    self.log("Including: %s"%(local_path))
+                                    self.logger.log("Including: %s"%(local_path))
 
                                 restore_map[local_path] = Restore(remote_path,local_path,os.path.join(restore_path,local_path[1:]),bk.time)
                     else:
                         if self.verbose:
-                            self.log("No log file doing a recursive ls of %s"%bk.path)
+                            self.logger.log("No log file doing a recursive ls of %s"%bk.path)
                         # ok this is a screwed up one that doesn't have a log so recurse using ls and build the list off of that
                         for l in io.StringIO(fs_ls(bk.path,True, lambda: self.config)):
                             prefix,path = re.split(bk.timestamp,l)
@@ -212,13 +212,13 @@ class RestoreJob:
                                     break
                             if not restore:
                                 if self.verbose:
-                                    self.log("Skipping because not included %s"%(local_path))
+                                    self.logger.log("Skipping because not included %s"%(local_path))
                                 continue
                             if self.verbose:
-                                self.log("Including: %s"%(local_path))
+                                self.logger.log("Including: %s"%(local_path))
                             restore_map[local_path] = Restore(remote_path,local_path,os.path.join(restore_path,local_path[1:]),bk.time)
             except:
-                self.log("Exception while processing: "+traceback.format_exc())
+                self.logger.log("Exception while processing: "+traceback.format_exc())
 
             # if we have things to restore then go for it
             if restore_map:

@@ -39,7 +39,9 @@ class SyncJob:
         self.processed_dirs = {}
         self.pending_markers = []
         self.worker_stop = False
-        self.remote_processed_files = {}
+        self.remote_processed_files = {}             
+        if not os.path.exists(os.path.expanduser("~/.sync")):
+            os.mkdir(os.path.expanduser("~/.sync"))
         self.remote_processed_files_name = os.path.expanduser("~/.sync/.sync.processed")
         self.logger = Logger()
 
@@ -246,7 +248,7 @@ class SyncJob:
         try:
             # initialize our internal state for a new run
             self.init( self.config )
-            
+
             # the sync target a given machine will be target
             self.machine_path = self.config["target"]
 

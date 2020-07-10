@@ -1,4 +1,4 @@
-from bkp_core import bkp_mod
+from bkp_core.bkp_mod import BackupJob
 from bkp_core import bkp_conf
 from bkp_core import fs_mod
 from bkp_core import util
@@ -11,22 +11,25 @@ import math
 
 def test_bkp_mod_fs(bkp_testdir):
     """ test suite for the bkp_mod module covering file system functionality """
-    bkp_conf.bkp_config["bucket"] = bkp_testdir["file_basepath"]
-    bkp_conf.bkp_config["dirs"] = [bkp_testdir["local_path"]]
-    bkp_conf.bkp_config["exclude_files"] = "local_3\.txt"
-    bkp_conf.bkp_config["exclude_dirs"] = ["not_subdir_path"]
-    bkp_conf.bkp_config["log_email"] = bkp_testdir["test_email"]
-    bkp_conf.bkp_config["error_email"] = bkp_testdir["test_email"]
-    bkp_conf.bkp_config["ssh_username"] = bkp_testdir["ssh_username"]
-    bkp_conf.bkp_config["ssh_password"] = bkp_testdir["ssh_password"]
-    bkp_conf.bkp_config["threads"] = "5"
+    bkp_config = {}
+    bkp_config["bucket"] = bkp_testdir["file_basepath"]
+    bkp_config["dirs"] = [bkp_testdir["local_path"]]
+    bkp_config["exclude_files"] = "local_3\.txt"
+    bkp_config["exclude_dirs"] = ["not_subdir_path"]
+    bkp_config["log_email"] = bkp_testdir["test_email"]
+    bkp_config["error_email"] = bkp_testdir["test_email"]
+    bkp_config["ssh_username"] = bkp_testdir["ssh_username"]
+    bkp_config["ssh_password"] = bkp_testdir["ssh_password"]
+    bkp_config["threads"] = "5"
 
     end_time = time.time()
+    
+    bkp_job = BackupJob(bkp_config)
 
-    assert(not bkp_mod.backup())
+    assert(not bkp_job.backup())
 
-    machine_path = bkp_conf.get_config()["bucket"]+"/bkp/"+platform.node()
-    next = util.get_contents( machine_path, "next", False)
+    machine_path = bkp_config["bucket"]+"/bkp/"+platform.node()
+    next = util.get_contents( machine_path, "next", False, lambda: bkp_config )
     if next:
         bkp_time = float(next)
     else:
@@ -35,7 +38,7 @@ def test_bkp_mod_fs(bkp_testdir):
     assert(math.floor(bkp_time) >= math.floor(end_time))
 
     backed_up_count = 0
-    backedup = bkp_mod.get_backedup_files(machine_path)
+    backedup = bkp_mod.get_backedup_files(machine_path, bkp_config)
     for lpath,dates in list(backedup.items()):
         date_count = 0
         for d in dates:
@@ -47,13 +50,13 @@ def test_bkp_mod_fs(bkp_testdir):
         assert(date_count == 1)
     assert(backed_up_count == len(bkp_testdir["local_files"])-1)
 
-    backups = bkp_mod.get_backups( machine_path )
+    backups = bkp_mod.get_backups( machine_path, bkp_config )
 
     backed_up_count = 0
     backup_count = 0
     for bkp in backups:
         assert(math.floor(bkp.time) >= math.floor(end_time))
-        bkp_log = util.get_contents(machine_path,bkp.timestamp+"/bkp/bkp."+bkp.timestamp+".log",False)
+        bkp_log = util.get_contents(machine_path,bkp.timestamp+"/bkp/bkp."+bkp.timestamp+".log",False, lambda: bkp_config)
         backup_count += 1
 
         past_config = False
@@ -68,7 +71,7 @@ def test_bkp_mod_fs(bkp_testdir):
                 if name in ["dirs","exclude_dirs"]:
                     value = [f.strip() for f in value.split(";")]
                 if name not in ["start_time","end_time"]:
-                    assert(bkp_conf.bkp_config[name] == value)
+                    assert(bkp_config[name] == value)
             else:
                 local_path,remote_path,status,msg = l.split(";",3)
                 assert(status != "error")
@@ -82,10 +85,12 @@ def test_bkp_mod_fs(bkp_testdir):
     print("Overwrite the first local file!",file=open(os.path.join(bkp_testdir["local_path"],bkp_testdir["local_files"][0]),"w"))
 
     end_time = time.time()
+    
+    bkp_job_1 = BackupJob(bkp_config)
 
-    assert(not bkp_mod.backup())
+    assert(not bkp_job_1.backup())
 
-    next = util.get_contents( machine_path, "next", False)
+    next = util.get_contents( machine_path, "next", False, lambda: bkp_config )
     if next:
         second_bkp_time = float(next)
     else:
@@ -95,7 +100,7 @@ def test_bkp_mod_fs(bkp_testdir):
     assert(math.floor(second_bkp_time) > math.floor(bkp_time))
 
     backed_up_count = 0
-    backedup = bkp_mod.get_backedup_files(machine_path)
+    backedup = bkp_mod.get_backedup_files(machine_path, bkp_config)
     for lpath,dates in list(backedup.items()):
         date_count = 0
         for d in dates:
@@ -107,13 +112,13 @@ def test_bkp_mod_fs(bkp_testdir):
         assert(date_count == 1 or os.path.basename(lpath) == bkp_testdir["local_files"][0])
     assert(backed_up_count == len(bkp_testdir["local_files"]))
 
-    backups = bkp_mod.get_backups( machine_path )
+    backups = bkp_mod.get_backups( machine_path, bkp_config )
 
     backed_up_count = 0
     backup_count = 0
     for bkp in backups:
         assert(math.floor(bkp.time) >= math.floor(bkp_time) or math.floor(bkp.time) >= math.floor(second_bkp_time))
-        bkp_log = util.get_contents(machine_path,bkp.timestamp+"/bkp/bkp."+bkp.timestamp+".log",False)
+        bkp_log = util.get_contents(machine_path,bkp.timestamp+"/bkp/bkp."+bkp.timestamp+".log",False, lambda: bkp_config )
         backup_count += 1
 
         past_config = False
@@ -128,7 +133,7 @@ def test_bkp_mod_fs(bkp_testdir):
                 if name in ["dirs","exclude_dirs"]:
                     value = [f.strip() for f in value.split(";")]
                 if name not in ["start_time","end_time"]:
-                    assert(bkp_conf.bkp_config[name] == value)
+                    assert(bkp_config[name] == value)
             else:
                 local_path,remote_path,status,msg = l.split(";",3)
                 assert(status != "error")

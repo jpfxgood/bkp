@@ -21,8 +21,10 @@ class Logger:
                 except:
                     print("Invalid Log Line!", file=sys.stderr)
 
-    def start_logger( self, action = self.perform_log ):
+    def start_logger( self, action = None ):
         """ start the restore logger thread """
+        if not action:
+            action = self.perform_log
         self.logger_thread = threading.Thread(target=action)
         self.logger_thread.start()
 

@@ -48,7 +48,7 @@ def timestamp2time( timestamp ):
     """ convert a timestamp in yyyy.mm.dd.hh.mm.ss format to seconds for comparisons """
     return time.mktime(time.strptime(timestamp,"%Y.%m.%d.%H.%M.%S"))
 
-def get_backups( machine_path, config, verbose ):
+def get_backups( machine_path, config, verbose = False ):
     """ get a list of all of the backups for this machine, returns list of Backup classes """
     # make sure the path ends in a / so we get the contents and not the directory itself
     if machine_path[-1] != '/':

@@ -1,0 +1,3022 @@
+<!doctype html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+
+    <title>bkp_core.bkp_mod API documentation</title>
+    <meta name="description" content="module to implement shared functions for the bkp tool" />
+
+  <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300' rel='stylesheet' type='text/css'>
+  
+  <style type="text/css">
+  
+* {
+  box-sizing: border-box;
+}
+/*! normalize.css v1.1.1 | MIT License | git.io/normalize */
+
+/* ==========================================================================
+   HTML5 display definitions
+   ========================================================================== */
+
+/**
+ * Correct `block` display not defined in IE 6/7/8/9 and Firefox 3.
+ */
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+nav,
+section,
+summary {
+    display: block;
+}
+
+/**
+ * Correct `inline-block` display not defined in IE 6/7/8/9 and Firefox 3.
+ */
+
+audio,
+canvas,
+video {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+}
+
+/**
+ * Prevent modern browsers from displaying `audio` without controls.
+ * Remove excess height in iOS 5 devices.
+ */
+
+audio:not([controls]) {
+    display: none;
+    height: 0;
+}
+
+/**
+ * Address styling not present in IE 7/8/9, Firefox 3, and Safari 4.
+ * Known issue: no IE 6 support.
+ */
+
+[hidden] {
+    display: none;
+}
+
+/* ==========================================================================
+   Base
+   ========================================================================== */
+
+/**
+ * 1. Prevent system color scheme's background color being used in Firefox, IE,
+ *    and Opera.
+ * 2. Prevent system color scheme's text color being used in Firefox, IE, and
+ *    Opera.
+ * 3. Correct text resizing oddly in IE 6/7 when body `font-size` is set using
+ *    `em` units.
+ * 4. Prevent iOS text size adjust after orientation change, without disabling
+ *    user zoom.
+ */
+
+html {
+    background: #fff; /* 1 */
+    color: #000; /* 2 */
+    font-size: 100%; /* 3 */
+    -webkit-text-size-adjust: 100%; /* 4 */
+    -ms-text-size-adjust: 100%; /* 4 */
+}
+
+/**
+ * Address `font-family` inconsistency between `textarea` and other form
+ * elements.
+ */
+
+html,
+button,
+input,
+select,
+textarea {
+    font-family: sans-serif;
+}
+
+/**
+ * Address margins handled incorrectly in IE 6/7.
+ */
+
+body {
+    margin: 0;
+}
+
+/* ==========================================================================
+   Links
+   ========================================================================== */
+
+/**
+ * Address `outline` inconsistency between Chrome and other browsers.
+ */
+
+a:focus {
+    outline: thin dotted;
+}
+
+/**
+ * Improve readability when focused and also mouse hovered in all browsers.
+ */
+
+a:active,
+a:hover {
+    outline: 0;
+}
+
+/* ==========================================================================
+   Typography
+   ========================================================================== */
+
+/**
+ * Address font sizes and margins set differently in IE 6/7.
+ * Address font sizes within `section` and `article` in Firefox 4+, Safari 5,
+ * and Chrome.
+ */
+
+h1 {
+    font-size: 2em;
+    margin: 0.67em 0;
+}
+
+h2 {
+    font-size: 1.5em;
+    margin: 0.83em 0;
+}
+
+h3 {
+    font-size: 1.17em;
+    margin: 1em 0;
+}
+
+h4 {
+    font-size: 1em;
+    margin: 1.33em 0;
+}
+
+h5 {
+    font-size: 0.83em;
+    margin: 1.67em 0;
+}
+
+h6 {
+    font-size: 0.67em;
+    margin: 2.33em 0;
+}
+
+/**
+ * Address styling not present in IE 7/8/9, Safari 5, and Chrome.
+ */
+
+abbr[title] {
+    border-bottom: 1px dotted;
+}
+
+/**
+ * Address style set to `bolder` in Firefox 3+, Safari 4/5, and Chrome.
+ */
+
+b,
+strong {
+    font-weight: bold;
+}
+
+blockquote {
+    margin: 1em 40px;
+}
+
+/**
+ * Address styling not present in Safari 5 and Chrome.
+ */
+
+dfn {
+    font-style: italic;
+}
+
+/**
+ * Address differences between Firefox and other browsers.
+ * Known issue: no IE 6/7 normalization.
+ */
+
+hr {
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    height: 0;
+}
+
+/**
+ * Address styling not present in IE 6/7/8/9.
+ */
+
+mark {
+    background: #ff0;
+    color: #000;
+}
+
+/**
+ * Address margins set differently in IE 6/7.
+ */
+
+p,
+pre {
+    margin: 1em 0;
+}
+
+/**
+ * Correct font family set oddly in IE 6, Safari 4/5, and Chrome.
+ */
+
+code,
+kbd,
+pre,
+samp {
+    font-family: monospace, serif;
+    _font-family: 'courier new', monospace;
+    font-size: 1em;
+}
+
+/**
+ * Improve readability of pre-formatted text in all browsers.
+ */
+
+pre {
+    white-space: pre;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+/**
+ * Address CSS quotes not supported in IE 6/7.
+ */
+
+q {
+    quotes: none;
+}
+
+/**
+ * Address `quotes` property not supported in Safari 4.
+ */
+
+q:before,
+q:after {
+    content: '';
+    content: none;
+}
+
+/**
+ * Address inconsistent and variable font size in all browsers.
+ */
+
+small {
+    font-size: 80%;
+}
+
+/**
+ * Prevent `sub` and `sup` affecting `line-height` in all browsers.
+ */
+
+sub,
+sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+}
+
+sup {
+    top: -0.5em;
+}
+
+sub {
+    bottom: -0.25em;
+}
+
+/* ==========================================================================
+   Lists
+   ========================================================================== */
+
+/**
+ * Address margins set differently in IE 6/7.
+ */
+
+dl,
+menu,
+ol,
+ul {
+    margin: 1em 0;
+}
+
+dd {
+    margin: 0 0 0 40px;
+}
+
+/**
+ * Address paddings set differently in IE 6/7.
+ */
+
+menu,
+ol,
+ul {
+    padding: 0 0 0 40px;
+}
+
+/**
+ * Correct list images handled incorrectly in IE 7.
+ */
+
+nav ul,
+nav ol {
+    list-style: none;
+    list-style-image: none;
+}
+
+/* ==========================================================================
+   Embedded content
+   ========================================================================== */
+
+/**
+ * 1. Remove border when inside `a` element in IE 6/7/8/9 and Firefox 3.
+ * 2. Improve image quality when scaled in IE 7.
+ */
+
+img {
+    border: 0; /* 1 */
+    -ms-interpolation-mode: bicubic; /* 2 */
+}
+
+/**
+ * Correct overflow displayed oddly in IE 9.
+ */
+
+svg:not(:root) {
+    overflow: hidden;
+}
+
+/* ==========================================================================
+   Figures
+   ========================================================================== */
+
+/**
+ * Address margin not present in IE 6/7/8/9, Safari 5, and Opera 11.
+ */
+
+figure {
+    margin: 0;
+}
+
+/* ==========================================================================
+   Forms
+   ========================================================================== */
+
+/**
+ * Correct margin displayed oddly in IE 6/7.
+ */
+
+form {
+    margin: 0;
+}
+
+/**
+ * Define consistent border, margin, and padding.
+ */
+
+fieldset {
+    border: 1px solid #c0c0c0;
+    margin: 0 2px;
+    padding: 0.35em 0.625em 0.75em;
+}
+
+/**
+ * 1. Correct color not being inherited in IE 6/7/8/9.
+ * 2. Correct text not wrapping in Firefox 3.
+ * 3. Correct alignment displayed oddly in IE 6/7.
+ */
+
+legend {
+    border: 0; /* 1 */
+    padding: 0;
+    white-space: normal; /* 2 */
+    *margin-left: -7px; /* 3 */
+}
+
+/**
+ * 1. Correct font size not being inherited in all browsers.
+ * 2. Address margins set differently in IE 6/7, Firefox 3+, Safari 5,
+ *    and Chrome.
+ * 3. Improve appearance and consistency in all browsers.
+ */
+
+button,
+input,
+select,
+textarea {
+    font-size: 100%; /* 1 */
+    margin: 0; /* 2 */
+    vertical-align: baseline; /* 3 */
+    *vertical-align: middle; /* 3 */
+}
+
+/**
+ * Address Firefox 3+ setting `line-height` on `input` using `!important` in
+ * the UA stylesheet.
+ */
+
+button,
+input {
+    line-height: normal;
+}
+
+/**
+ * Address inconsistent `text-transform` inheritance for `button` and `select`.
+ * All other form control elements do not inherit `text-transform` values.
+ * Correct `button` style inheritance in Chrome, Safari 5+, and IE 6+.
+ * Correct `select` style inheritance in Firefox 4+ and Opera.
+ */
+
+button,
+select {
+    text-transform: none;
+}
+
+/**
+ * 1. Avoid the WebKit bug in Android 4.0.* where (2) destroys native `audio`
+ *    and `video` controls.
+ * 2. Correct inability to style clickable `input` types in iOS.
+ * 3. Improve usability and consistency of cursor style between image-type
+ *    `input` and others.
+ * 4. Remove inner spacing in IE 7 without affecting normal text inputs.
+ *    Known issue: inner spacing remains in IE 6.
+ */
+
+button,
+html input[type="button"], /* 1 */
+input[type="reset"],
+input[type="submit"] {
+    -webkit-appearance: button; /* 2 */
+    cursor: pointer; /* 3 */
+    *overflow: visible;  /* 4 */
+}
+
+/**
+ * Re-set default cursor for disabled elements.
+ */
+
+button[disabled],
+html input[disabled] {
+    cursor: default;
+}
+
+/**
+ * 1. Address box sizing set to content-box in IE 8/9.
+ * 2. Remove excess padding in IE 8/9.
+ * 3. Remove excess padding in IE 7.
+ *    Known issue: excess padding remains in IE 6.
+ */
+
+input[type="checkbox"],
+input[type="radio"] {
+    box-sizing: border-box; /* 1 */
+    padding: 0; /* 2 */
+    *height: 13px; /* 3 */
+    *width: 13px; /* 3 */
+}
+
+/**
+ * 1. Address `appearance` set to `searchfield` in Safari 5 and Chrome.
+ * 2. Address `box-sizing` set to `border-box` in Safari 5 and Chrome
+ *    (include `-moz` to future-proof).
+ */
+
+input[type="search"] {
+    -webkit-appearance: textfield; /* 1 */
+    -moz-box-sizing: content-box;
+    -webkit-box-sizing: content-box; /* 2 */
+    box-sizing: content-box;
+}
+
+/**
+ * Remove inner padding and search cancel button in Safari 5 and Chrome
+ * on OS X.
+ */
+
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+    -webkit-appearance: none;
+}
+
+/**
+ * Remove inner padding and border in Firefox 3+.
+ */
+
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+}
+
+/**
+ * 1. Remove default vertical scrollbar in IE 6/7/8/9.
+ * 2. Improve readability and alignment in all browsers.
+ */
+
+textarea {
+    overflow: auto; /* 1 */
+    vertical-align: top; /* 2 */
+}
+
+/* ==========================================================================
+   Tables
+   ========================================================================== */
+
+/**
+ * Remove most spacing between table cells.
+ */
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+  </style>
+
+  <style type="text/css">
+  
+  html, body {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+  }
+  body {
+    background: #fff;
+    font-family: "Source Sans Pro", "Helvetica Neueue", Helvetica, sans;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 1.6em;
+  }
+  #content {
+    width: 70%;
+    max-width: 850px;
+    float: left;
+    padding: 30px 60px;
+    border-left: 1px solid #ddd;
+  }
+  #sidebar {
+    width: 25%;
+    float: left;
+    padding: 30px;
+    overflow: hidden;
+  }
+  #nav {
+    font-size: 130%;
+    margin: 0 0 15px 0;
+  }
+
+  #top {
+    display: block;
+    position: fixed;
+    bottom: 5px;
+    left: 5px;
+    font-size: .85em;
+    text-transform: uppercase;
+  }
+
+  #footer {
+    font-size: .75em;
+    padding: 5px 30px;
+    border-top: 1px solid #ddd;
+    text-align: right;
+  }
+    #footer p {
+      margin: 0 0 0 30px;
+      display: inline-block;
+    }
+
+  h1, h2, h3, h4, h5 {
+    font-weight: 300;
+  }
+  h1 {
+    font-size: 2.5em;
+    line-height: 1.1em;
+    margin: 0 0 .50em 0;
+  }
+
+  h2 {
+    font-size: 1.75em;
+    margin: 1em 0 .50em 0;
+  }
+
+  h3 {
+    margin: 25px 0 10px 0;
+  }
+
+  h4 {
+    margin: 0;
+    font-size: 105%;
+  }
+
+  a {
+    color: #058;
+    text-decoration: none;
+    transition: color .3s ease-in-out;
+  }
+
+  a:hover {
+    color: #e08524;
+    transition: color .3s ease-in-out;
+  }
+
+  pre, code, .mono, .name {
+    font-family: "Ubuntu Mono", "Cousine", "DejaVu Sans Mono", monospace;
+  }
+
+  .title .name {
+    font-weight: bold;
+  }
+  .section-title {
+    margin-top: 2em;
+  }
+  .ident {
+    color: #900;
+  }
+
+  code {
+    background: #f9f9f9;
+  } 
+
+  pre {
+    background: #fefefe;
+    border: 1px solid #ddd;
+    box-shadow: 2px 2px 0 #f3f3f3;
+    margin: 0 30px;
+    padding: 15px 30px;
+  }
+
+  .codehilite {
+    margin: 0 30px 10px 30px;
+  }
+
+    .codehilite pre {
+      margin: 0;
+    }
+    .codehilite .err { background: #ff3300; color: #fff !important; } 
+
+  table#module-list {
+    font-size: 110%;
+  }
+
+    table#module-list tr td:first-child {
+      padding-right: 10px;
+      white-space: nowrap;
+    }
+
+    table#module-list td {
+      vertical-align: top;
+      padding-bottom: 8px;
+    }
+
+      table#module-list td p {
+        margin: 0 0 7px 0;
+      }
+
+  .def {
+    display: table;
+  }
+
+    .def p {
+      display: table-cell;
+      vertical-align: top;
+      text-align: left;
+    }
+
+    .def p:first-child {
+      white-space: nowrap;
+    }
+
+    .def p:last-child {
+      width: 100%;
+    }
+
+
+  #index {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+    ul#index .class_name {
+      /* font-size: 110%; */
+      font-weight: bold;
+    }
+    #index ul {
+      margin: 0;
+    }
+
+  .item {
+    margin: 0 0 15px 0;
+  }
+
+    .item .class {
+      margin: 0 0 25px 30px;
+    }
+
+      .item .class ul.class_list {
+        margin: 0 0 20px 0;
+      }
+
+    .item .name {
+      background: #fafafa;
+      margin: 0;
+      font-weight: bold;
+      padding: 5px 10px;
+      border-radius: 3px;
+      display: inline-block;
+      min-width: 40%;
+    }
+      .item .name:hover {
+        background: #f6f6f6;
+      }
+
+    .item .empty_desc {
+      margin: 0 0 5px 0;
+      padding: 0;
+    }
+
+    .item .inheritance {
+      margin: 3px 0 0 30px;
+    }
+
+    .item .inherited {
+      color: #666;
+    }
+
+    .item .desc {
+      padding: 0 8px;
+      margin: 0;
+    }
+
+      .item .desc p {
+        margin: 0 0 10px 0;
+      }
+
+    .source_cont {
+      margin: 0;
+      padding: 0;
+    }
+
+    .source_link a {
+      background: #ffc300;
+      font-weight: 400;
+      font-size: .75em;
+      text-transform: uppercase;
+      color: #fff;
+      text-shadow: 1px 1px 0 #f4b700;
+      
+      padding: 3px 8px;
+      border-radius: 2px;
+      transition: background .3s ease-in-out;
+    }
+      .source_link a:hover {
+        background: #FF7200;
+        text-shadow: none;
+        transition: background .3s ease-in-out;
+      }
+
+    .source {
+      display: none;
+      max-height: 600px;
+      overflow-y: scroll;
+      margin-bottom: 15px;
+    }
+
+      .source .codehilite {
+        margin: 0;
+      }
+
+  .desc h1, .desc h2, .desc h3 {
+    font-size: 100% !important;
+  }
+  .clear {
+    clear: both;
+  }
+
+  @media all and (max-width: 950px) {
+    #sidebar {
+      width: 35%;
+    }
+    #content {
+      width: 65%;
+    }
+  }
+  @media all and (max-width: 650px) {
+    #top {
+      display: none;
+    }
+    #sidebar {
+      float: none;
+      width: auto;
+    }
+    #content {
+      float: none;
+      width: auto;
+      padding: 30px;
+    }
+
+    #index ul {
+      padding: 0;
+      margin-bottom: 15px;
+    }
+    #index ul li {
+      display: inline-block;
+      margin-right: 30px;
+    }
+    #footer {
+      text-align: left;
+    }
+    #footer p {
+      display: block;
+      margin: inherit;
+    }
+  }
+
+  /*****************************/
+
+  </style>
+
+
+  <style type="text/css">
+  
+/* ==========================================================================
+   EXAMPLE Media Queries for Responsive Design.
+   These examples override the primary ('mobile first') styles.
+   Modify as content requires.
+   ========================================================================== */
+
+@media only screen and (min-width: 35em) {
+    /* Style adjustments for viewports that meet the condition */
+}
+
+@media print,
+       (-o-min-device-pixel-ratio: 5/4),
+       (-webkit-min-device-pixel-ratio: 1.25),
+       (min-resolution: 120dpi) {
+    /* Style adjustments for high resolution devices */
+}
+
+/* ==========================================================================
+   Print styles.
+   Inlined to avoid required HTTP connection: h5bp.com/r
+   ========================================================================== */
+
+@media print {
+    * {
+        background: transparent !important;
+        color: #000 !important; /* Black prints faster: h5bp.com/s */
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+
+    a,
+    a:visited {
+        text-decoration: underline;
+    }
+
+    a[href]:after {
+        content: " (" attr(href) ")";
+    }
+
+    abbr[title]:after {
+        content: " (" attr(title) ")";
+    }
+
+    /*
+     * Don't show links for images, or javascript/internal links
+     */
+
+    .ir a:after,
+    a[href^="javascript:"]:after,
+    a[href^="#"]:after {
+        content: "";
+    }
+
+    pre,
+    blockquote {
+        border: 1px solid #999;
+        page-break-inside: avoid;
+    }
+
+    thead {
+        display: table-header-group; /* h5bp.com/t */
+    }
+
+    tr,
+    img {
+        page-break-inside: avoid;
+    }
+
+    img {
+        max-width: 100% !important;
+    }
+
+    @page {
+        margin: 0.5cm;
+    }
+
+    p,
+    h2,
+    h3 {
+        orphans: 3;
+        widows: 3;
+    }
+
+    h2,
+    h3 {
+        page-break-after: avoid;
+    }
+}
+
+  </style>
+
+  <script type="text/javascript">
+  function toggle(id, $link) {
+    $node = document.getElementById(id);
+    if (!$node)
+    return;
+    if (!$node.style.display || $node.style.display == 'none') {
+    $node.style.display = 'block';
+    $link.innerHTML = 'Hide source &nequiv;';
+    } else {
+    $node.style.display = 'none';
+    $link.innerHTML = 'Show source &equiv;';
+    }
+  }
+  </script>
+</head>
+<body>
+<a href="#" id="top">Top</a>
+
+<div id="container">
+    
+  
+  <div id="sidebar">
+    <h1>Index</h1>
+    <ul id="index">
+
+    <li class="set"><h3><a href="#header-functions">Functions</a></h3>
+      
+  <ul>
+    <li class="mono"><a href="#bkp_core.bkp_mod.check_interrupted">check_interrupted</a></li>
+    <li class="mono"><a href="#bkp_core.bkp_mod.compact">compact</a></li>
+    <li class="mono"><a href="#bkp_core.bkp_mod.get_backedup_files">get_backedup_files</a></li>
+    <li class="mono"><a href="#bkp_core.bkp_mod.get_backups">get_backups</a></li>
+    <li class="mono"><a href="#bkp_core.bkp_mod.get_machines">get_machines</a></li>
+    <li class="mono"><a href="#bkp_core.bkp_mod.list">list</a></li>
+    <li class="mono"><a href="#bkp_core.bkp_mod.timestamp2time">timestamp2time</a></li>
+  </ul>
+
+    </li>
+
+    <li class="set"><h3><a href="#header-classes">Classes</a></h3>
+      <ul>
+        <li class="mono">
+        <span class="class_name"><a href="#bkp_core.bkp_mod.Backup">Backup</a></span>
+        
+          
+  <ul>
+    <li class="mono"><a href="#bkp_core.bkp_mod.Backup.__init__">__init__</a></li>
+  </ul>
+
+        </li>
+        <li class="mono">
+        <span class="class_name"><a href="#bkp_core.bkp_mod.BackupJob">BackupJob</a></span>
+        
+          
+  <ul>
+    <li class="mono"><a href="#bkp_core.bkp_mod.BackupJob.__init__">__init__</a></li>
+    <li class="mono"><a href="#bkp_core.bkp_mod.BackupJob.backup">backup</a></li>
+    <li class="mono"><a href="#bkp_core.bkp_mod.BackupJob.backup_directory">backup_directory</a></li>
+    <li class="mono"><a href="#bkp_core.bkp_mod.BackupJob.get_config">get_config</a></li>
+    <li class="mono"><a href="#bkp_core.bkp_mod.BackupJob.init">init</a></li>
+    <li class="mono"><a href="#bkp_core.bkp_mod.BackupJob.load_processed">load_processed</a></li>
+    <li class="mono"><a href="#bkp_core.bkp_mod.BackupJob.log_error">log_error</a></li>
+    <li class="mono"><a href="#bkp_core.bkp_mod.BackupJob.log_success">log_success</a></li>
+    <li class="mono"><a href="#bkp_core.bkp_mod.BackupJob.perform_logging">perform_logging</a></li>
+    <li class="mono"><a href="#bkp_core.bkp_mod.BackupJob.process_backup">process_backup</a></li>
+    <li class="mono"><a href="#bkp_core.bkp_mod.BackupJob.restart">restart</a></li>
+    <li class="mono"><a href="#bkp_core.bkp_mod.BackupJob.set_dryrun">set_dryrun</a></li>
+    <li class="mono"><a href="#bkp_core.bkp_mod.BackupJob.set_verbose">set_verbose</a></li>
+    <li class="mono"><a href="#bkp_core.bkp_mod.BackupJob.start_workers">start_workers</a></li>
+    <li class="mono"><a href="#bkp_core.bkp_mod.BackupJob.stop_workers">stop_workers</a></li>
+    <li class="mono"><a href="#bkp_core.bkp_mod.BackupJob.wait_for_workers">wait_for_workers</a></li>
+  </ul>
+
+        </li>
+        <li class="mono">
+        <span class="class_name"><a href="#bkp_core.bkp_mod.WorkerParams">WorkerParams</a></span>
+        
+          
+  <ul>
+    <li class="mono"><a href="#bkp_core.bkp_mod.WorkerParams.__init__">__init__</a></li>
+  </ul>
+
+        </li>
+      </ul>
+    </li>
+
+    </ul>
+  </div>
+
+    <article id="content">
+      
+  
+
+  
+
+
+  <header id="section-intro">
+  <h1 class="title"><span class="name">bkp_core.bkp_mod</span> module</h1>
+  <p>module to implement shared functions for the bkp tool</p>
+  
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-bkp_core.bkp_mod', this);">Show source &equiv;</a></p>
+  <div id="source-bkp_core.bkp_mod" class="source">
+    <pre><code># Copyright 2013-2014 James P Goodwin bkp@jlgoodwin.com
+""" module to implement shared functions for the bkp tool """
+import sys
+import os
+import re
+import traceback
+import queue
+import threading
+import platform
+import time
+import subprocess
+import smtplib
+import datetime
+import io
+import urllib.request, urllib.parse, urllib.error
+from bkp_core import fs_mod
+from bkp_core import bkp_conf
+from bkp_core.util import get_contents, put_contents, mail_error, mail_log
+from bkp_core.logger import Logger
+
+class WorkerParams:
+    """ worker params """
+    def __init__(self, from_path, to_path):
+        """ set up the copy from and to paths for the worker """
+        self.from_path = from_path
+        self.to_path = to_path
+
+
+def get_machines(base_path, config):
+    """ get all the machines that there are backups for """
+    machines = []
+    ls_output = io.StringIO(fs_mod.fs_ls(base_path, False, lambda: config ))
+    for l in ls_output:
+        m = re.match("(\s*DIR\s*)(\S*)$",l)
+        if m:
+            machines.append(os.path.split(os.path.split(m.group(2))[0])[1])
+    return machines
+
+class Backup:
+    """ class to represent a backup that is available contains, path, timestamp, time for a backup """
+    def __init__(self, p, ts, t ):
+        """ constructor takes path, timestamp string, and time in seconds as float """
+        self.path = p
+        self.timestamp = ts
+        self.time = t
+
+def timestamp2time( timestamp ):
+    """ convert a timestamp in yyyy.mm.dd.hh.mm.ss format to seconds for comparisons """
+    return time.mktime(time.strptime(timestamp,"%Y.%m.%d.%H.%M.%S"))
+
+def get_backups( machine_path, config, verbose = False ):
+    """ get a list of all of the backups for this machine, returns list of Backup classes """
+    # make sure the path ends in a / so we get the contents and not the directory itself
+    if machine_path[-1] != '/':
+        machine_path = machine_path + '/'
+
+    # loop over the ls output and extract the paths and then parse out and evaluate the timestamps
+    backups = []
+    try:
+        ls_output = io.StringIO(fs_mod.fs_ls(machine_path,False,lambda: config))
+    except:
+        if verbose:
+            print("Error in get_backups probably no backups ", file=sys.stderr)
+            print(traceback.format_exc(), file=sys.stderr)
+        ls_output = io.StringIO()
+
+    for l in ls_output:
+        m = re.match("(\s*DIR\s*)(\S*)$",l)
+        if m:
+            path = m.group(2)
+            timestamp = os.path.split(os.path.split(m.group(2))[0])[1]
+            backups.append(Backup(path,timestamp,timestamp2time(timestamp)))
+
+    return backups
+
+def get_backedup_files( machine_path, config, verbose = False ):
+    """ return a dict with all of the files we've backed up for this machine """
+    backedup = {}
+    backups = get_backups( machine_path, config, verbose )
+    for bk in backups:
+        # fetch the contents of the backup log
+        contents = get_contents(machine_path,bk.timestamp+"/bkp/bkp."+bk.timestamp+".log",verbose, lambda: config)
+
+        # collect the newest version
+        if contents:
+            if verbose:
+                print("Found log file and processing it", file=sys.stderr)
+
+            past_config = False
+            for l in io.StringIO(contents):
+                if not past_config:
+                    if l.startswith("end_config"):
+                        past_config = True
+                elif l.strip():
+                    local_path,remote_path,status,msg = l.strip().split(";",3)
+                    if local_path in backedup:
+                        backedup[local_path].append( bk.time )
+                    else:
+                        backedup[local_path] = [bk.time]
+        else:
+            # ok this is a screwed up one that doesn't have a log so recurse using ls and build the list off of that
+            for l in io.StringIO(fs_mod.fs_ls(bk.path,True,lambda: config)):
+                prefix,path = re.split(bk.timestamp,l)
+                path = path.strip()
+                local_path = urllib.request.url2pathname(path)
+                if local_path in backedup:
+                    backedup[local_path].append(bk.time)
+                else:
+                    backedup[local_path] = [bk.time]
+
+    return backedup
+
+def list( config, verbose = False ):
+    """ generate a listing of all of the files backed up for this machine with the dates available """
+    # the backups for a given machine will be in s3://bucket/bkp/machine_name
+    machine_path = config["bucket"]+"/bkp/"+platform.node()
+
+    # get the backed up files for this machine
+    backedup = get_backedup_files(machine_path, config, verbose)
+    
+    backedup_list = [ item for item in backedup.items() ]
+    for lpath, dates in backedup_list:
+        for d in dates:
+            print("%s %s"%(time.ctime(d),lpath))
+
+    return 0
+
+def compact( config, dryrun = False, verbose = False):
+    """ loop over all backups and remove empty ones compacting the s3 forest to only be backups with changed files """
+    base_path = config["bucket"]+"/bkp/"
+
+    machines = get_machines(base_path,config)
+    for m in machines:
+        machine_path = base_path+m
+        backups = get_backups(machine_path, config, verbose)
+        for b in backups:
+            backup_path = machine_path+"/"+b.timestamp+"/"
+            if verbose:
+                print("Checking backup path: ",backup_path, file=sys.stderr)
+
+            ls_output = io.StringIO(fs_mod.fs_ls(backup_path,False,lambda: config))
+            empty = True
+            for l in ls_output:
+                m = re.match("(\s*DIR\s*)(\S*)$",l)
+                if m:
+                    if verbose:
+                        print("Found directory: ",m.group(2), file=sys.stderr)
+                    if not m.group(2).endswith("/bkp/"):
+                        empty = False
+            if empty:
+                if not dryrun:
+                    fs_mod.fs_del(backup_path,True,lambda: config)
+                if verbose:
+                    print("Removed empty backup: ",backup_path, file=sys.stderr)
+            else:
+                if verbose:
+                    print("Skipped removing non-empty backup: ",backup_path, file=sys.stderr)
+
+    return 0
+
+def check_interrupted( verbose, config ):
+    """ check for interrupted backups and send e-mail to error e-mail """
+    message = ""
+    for (dirpath, dirnames, filenames) in os.walk(os.path.expanduser("~/.bkp")):
+        for f in filenames:
+            if re.match("bkp\.[0-9][0-9][0-9][0-9]\.[0-9][0-9]\.[0-9][0-9]\.[0-9][0-9]\.[0-9][0-9]\.[0-9][0-9]\.log", f):
+                message = message + f + "\n"
+    if message:
+        mail_error("Aborted backups found you may want to restart them!\n"+message, None, verbose, lambda: config )
+
+
+class BackupJob:
+    def __init__( self, config ):
+        self.dryrun = False
+        self.verbose = False
+        self.init(config)
+
+    def init( self, config ):
+        """ reset or initialize the internal state for another job run """
+        self.config = config
+        self.start_time = 0.0
+        self.end_time = 0.0
+        self.machine_path = ""
+        self.backup_path = ""
+        self.remote_log_name = ""
+        self.local_log_name = ""
+        self.errors_count = 0
+        self.worker_thread_pool = []
+        self.work_queue = queue.Queue()
+        self.worker_stop = False
+        self.processed_files = {}
+        self.backedup_files = {}
+        self.logger = Logger()
+
+    def get_config( self ):
+        """ get the config for this backup job """
+        return self.config
+
+    def perform_logging( self ):
+        """ perform the logging task loop reading the logging queue and write messages to output log file """
+        start_time = time.time()
+        while not self.logger.stopped():
+            try:
+                line = self.logger.get()
+                if line:
+                    try:
+                        print(line, file=open(self.local_log_name,"a+"))
+                        if self.verbose:
+                            print(line, file=sys.stderr)
+                    except:
+                        print("Invalid Log Line!", file=sys.stderr)
+                try:
+                    # every 5 minutes checkpoint the log file to the server for safe keeping
+                    if time.time() - start_time > 300:
+                        start_time = time.time()
+                        if not self.dryrun:
+                            fs_mod.fs_put(self.local_log_name,self.remote_log_name,lambda: self.config, verbose=self.verbose)
+                except:
+                    print("Error checkpointing log file!", file=sys.stderr)
+            except:
+                print("Exception while logging!", file=sys.stderr)
+                continue
+
+    def set_dryrun( self, dr ):
+        """ set the dryrun flag to true to prevent real actions in s3 """
+        self.dryrun = dr
+
+    def set_verbose( self, vb ):
+        """ set the verbose flag to true to enable extended output """
+        self.verbose = vb
+
+    def load_processed( self, restart_file):
+        """ load the processed files from a restart file """
+        r = open(restart_file,"r")
+        past_config = False
+        for l in r:
+            if past_config:
+                local_path,remote_path,status,msg = l.split(";",3)
+                self.processed_files[local_path] = (remote_path,status,msg)
+            elif l.startswith("end_config"):
+                past_config = True
+
+
+    def log_success( self, from_path, to_path ):
+        """ write a log line that indicates the copy of a source path to a destination s3 path, columns are from, to, "transferred", and "na" because there was no error """
+        self.logger.log("%s;%s;transferred;na"%(from_path,to_path))
+
+    def log_error( self, from_path, to_path, tb ):
+        """ write a log line that indicates the copy of a source path to a destination s3 path, columns are from, to, "transferred", and "na" because there was no error """
+        self.logger.log("%s;%s;error;%s"%(from_path,to_path,tb.replace("\n","/")))
+        self.errors_count = self.errors_count + 1
+
+    def process_backup( self ):
+        """ thread body for worker thread, loop processing the queue until killed """
+
+        start_time = time.time()
+        while not self.worker_stop:
+            try:
+                # every 5 minutes dump a stack trace if self.verbose
+                if time.time() - start_time > 300:
+                    start_time = time.time()
+                params = self.work_queue.get(True,1)
+                try:
+                    if not self.dryrun:
+                        fs_mod.fs_put( params.from_path, params.to_path, lambda: self.config, verbose=self.verbose )
+                    self.log_success( params.from_path, params.to_path )
+                    self.work_queue.task_done()
+                except:
+                    tb = traceback.format_exc()
+                    print(tb, file=sys.stderr)
+                    self.log_error( params.from_path, params.to_path, tb )
+                    self.work_queue.task_done()
+            except queue.Empty:
+                continue
+            except:
+                self.work_queue.task_done()
+                tb = traceback.format_exc()
+                print(tb, file=sys.stderr)
+                continue
+
+    def start_workers( self ):
+        """ start the workers in the pool """
+        num_threads = int(self.config["threads"])
+
+        while num_threads:
+            t = threading.Thread(target=self.process_backup)
+            t.start()
+            self.worker_thread_pool.append(t)
+            num_threads = num_threads - 1
+
+    def stop_workers( self ):
+        """ stop the workers """
+        self.worker_stop = True
+
+    def wait_for_workers( self ):
+        """ wait for the worker queue to be empty """
+        if self.verbose:
+            print("waiting for workers to finish", file=sys.stderr)
+        if not self.work_queue.empty():
+            self.work_queue.join()
+        self.stop_workers()
+        for t in self.worker_thread_pool:
+            if t.is_alive():
+                t.join()
+        self.worker_thread_pool = []
+        self.worker_stop = False
+        self.work_queue = queue.Queue()
+        if self.verbose:
+            print("workers are done", file=sys.stderr)
+
+    def backup_directory( self, path ):
+        """ enqueue the files to be backed up for a given directory path, apply filters on datetime, pattern, non-hidden files only, recurse visible subdirs """
+        for (dirpath, dirnames, filenames) in os.walk(path):
+            if self.verbose:
+                print("Scanning dirpath=",dirpath, file=sys.stderr)
+            # if exclude_dirs is contained in any of the paths then return
+            exclude_dir = False
+            for e in self.config["exclude_dirs"]:
+                if e and re.search(e,dirpath):
+                    exclude_dir = True
+                    break
+            if exclude_dir:
+                if self.verbose:
+                    print("Excluding dirpath=",dirpath,"because of e=",e, file=sys.stderr)
+                continue
+
+            # get rid of hidden directories
+            while True:
+                deleted = False
+                didx = 0
+                for d in dirnames:
+                    if d[0] == ".":
+                        if self.verbose:
+                            print("Deleting hidden directory =",d, file=sys.stderr)
+                        del dirnames[didx]
+                        deleted = True
+                        break
+                    didx = didx + 1
+                if not deleted:
+                    break
+
+            # process files in the directory enqueueing included files for backup
+            for f in filenames:
+                # if it is a hidden file skip it
+                if f[0] == ".":
+                    if self.verbose:
+                        print("Skipping hidden file =",f, file=sys.stderr)
+                    continue
+
+                # if it is excluded file skip it
+                if self.config["exclude_files"] and re.match(self.config["exclude_files"],f):
+                    if self.verbose:
+                        print("Excluding file =",f,"Because of pattern=",self.config["exclude_files"], file=sys.stderr)
+                    continue
+
+                # build the absolute path for the file and it's backup path
+                local_path = os.path.join(os.path.abspath(dirpath),f)
+                remote_path = self.backup_path + urllib.request.pathname2url(local_path)
+
+                # make sure local_path isn't in self.processed_files
+                if local_path in self.processed_files:
+                    if self.verbose:
+                        print("Excluding file = ",local_path,"Because in processed_files", file=sys.stderr)
+                    continue
+
+                # if the file is in the time range for this backup then queue it for backup
+                s = os.lstat(local_path)
+                if (s.st_mtime >= self.start_time and s.st_mtime < self.end_time):
+                    if self.verbose:
+                        print("Enqueuing copy work",local_path,remote_path, file=sys.stderr)
+                    self.work_queue.put(WorkerParams( local_path, remote_path ))
+                elif not (local_path in self.backedup_files):
+                    if self.verbose:
+                        print("Enqueuing copy work because not in backup",local_path,remote_path, file=sys.stderr)
+                    self.work_queue.put(WorkerParams( local_path, remote_path ))
+                else:
+                    if self.verbose:
+                        print("Not Enqueuing copy work for ", local_path, "because time is out of range and it is backed up", file=sys.stderr)
+
+        return
+
+    def backup( self ):
+        """ driver to perform backup """
+
+        try:
+            # reset our internal state for another run of backup
+            self.init(self.config)
+
+            # check for any aborted backups and send an e-mail about them
+            check_interrupted(self.verbose,self.config)
+
+            # the backups for a given machine will be in s3://bucket/bkp/machine_name
+            self.machine_path = self.config["bucket"]+"/bkp/"+platform.node()
+
+            # get the backed up files for this machine
+            self.backedup_files = get_backedup_files(self.machine_path,self.config,self.verbose)
+
+            # the start time for the next backup is in the "next" file in the root for that machine
+            # if it is empty or doesn't exist then we start from the beginning of time
+            # first thing we do is write the current time to the "next" file for the next backup
+            # even if two backups are running concurrently they shouldn't interfere since the files shouldn't overlap
+            next = get_contents( self.machine_path, "next", self.verbose, lambda: self.config )
+            if next:
+                self.start_time = float(next)
+            else:
+                self.start_time = 0.0
+            self.end_time = time.time()
+            put_contents( self.machine_path, "next", self.end_time, self.dryrun, lambda: self.config, self.verbose )
+            end_time_t = time.localtime(self.end_time)
+            self.config["start_time"] = str(self.start_time)
+            self.config["end_time"] = str(self.end_time)
+
+            # the backup root path is  s3://bucket/bkp/machine_name/datetime
+            timestamp = "%04d.%02d.%02d.%02d.%02d.%02d"%(end_time_t.tm_year, end_time_t.tm_mon, end_time_t.tm_mday, end_time_t.tm_hour, end_time_t.tm_min, end_time_t.tm_sec)
+            self.backup_path = self.machine_path + "/" + timestamp
+
+            # we log locally and snapshot the log to a remote version in the backup
+            # directory
+            self.remote_log_name = self.backup_path + "/bkp/bkp."+ timestamp + ".log"
+            self.local_log_name = os.path.expanduser("~/.bkp/bkp."+timestamp+".log")
+
+            # write config and restart info to the start of the local log
+            bkp_conf.save_config(self.config,open(self.local_log_name,"a+"),True)
+
+            # start the logger thread
+            self.logger.start_logger( self.perform_logging )
+
+            # fire up the worker threads
+            self.start_workers()
+
+            # loop over the paths provided and add them to the work queue
+            for d in self.config["dirs"]:
+                self.backup_directory( d )
+
+            # wait for queue to empty
+            self.wait_for_workers()
+
+            # wait for the logger to finish
+            self.logger.wait_for_logger()
+
+            # snapshot the log
+            if not self.dryrun:
+                fs_mod.fs_put(self.local_log_name,self.remote_log_name,lambda: self.config, verbose=self.verbose)
+        except:
+            self.stop_workers()
+            self.logger.stop_logger()
+            raise
+
+        # send the log to the logging e-mail
+        if self.errors_count:
+            mail_error( None, open(self.local_log_name,"r"), self.verbose, lambda: self.config )
+            os.remove(self.local_log_name)
+            return 1
+        else:
+            mail_log( None, open(self.local_log_name,"r"), False, self.verbose, lambda: self.config )
+            os.remove(self.local_log_name)
+            return 0
+
+    def restart( self, restart_file ):
+        """ restart a previously aborted backup from a backup log file """
+
+        try:
+            # load the saved config from the log file
+            # restore the original start and end time
+            self.config = bkp_conf.config(restart_file, self.verbose)
+
+            # initialize our internal state for this run
+            self.init(self.config)
+
+            # the backups for a given machine will be in s3://bucket/bkp/machine_name
+            self.machine_path = self.config["bucket"]+"/bkp/"+platform.node()
+
+            # get the backed up files for this machine
+            self.backedup_files = get_backedup_files(self.machine_path,self.config,self.verbose)
+
+            self.start_time = float(self.config["start_time"])
+            self.end_time = float(self.config["end_time"])
+            end_time_t = time.localtime(self.end_time)
+
+            # load processed files into the filter
+            self.load_processed(restart_file)
+
+            # the backup root path is  s3://bucket/bkp/machine_name/datetime
+            timestamp = "%04d.%02d.%02d.%02d.%02d.%02d"%(end_time_t.tm_year, end_time_t.tm_mon, end_time_t.tm_mday, end_time_t.tm_hour, end_time_t.tm_min, end_time_t.tm_sec)
+            self.backup_path = self.machine_path + "/" + timestamp
+
+            # we log locally and snapshot the log to a remote version in the backup
+            # directory
+            self.remote_log_name = self.backup_path + "/bkp/bkp."+ timestamp + ".log"
+            self.local_log_name = os.path.expanduser("~/.bkp/bkp."+timestamp+".log")
+
+            # start the logger thread
+            self.logger.start_logger( self.perform_logging )
+
+            # fire up the worker threads
+            self.start_workers()
+
+            # loop over the paths provided and add them to the work queue
+            for d in self.config["dirs"]:
+                self.backup_directory( d )
+
+            # wait for queue to empty
+            self.wait_for_workers()
+
+            # wait for the logger to finish
+            self.logger.wait_for_logger()
+
+            # snapshot the log
+            if not self.dryrun:
+                fs_mod.fs_put(self.local_log_name,self.remote_log_name,lambda: self.config, verbose=self.verbose)
+        finally:
+            self.stop_workers()
+            self.logger.stop_logger()
+
+        if self.verbose:
+            print("Exiting backup", file=sys.stderr)
+
+        # send the log to the logging e-mail
+        if self.errors_count:
+            mail_error( None, open(self.local_log_name,"r"), self.verbose, lambda: self.config )
+            os.remove(self.local_log_name)
+            return 1
+        else:
+            mail_log( None, open(self.local_log_name,"r"), False, self.verbose, lambda: self.config )
+            os.remove(self.local_log_name)
+            return 0
+</code></pre>
+  </div>
+
+  </header>
+
+  <section id="section-items">
+
+    <h2 class="section-title" id="header-functions">Functions</h2>
+      
+  <div class="item">
+    <div class="name def" id="bkp_core.bkp_mod.check_interrupted">
+    <p>def <span class="ident">check_interrupted</span>(</p><p>verbose, config)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>check for interrupted backups and send e-mail to error e-mail</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-bkp_core.bkp_mod.check_interrupted', this);">Show source &equiv;</a></p>
+  <div id="source-bkp_core.bkp_mod.check_interrupted" class="source">
+    <pre><code>def check_interrupted( verbose, config ):
+    """ check for interrupted backups and send e-mail to error e-mail """
+    message = ""
+    for (dirpath, dirnames, filenames) in os.walk(os.path.expanduser("~/.bkp")):
+        for f in filenames:
+            if re.match("bkp\.[0-9][0-9][0-9][0-9]\.[0-9][0-9]\.[0-9][0-9]\.[0-9][0-9]\.[0-9][0-9]\.[0-9][0-9]\.log", f):
+                message = message + f + "\n"
+    if message:
+        mail_error("Aborted backups found you may want to restart them!\n"+message, None, verbose, lambda: config )
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+      
+  <div class="item">
+    <div class="name def" id="bkp_core.bkp_mod.compact">
+    <p>def <span class="ident">compact</span>(</p><p>config, dryrun=False, verbose=False)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>loop over all backups and remove empty ones compacting the s3 forest to only be backups with changed files</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-bkp_core.bkp_mod.compact', this);">Show source &equiv;</a></p>
+  <div id="source-bkp_core.bkp_mod.compact" class="source">
+    <pre><code>def compact( config, dryrun = False, verbose = False):
+    """ loop over all backups and remove empty ones compacting the s3 forest to only be backups with changed files """
+    base_path = config["bucket"]+"/bkp/"
+
+    machines = get_machines(base_path,config)
+    for m in machines:
+        machine_path = base_path+m
+        backups = get_backups(machine_path, config, verbose)
+        for b in backups:
+            backup_path = machine_path+"/"+b.timestamp+"/"
+            if verbose:
+                print("Checking backup path: ",backup_path, file=sys.stderr)
+
+            ls_output = io.StringIO(fs_mod.fs_ls(backup_path,False,lambda: config))
+            empty = True
+            for l in ls_output:
+                m = re.match("(\s*DIR\s*)(\S*)$",l)
+                if m:
+                    if verbose:
+                        print("Found directory: ",m.group(2), file=sys.stderr)
+                    if not m.group(2).endswith("/bkp/"):
+                        empty = False
+            if empty:
+                if not dryrun:
+                    fs_mod.fs_del(backup_path,True,lambda: config)
+                if verbose:
+                    print("Removed empty backup: ",backup_path, file=sys.stderr)
+            else:
+                if verbose:
+                    print("Skipped removing non-empty backup: ",backup_path, file=sys.stderr)
+
+    return 0
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+      
+  <div class="item">
+    <div class="name def" id="bkp_core.bkp_mod.get_backedup_files">
+    <p>def <span class="ident">get_backedup_files</span>(</p><p>machine_path, config, verbose=False)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>return a dict with all of the files we've backed up for this machine</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-bkp_core.bkp_mod.get_backedup_files', this);">Show source &equiv;</a></p>
+  <div id="source-bkp_core.bkp_mod.get_backedup_files" class="source">
+    <pre><code>def get_backedup_files( machine_path, config, verbose = False ):
+    """ return a dict with all of the files we've backed up for this machine """
+    backedup = {}
+    backups = get_backups( machine_path, config, verbose )
+    for bk in backups:
+        # fetch the contents of the backup log
+        contents = get_contents(machine_path,bk.timestamp+"/bkp/bkp."+bk.timestamp+".log",verbose, lambda: config)
+
+        # collect the newest version
+        if contents:
+            if verbose:
+                print("Found log file and processing it", file=sys.stderr)
+
+            past_config = False
+            for l in io.StringIO(contents):
+                if not past_config:
+                    if l.startswith("end_config"):
+                        past_config = True
+                elif l.strip():
+                    local_path,remote_path,status,msg = l.strip().split(";",3)
+                    if local_path in backedup:
+                        backedup[local_path].append( bk.time )
+                    else:
+                        backedup[local_path] = [bk.time]
+        else:
+            # ok this is a screwed up one that doesn't have a log so recurse using ls and build the list off of that
+            for l in io.StringIO(fs_mod.fs_ls(bk.path,True,lambda: config)):
+                prefix,path = re.split(bk.timestamp,l)
+                path = path.strip()
+                local_path = urllib.request.url2pathname(path)
+                if local_path in backedup:
+                    backedup[local_path].append(bk.time)
+                else:
+                    backedup[local_path] = [bk.time]
+
+    return backedup
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+      
+  <div class="item">
+    <div class="name def" id="bkp_core.bkp_mod.get_backups">
+    <p>def <span class="ident">get_backups</span>(</p><p>machine_path, config, verbose=False)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>get a list of all of the backups for this machine, returns list of Backup classes</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-bkp_core.bkp_mod.get_backups', this);">Show source &equiv;</a></p>
+  <div id="source-bkp_core.bkp_mod.get_backups" class="source">
+    <pre><code>def get_backups( machine_path, config, verbose = False ):
+    """ get a list of all of the backups for this machine, returns list of Backup classes """
+    # make sure the path ends in a / so we get the contents and not the directory itself
+    if machine_path[-1] != '/':
+        machine_path = machine_path + '/'
+
+    # loop over the ls output and extract the paths and then parse out and evaluate the timestamps
+    backups = []
+    try:
+        ls_output = io.StringIO(fs_mod.fs_ls(machine_path,False,lambda: config))
+    except:
+        if verbose:
+            print("Error in get_backups probably no backups ", file=sys.stderr)
+            print(traceback.format_exc(), file=sys.stderr)
+        ls_output = io.StringIO()
+
+    for l in ls_output:
+        m = re.match("(\s*DIR\s*)(\S*)$",l)
+        if m:
+            path = m.group(2)
+            timestamp = os.path.split(os.path.split(m.group(2))[0])[1]
+            backups.append(Backup(path,timestamp,timestamp2time(timestamp)))
+
+    return backups
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+      
+  <div class="item">
+    <div class="name def" id="bkp_core.bkp_mod.get_machines">
+    <p>def <span class="ident">get_machines</span>(</p><p>base_path, config)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>get all the machines that there are backups for</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-bkp_core.bkp_mod.get_machines', this);">Show source &equiv;</a></p>
+  <div id="source-bkp_core.bkp_mod.get_machines" class="source">
+    <pre><code>def get_machines(base_path, config):
+    """ get all the machines that there are backups for """
+    machines = []
+    ls_output = io.StringIO(fs_mod.fs_ls(base_path, False, lambda: config ))
+    for l in ls_output:
+        m = re.match("(\s*DIR\s*)(\S*)$",l)
+        if m:
+            machines.append(os.path.split(os.path.split(m.group(2))[0])[1])
+    return machines
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+      
+  <div class="item">
+    <div class="name def" id="bkp_core.bkp_mod.list">
+    <p>def <span class="ident">list</span>(</p><p>config, verbose=False)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>generate a listing of all of the files backed up for this machine with the dates available</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-bkp_core.bkp_mod.list', this);">Show source &equiv;</a></p>
+  <div id="source-bkp_core.bkp_mod.list" class="source">
+    <pre><code>def list( config, verbose = False ):
+    """ generate a listing of all of the files backed up for this machine with the dates available """
+    # the backups for a given machine will be in s3://bucket/bkp/machine_name
+    machine_path = config["bucket"]+"/bkp/"+platform.node()
+
+    # get the backed up files for this machine
+    backedup = get_backedup_files(machine_path, config, verbose)
+    
+    backedup_list = [ item for item in backedup.items() ]
+    for lpath, dates in backedup_list:
+        for d in dates:
+            print("%s %s"%(time.ctime(d),lpath))
+
+    return 0
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+      
+  <div class="item">
+    <div class="name def" id="bkp_core.bkp_mod.timestamp2time">
+    <p>def <span class="ident">timestamp2time</span>(</p><p>timestamp)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>convert a timestamp in yyyy.mm.dd.hh.mm.ss format to seconds for comparisons</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-bkp_core.bkp_mod.timestamp2time', this);">Show source &equiv;</a></p>
+  <div id="source-bkp_core.bkp_mod.timestamp2time" class="source">
+    <pre><code>def timestamp2time( timestamp ):
+    """ convert a timestamp in yyyy.mm.dd.hh.mm.ss format to seconds for comparisons """
+    return time.mktime(time.strptime(timestamp,"%Y.%m.%d.%H.%M.%S"))
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+
+    <h2 class="section-title" id="header-classes">Classes</h2>
+      
+      <div class="item">
+      <p id="bkp_core.bkp_mod.Backup" class="name">class <span class="ident">Backup</span></p>
+      
+  
+    <div class="desc"><p>class to represent a backup that is available contains, path, timestamp, time for a backup</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-bkp_core.bkp_mod.Backup', this);">Show source &equiv;</a></p>
+  <div id="source-bkp_core.bkp_mod.Backup" class="source">
+    <pre><code>class Backup:
+    """ class to represent a backup that is available contains, path, timestamp, time for a backup """
+    def __init__(self, p, ts, t ):
+        """ constructor takes path, timestamp string, and time in seconds as float """
+        self.path = p
+        self.timestamp = ts
+        self.time = t
+</code></pre>
+  </div>
+</div>
+
+
+      <div class="class">
+          <h3>Ancestors (in MRO)</h3>
+          <ul class="class_list">
+          <li><a href="#bkp_core.bkp_mod.Backup">Backup</a></li>
+          <li>builtins.object</li>
+          </ul>
+          <h3>Static methods</h3>
+            
+  <div class="item">
+    <div class="name def" id="bkp_core.bkp_mod.Backup.__init__">
+    <p>def <span class="ident">__init__</span>(</p><p>self, p, ts, t)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>constructor takes path, timestamp string, and time in seconds as float</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-bkp_core.bkp_mod.Backup.__init__', this);">Show source &equiv;</a></p>
+  <div id="source-bkp_core.bkp_mod.Backup.__init__" class="source">
+    <pre><code>def __init__(self, p, ts, t ):
+    """ constructor takes path, timestamp string, and time in seconds as float """
+    self.path = p
+    self.timestamp = ts
+    self.time = t
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+          <h3>Instance variables</h3>
+            <div class="item">
+            <p id="bkp_core.bkp_mod.Backup.path" class="name">var <span class="ident">path</span></p>
+            
+
+            
+  
+  <div class="source_cont">
+</div>
+
+            </div>
+            <div class="item">
+            <p id="bkp_core.bkp_mod.Backup.time" class="name">var <span class="ident">time</span></p>
+            
+
+            
+  
+  <div class="source_cont">
+</div>
+
+            </div>
+            <div class="item">
+            <p id="bkp_core.bkp_mod.Backup.timestamp" class="name">var <span class="ident">timestamp</span></p>
+            
+
+            
+  
+  <div class="source_cont">
+</div>
+
+            </div>
+      </div>
+      </div>
+      
+      <div class="item">
+      <p id="bkp_core.bkp_mod.BackupJob" class="name">class <span class="ident">BackupJob</span></p>
+      
+  
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-bkp_core.bkp_mod.BackupJob', this);">Show source &equiv;</a></p>
+  <div id="source-bkp_core.bkp_mod.BackupJob" class="source">
+    <pre><code>class BackupJob:
+    def __init__( self, config ):
+        self.dryrun = False
+        self.verbose = False
+        self.init(config)
+
+    def init( self, config ):
+        """ reset or initialize the internal state for another job run """
+        self.config = config
+        self.start_time = 0.0
+        self.end_time = 0.0
+        self.machine_path = ""
+        self.backup_path = ""
+        self.remote_log_name = ""
+        self.local_log_name = ""
+        self.errors_count = 0
+        self.worker_thread_pool = []
+        self.work_queue = queue.Queue()
+        self.worker_stop = False
+        self.processed_files = {}
+        self.backedup_files = {}
+        self.logger = Logger()
+
+    def get_config( self ):
+        """ get the config for this backup job """
+        return self.config
+
+    def perform_logging( self ):
+        """ perform the logging task loop reading the logging queue and write messages to output log file """
+        start_time = time.time()
+        while not self.logger.stopped():
+            try:
+                line = self.logger.get()
+                if line:
+                    try:
+                        print(line, file=open(self.local_log_name,"a+"))
+                        if self.verbose:
+                            print(line, file=sys.stderr)
+                    except:
+                        print("Invalid Log Line!", file=sys.stderr)
+                try:
+                    # every 5 minutes checkpoint the log file to the server for safe keeping
+                    if time.time() - start_time > 300:
+                        start_time = time.time()
+                        if not self.dryrun:
+                            fs_mod.fs_put(self.local_log_name,self.remote_log_name,lambda: self.config, verbose=self.verbose)
+                except:
+                    print("Error checkpointing log file!", file=sys.stderr)
+            except:
+                print("Exception while logging!", file=sys.stderr)
+                continue
+
+    def set_dryrun( self, dr ):
+        """ set the dryrun flag to true to prevent real actions in s3 """
+        self.dryrun = dr
+
+    def set_verbose( self, vb ):
+        """ set the verbose flag to true to enable extended output """
+        self.verbose = vb
+
+    def load_processed( self, restart_file):
+        """ load the processed files from a restart file """
+        r = open(restart_file,"r")
+        past_config = False
+        for l in r:
+            if past_config:
+                local_path,remote_path,status,msg = l.split(";",3)
+                self.processed_files[local_path] = (remote_path,status,msg)
+            elif l.startswith("end_config"):
+                past_config = True
+
+
+    def log_success( self, from_path, to_path ):
+        """ write a log line that indicates the copy of a source path to a destination s3 path, columns are from, to, "transferred", and "na" because there was no error """
+        self.logger.log("%s;%s;transferred;na"%(from_path,to_path))
+
+    def log_error( self, from_path, to_path, tb ):
+        """ write a log line that indicates the copy of a source path to a destination s3 path, columns are from, to, "transferred", and "na" because there was no error """
+        self.logger.log("%s;%s;error;%s"%(from_path,to_path,tb.replace("\n","/")))
+        self.errors_count = self.errors_count + 1
+
+    def process_backup( self ):
+        """ thread body for worker thread, loop processing the queue until killed """
+
+        start_time = time.time()
+        while not self.worker_stop:
+            try:
+                # every 5 minutes dump a stack trace if self.verbose
+                if time.time() - start_time > 300:
+                    start_time = time.time()
+                params = self.work_queue.get(True,1)
+                try:
+                    if not self.dryrun:
+                        fs_mod.fs_put( params.from_path, params.to_path, lambda: self.config, verbose=self.verbose )
+                    self.log_success( params.from_path, params.to_path )
+                    self.work_queue.task_done()
+                except:
+                    tb = traceback.format_exc()
+                    print(tb, file=sys.stderr)
+                    self.log_error( params.from_path, params.to_path, tb )
+                    self.work_queue.task_done()
+            except queue.Empty:
+                continue
+            except:
+                self.work_queue.task_done()
+                tb = traceback.format_exc()
+                print(tb, file=sys.stderr)
+                continue
+
+    def start_workers( self ):
+        """ start the workers in the pool """
+        num_threads = int(self.config["threads"])
+
+        while num_threads:
+            t = threading.Thread(target=self.process_backup)
+            t.start()
+            self.worker_thread_pool.append(t)
+            num_threads = num_threads - 1
+
+    def stop_workers( self ):
+        """ stop the workers """
+        self.worker_stop = True
+
+    def wait_for_workers( self ):
+        """ wait for the worker queue to be empty """
+        if self.verbose:
+            print("waiting for workers to finish", file=sys.stderr)
+        if not self.work_queue.empty():
+            self.work_queue.join()
+        self.stop_workers()
+        for t in self.worker_thread_pool:
+            if t.is_alive():
+                t.join()
+        self.worker_thread_pool = []
+        self.worker_stop = False
+        self.work_queue = queue.Queue()
+        if self.verbose:
+            print("workers are done", file=sys.stderr)
+
+    def backup_directory( self, path ):
+        """ enqueue the files to be backed up for a given directory path, apply filters on datetime, pattern, non-hidden files only, recurse visible subdirs """
+        for (dirpath, dirnames, filenames) in os.walk(path):
+            if self.verbose:
+                print("Scanning dirpath=",dirpath, file=sys.stderr)
+            # if exclude_dirs is contained in any of the paths then return
+            exclude_dir = False
+            for e in self.config["exclude_dirs"]:
+                if e and re.search(e,dirpath):
+                    exclude_dir = True
+                    break
+            if exclude_dir:
+                if self.verbose:
+                    print("Excluding dirpath=",dirpath,"because of e=",e, file=sys.stderr)
+                continue
+
+            # get rid of hidden directories
+            while True:
+                deleted = False
+                didx = 0
+                for d in dirnames:
+                    if d[0] == ".":
+                        if self.verbose:
+                            print("Deleting hidden directory =",d, file=sys.stderr)
+                        del dirnames[didx]
+                        deleted = True
+                        break
+                    didx = didx + 1
+                if not deleted:
+                    break
+
+            # process files in the directory enqueueing included files for backup
+            for f in filenames:
+                # if it is a hidden file skip it
+                if f[0] == ".":
+                    if self.verbose:
+                        print("Skipping hidden file =",f, file=sys.stderr)
+                    continue
+
+                # if it is excluded file skip it
+                if self.config["exclude_files"] and re.match(self.config["exclude_files"],f):
+                    if self.verbose:
+                        print("Excluding file =",f,"Because of pattern=",self.config["exclude_files"], file=sys.stderr)
+                    continue
+
+                # build the absolute path for the file and it's backup path
+                local_path = os.path.join(os.path.abspath(dirpath),f)
+                remote_path = self.backup_path + urllib.request.pathname2url(local_path)
+
+                # make sure local_path isn't in self.processed_files
+                if local_path in self.processed_files:
+                    if self.verbose:
+                        print("Excluding file = ",local_path,"Because in processed_files", file=sys.stderr)
+                    continue
+
+                # if the file is in the time range for this backup then queue it for backup
+                s = os.lstat(local_path)
+                if (s.st_mtime >= self.start_time and s.st_mtime < self.end_time):
+                    if self.verbose:
+                        print("Enqueuing copy work",local_path,remote_path, file=sys.stderr)
+                    self.work_queue.put(WorkerParams( local_path, remote_path ))
+                elif not (local_path in self.backedup_files):
+                    if self.verbose:
+                        print("Enqueuing copy work because not in backup",local_path,remote_path, file=sys.stderr)
+                    self.work_queue.put(WorkerParams( local_path, remote_path ))
+                else:
+                    if self.verbose:
+                        print("Not Enqueuing copy work for ", local_path, "because time is out of range and it is backed up", file=sys.stderr)
+
+        return
+
+    def backup( self ):
+        """ driver to perform backup """
+
+        try:
+            # reset our internal state for another run of backup
+            self.init(self.config)
+
+            # check for any aborted backups and send an e-mail about them
+            check_interrupted(self.verbose,self.config)
+
+            # the backups for a given machine will be in s3://bucket/bkp/machine_name
+            self.machine_path = self.config["bucket"]+"/bkp/"+platform.node()
+
+            # get the backed up files for this machine
+            self.backedup_files = get_backedup_files(self.machine_path,self.config,self.verbose)
+
+            # the start time for the next backup is in the "next" file in the root for that machine
+            # if it is empty or doesn't exist then we start from the beginning of time
+            # first thing we do is write the current time to the "next" file for the next backup
+            # even if two backups are running concurrently they shouldn't interfere since the files shouldn't overlap
+            next = get_contents( self.machine_path, "next", self.verbose, lambda: self.config )
+            if next:
+                self.start_time = float(next)
+            else:
+                self.start_time = 0.0
+            self.end_time = time.time()
+            put_contents( self.machine_path, "next", self.end_time, self.dryrun, lambda: self.config, self.verbose )
+            end_time_t = time.localtime(self.end_time)
+            self.config["start_time"] = str(self.start_time)
+            self.config["end_time"] = str(self.end_time)
+
+            # the backup root path is  s3://bucket/bkp/machine_name/datetime
+            timestamp = "%04d.%02d.%02d.%02d.%02d.%02d"%(end_time_t.tm_year, end_time_t.tm_mon, end_time_t.tm_mday, end_time_t.tm_hour, end_time_t.tm_min, end_time_t.tm_sec)
+            self.backup_path = self.machine_path + "/" + timestamp
+
+            # we log locally and snapshot the log to a remote version in the backup
+            # directory
+            self.remote_log_name = self.backup_path + "/bkp/bkp."+ timestamp + ".log"
+            self.local_log_name = os.path.expanduser("~/.bkp/bkp."+timestamp+".log")
+
+            # write config and restart info to the start of the local log
+            bkp_conf.save_config(self.config,open(self.local_log_name,"a+"),True)
+
+            # start the logger thread
+            self.logger.start_logger( self.perform_logging )
+
+            # fire up the worker threads
+            self.start_workers()
+
+            # loop over the paths provided and add them to the work queue
+            for d in self.config["dirs"]:
+                self.backup_directory( d )
+
+            # wait for queue to empty
+            self.wait_for_workers()
+
+            # wait for the logger to finish
+            self.logger.wait_for_logger()
+
+            # snapshot the log
+            if not self.dryrun:
+                fs_mod.fs_put(self.local_log_name,self.remote_log_name,lambda: self.config, verbose=self.verbose)
+        except:
+            self.stop_workers()
+            self.logger.stop_logger()
+            raise
+
+        # send the log to the logging e-mail
+        if self.errors_count:
+            mail_error( None, open(self.local_log_name,"r"), self.verbose, lambda: self.config )
+            os.remove(self.local_log_name)
+            return 1
+        else:
+            mail_log( None, open(self.local_log_name,"r"), False, self.verbose, lambda: self.config )
+            os.remove(self.local_log_name)
+            return 0
+
+    def restart( self, restart_file ):
+        """ restart a previously aborted backup from a backup log file """
+
+        try:
+            # load the saved config from the log file
+            # restore the original start and end time
+            self.config = bkp_conf.config(restart_file, self.verbose)
+
+            # initialize our internal state for this run
+            self.init(self.config)
+
+            # the backups for a given machine will be in s3://bucket/bkp/machine_name
+            self.machine_path = self.config["bucket"]+"/bkp/"+platform.node()
+
+            # get the backed up files for this machine
+            self.backedup_files = get_backedup_files(self.machine_path,self.config,self.verbose)
+
+            self.start_time = float(self.config["start_time"])
+            self.end_time = float(self.config["end_time"])
+            end_time_t = time.localtime(self.end_time)
+
+            # load processed files into the filter
+            self.load_processed(restart_file)
+
+            # the backup root path is  s3://bucket/bkp/machine_name/datetime
+            timestamp = "%04d.%02d.%02d.%02d.%02d.%02d"%(end_time_t.tm_year, end_time_t.tm_mon, end_time_t.tm_mday, end_time_t.tm_hour, end_time_t.tm_min, end_time_t.tm_sec)
+            self.backup_path = self.machine_path + "/" + timestamp
+
+            # we log locally and snapshot the log to a remote version in the backup
+            # directory
+            self.remote_log_name = self.backup_path + "/bkp/bkp."+ timestamp + ".log"
+            self.local_log_name = os.path.expanduser("~/.bkp/bkp."+timestamp+".log")
+
+            # start the logger thread
+            self.logger.start_logger( self.perform_logging )
+
+            # fire up the worker threads
+            self.start_workers()
+
+            # loop over the paths provided and add them to the work queue
+            for d in self.config["dirs"]:
+                self.backup_directory( d )
+
+            # wait for queue to empty
+            self.wait_for_workers()
+
+            # wait for the logger to finish
+            self.logger.wait_for_logger()
+
+            # snapshot the log
+            if not self.dryrun:
+                fs_mod.fs_put(self.local_log_name,self.remote_log_name,lambda: self.config, verbose=self.verbose)
+        finally:
+            self.stop_workers()
+            self.logger.stop_logger()
+
+        if self.verbose:
+            print("Exiting backup", file=sys.stderr)
+
+        # send the log to the logging e-mail
+        if self.errors_count:
+            mail_error( None, open(self.local_log_name,"r"), self.verbose, lambda: self.config )
+            os.remove(self.local_log_name)
+            return 1
+        else:
+            mail_log( None, open(self.local_log_name,"r"), False, self.verbose, lambda: self.config )
+            os.remove(self.local_log_name)
+            return 0
+</code></pre>
+  </div>
+</div>
+
+
+      <div class="class">
+          <h3>Ancestors (in MRO)</h3>
+          <ul class="class_list">
+          <li><a href="#bkp_core.bkp_mod.BackupJob">BackupJob</a></li>
+          <li>builtins.object</li>
+          </ul>
+          <h3>Static methods</h3>
+            
+  <div class="item">
+    <div class="name def" id="bkp_core.bkp_mod.BackupJob.__init__">
+    <p>def <span class="ident">__init__</span>(</p><p>self, config)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Initialize self.  See help(type(self)) for accurate signature.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-bkp_core.bkp_mod.BackupJob.__init__', this);">Show source &equiv;</a></p>
+  <div id="source-bkp_core.bkp_mod.BackupJob.__init__" class="source">
+    <pre><code>def __init__( self, config ):
+    self.dryrun = False
+    self.verbose = False
+    self.init(config)
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="bkp_core.bkp_mod.BackupJob.backup">
+    <p>def <span class="ident">backup</span>(</p><p>self)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>driver to perform backup</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-bkp_core.bkp_mod.BackupJob.backup', this);">Show source &equiv;</a></p>
+  <div id="source-bkp_core.bkp_mod.BackupJob.backup" class="source">
+    <pre><code>def backup( self ):
+    """ driver to perform backup """
+    try:
+        # reset our internal state for another run of backup
+        self.init(self.config)
+        # check for any aborted backups and send an e-mail about them
+        check_interrupted(self.verbose,self.config)
+        # the backups for a given machine will be in s3://bucket/bkp/machine_name
+        self.machine_path = self.config["bucket"]+"/bkp/"+platform.node()
+        # get the backed up files for this machine
+        self.backedup_files = get_backedup_files(self.machine_path,self.config,self.verbose)
+        # the start time for the next backup is in the "next" file in the root for that machine
+        # if it is empty or doesn't exist then we start from the beginning of time
+        # first thing we do is write the current time to the "next" file for the next backup
+        # even if two backups are running concurrently they shouldn't interfere since the files shouldn't overlap
+        next = get_contents( self.machine_path, "next", self.verbose, lambda: self.config )
+        if next:
+            self.start_time = float(next)
+        else:
+            self.start_time = 0.0
+        self.end_time = time.time()
+        put_contents( self.machine_path, "next", self.end_time, self.dryrun, lambda: self.config, self.verbose )
+        end_time_t = time.localtime(self.end_time)
+        self.config["start_time"] = str(self.start_time)
+        self.config["end_time"] = str(self.end_time)
+        # the backup root path is  s3://bucket/bkp/machine_name/datetime
+        timestamp = "%04d.%02d.%02d.%02d.%02d.%02d"%(end_time_t.tm_year, end_time_t.tm_mon, end_time_t.tm_mday, end_time_t.tm_hour, end_time_t.tm_min, end_time_t.tm_sec)
+        self.backup_path = self.machine_path + "/" + timestamp
+        # we log locally and snapshot the log to a remote version in the backup
+        # directory
+        self.remote_log_name = self.backup_path + "/bkp/bkp."+ timestamp + ".log"
+        self.local_log_name = os.path.expanduser("~/.bkp/bkp."+timestamp+".log")
+        # write config and restart info to the start of the local log
+        bkp_conf.save_config(self.config,open(self.local_log_name,"a+"),True)
+        # start the logger thread
+        self.logger.start_logger( self.perform_logging )
+        # fire up the worker threads
+        self.start_workers()
+        # loop over the paths provided and add them to the work queue
+        for d in self.config["dirs"]:
+            self.backup_directory( d )
+        # wait for queue to empty
+        self.wait_for_workers()
+        # wait for the logger to finish
+        self.logger.wait_for_logger()
+        # snapshot the log
+        if not self.dryrun:
+            fs_mod.fs_put(self.local_log_name,self.remote_log_name,lambda: self.config, verbose=self.verbose)
+    except:
+        self.stop_workers()
+        self.logger.stop_logger()
+        raise
+    # send the log to the logging e-mail
+    if self.errors_count:
+        mail_error( None, open(self.local_log_name,"r"), self.verbose, lambda: self.config )
+        os.remove(self.local_log_name)
+        return 1
+    else:
+        mail_log( None, open(self.local_log_name,"r"), False, self.verbose, lambda: self.config )
+        os.remove(self.local_log_name)
+        return 0
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="bkp_core.bkp_mod.BackupJob.backup_directory">
+    <p>def <span class="ident">backup_directory</span>(</p><p>self, path)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>enqueue the files to be backed up for a given directory path, apply filters on datetime, pattern, non-hidden files only, recurse visible subdirs</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-bkp_core.bkp_mod.BackupJob.backup_directory', this);">Show source &equiv;</a></p>
+  <div id="source-bkp_core.bkp_mod.BackupJob.backup_directory" class="source">
+    <pre><code>def backup_directory( self, path ):
+    """ enqueue the files to be backed up for a given directory path, apply filters on datetime, pattern, non-hidden files only, recurse visible subdirs """
+    for (dirpath, dirnames, filenames) in os.walk(path):
+        if self.verbose:
+            print("Scanning dirpath=",dirpath, file=sys.stderr)
+        # if exclude_dirs is contained in any of the paths then return
+        exclude_dir = False
+        for e in self.config["exclude_dirs"]:
+            if e and re.search(e,dirpath):
+                exclude_dir = True
+                break
+        if exclude_dir:
+            if self.verbose:
+                print("Excluding dirpath=",dirpath,"because of e=",e, file=sys.stderr)
+            continue
+        # get rid of hidden directories
+        while True:
+            deleted = False
+            didx = 0
+            for d in dirnames:
+                if d[0] == ".":
+                    if self.verbose:
+                        print("Deleting hidden directory =",d, file=sys.stderr)
+                    del dirnames[didx]
+                    deleted = True
+                    break
+                didx = didx + 1
+            if not deleted:
+                break
+        # process files in the directory enqueueing included files for backup
+        for f in filenames:
+            # if it is a hidden file skip it
+            if f[0] == ".":
+                if self.verbose:
+                    print("Skipping hidden file =",f, file=sys.stderr)
+                continue
+            # if it is excluded file skip it
+            if self.config["exclude_files"] and re.match(self.config["exclude_files"],f):
+                if self.verbose:
+                    print("Excluding file =",f,"Because of pattern=",self.config["exclude_files"], file=sys.stderr)
+                continue
+            # build the absolute path for the file and it's backup path
+            local_path = os.path.join(os.path.abspath(dirpath),f)
+            remote_path = self.backup_path + urllib.request.pathname2url(local_path)
+            # make sure local_path isn't in self.processed_files
+            if local_path in self.processed_files:
+                if self.verbose:
+                    print("Excluding file = ",local_path,"Because in processed_files", file=sys.stderr)
+                continue
+            # if the file is in the time range for this backup then queue it for backup
+            s = os.lstat(local_path)
+            if (s.st_mtime >= self.start_time and s.st_mtime < self.end_time):
+                if self.verbose:
+                    print("Enqueuing copy work",local_path,remote_path, file=sys.stderr)
+                self.work_queue.put(WorkerParams( local_path, remote_path ))
+            elif not (local_path in self.backedup_files):
+                if self.verbose:
+                    print("Enqueuing copy work because not in backup",local_path,remote_path, file=sys.stderr)
+                self.work_queue.put(WorkerParams( local_path, remote_path ))
+            else:
+                if self.verbose:
+                    print("Not Enqueuing copy work for ", local_path, "because time is out of range and it is backed up", file=sys.stderr)
+    return
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="bkp_core.bkp_mod.BackupJob.get_config">
+    <p>def <span class="ident">get_config</span>(</p><p>self)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>get the config for this backup job</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-bkp_core.bkp_mod.BackupJob.get_config', this);">Show source &equiv;</a></p>
+  <div id="source-bkp_core.bkp_mod.BackupJob.get_config" class="source">
+    <pre><code>def get_config( self ):
+    """ get the config for this backup job """
+    return self.config
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="bkp_core.bkp_mod.BackupJob.init">
+    <p>def <span class="ident">init</span>(</p><p>self, config)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>reset or initialize the internal state for another job run</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-bkp_core.bkp_mod.BackupJob.init', this);">Show source &equiv;</a></p>
+  <div id="source-bkp_core.bkp_mod.BackupJob.init" class="source">
+    <pre><code>def init( self, config ):
+    """ reset or initialize the internal state for another job run """
+    self.config = config
+    self.start_time = 0.0
+    self.end_time = 0.0
+    self.machine_path = ""
+    self.backup_path = ""
+    self.remote_log_name = ""
+    self.local_log_name = ""
+    self.errors_count = 0
+    self.worker_thread_pool = []
+    self.work_queue = queue.Queue()
+    self.worker_stop = False
+    self.processed_files = {}
+    self.backedup_files = {}
+    self.logger = Logger()
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="bkp_core.bkp_mod.BackupJob.load_processed">
+    <p>def <span class="ident">load_processed</span>(</p><p>self, restart_file)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>load the processed files from a restart file</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-bkp_core.bkp_mod.BackupJob.load_processed', this);">Show source &equiv;</a></p>
+  <div id="source-bkp_core.bkp_mod.BackupJob.load_processed" class="source">
+    <pre><code>def load_processed( self, restart_file):
+    """ load the processed files from a restart file """
+    r = open(restart_file,"r")
+    past_config = False
+    for l in r:
+        if past_config:
+            local_path,remote_path,status,msg = l.split(";",3)
+            self.processed_files[local_path] = (remote_path,status,msg)
+        elif l.startswith("end_config"):
+            past_config = True
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="bkp_core.bkp_mod.BackupJob.log_error">
+    <p>def <span class="ident">log_error</span>(</p><p>self, from_path, to_path, tb)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>write a log line that indicates the copy of a source path to a destination s3 path, columns are from, to, "transferred", and "na" because there was no error</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-bkp_core.bkp_mod.BackupJob.log_error', this);">Show source &equiv;</a></p>
+  <div id="source-bkp_core.bkp_mod.BackupJob.log_error" class="source">
+    <pre><code>def log_error( self, from_path, to_path, tb ):
+    """ write a log line that indicates the copy of a source path to a destination s3 path, columns are from, to, "transferred", and "na" because there was no error """
+    self.logger.log("%s;%s;error;%s"%(from_path,to_path,tb.replace("\n","/")))
+    self.errors_count = self.errors_count + 1
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="bkp_core.bkp_mod.BackupJob.log_success">
+    <p>def <span class="ident">log_success</span>(</p><p>self, from_path, to_path)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>write a log line that indicates the copy of a source path to a destination s3 path, columns are from, to, "transferred", and "na" because there was no error</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-bkp_core.bkp_mod.BackupJob.log_success', this);">Show source &equiv;</a></p>
+  <div id="source-bkp_core.bkp_mod.BackupJob.log_success" class="source">
+    <pre><code>def log_success( self, from_path, to_path ):
+    """ write a log line that indicates the copy of a source path to a destination s3 path, columns are from, to, "transferred", and "na" because there was no error """
+    self.logger.log("%s;%s;transferred;na"%(from_path,to_path))
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="bkp_core.bkp_mod.BackupJob.perform_logging">
+    <p>def <span class="ident">perform_logging</span>(</p><p>self)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>perform the logging task loop reading the logging queue and write messages to output log file</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-bkp_core.bkp_mod.BackupJob.perform_logging', this);">Show source &equiv;</a></p>
+  <div id="source-bkp_core.bkp_mod.BackupJob.perform_logging" class="source">
+    <pre><code>def perform_logging( self ):
+    """ perform the logging task loop reading the logging queue and write messages to output log file """
+    start_time = time.time()
+    while not self.logger.stopped():
+        try:
+            line = self.logger.get()
+            if line:
+                try:
+                    print(line, file=open(self.local_log_name,"a+"))
+                    if self.verbose:
+                        print(line, file=sys.stderr)
+                except:
+                    print("Invalid Log Line!", file=sys.stderr)
+            try:
+                # every 5 minutes checkpoint the log file to the server for safe keeping
+                if time.time() - start_time > 300:
+                    start_time = time.time()
+                    if not self.dryrun:
+                        fs_mod.fs_put(self.local_log_name,self.remote_log_name,lambda: self.config, verbose=self.verbose)
+            except:
+                print("Error checkpointing log file!", file=sys.stderr)
+        except:
+            print("Exception while logging!", file=sys.stderr)
+            continue
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="bkp_core.bkp_mod.BackupJob.process_backup">
+    <p>def <span class="ident">process_backup</span>(</p><p>self)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>thread body for worker thread, loop processing the queue until killed</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-bkp_core.bkp_mod.BackupJob.process_backup', this);">Show source &equiv;</a></p>
+  <div id="source-bkp_core.bkp_mod.BackupJob.process_backup" class="source">
+    <pre><code>def process_backup( self ):
+    """ thread body for worker thread, loop processing the queue until killed """
+    start_time = time.time()
+    while not self.worker_stop:
+        try:
+            # every 5 minutes dump a stack trace if self.verbose
+            if time.time() - start_time > 300:
+                start_time = time.time()
+            params = self.work_queue.get(True,1)
+            try:
+                if not self.dryrun:
+                    fs_mod.fs_put( params.from_path, params.to_path, lambda: self.config, verbose=self.verbose )
+                self.log_success( params.from_path, params.to_path )
+                self.work_queue.task_done()
+            except:
+                tb = traceback.format_exc()
+                print(tb, file=sys.stderr)
+                self.log_error( params.from_path, params.to_path, tb )
+                self.work_queue.task_done()
+        except queue.Empty:
+            continue
+        except:
+            self.work_queue.task_done()
+            tb = traceback.format_exc()
+            print(tb, file=sys.stderr)
+            continue
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="bkp_core.bkp_mod.BackupJob.restart">
+    <p>def <span class="ident">restart</span>(</p><p>self, restart_file)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>restart a previously aborted backup from a backup log file</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-bkp_core.bkp_mod.BackupJob.restart', this);">Show source &equiv;</a></p>
+  <div id="source-bkp_core.bkp_mod.BackupJob.restart" class="source">
+    <pre><code>def restart( self, restart_file ):
+    """ restart a previously aborted backup from a backup log file """
+    try:
+        # load the saved config from the log file
+        # restore the original start and end time
+        self.config = bkp_conf.config(restart_file, self.verbose)
+        # initialize our internal state for this run
+        self.init(self.config)
+        # the backups for a given machine will be in s3://bucket/bkp/machine_name
+        self.machine_path = self.config["bucket"]+"/bkp/"+platform.node()
+        # get the backed up files for this machine
+        self.backedup_files = get_backedup_files(self.machine_path,self.config,self.verbose)
+        self.start_time = float(self.config["start_time"])
+        self.end_time = float(self.config["end_time"])
+        end_time_t = time.localtime(self.end_time)
+        # load processed files into the filter
+        self.load_processed(restart_file)
+        # the backup root path is  s3://bucket/bkp/machine_name/datetime
+        timestamp = "%04d.%02d.%02d.%02d.%02d.%02d"%(end_time_t.tm_year, end_time_t.tm_mon, end_time_t.tm_mday, end_time_t.tm_hour, end_time_t.tm_min, end_time_t.tm_sec)
+        self.backup_path = self.machine_path + "/" + timestamp
+        # we log locally and snapshot the log to a remote version in the backup
+        # directory
+        self.remote_log_name = self.backup_path + "/bkp/bkp."+ timestamp + ".log"
+        self.local_log_name = os.path.expanduser("~/.bkp/bkp."+timestamp+".log")
+        # start the logger thread
+        self.logger.start_logger( self.perform_logging )
+        # fire up the worker threads
+        self.start_workers()
+        # loop over the paths provided and add them to the work queue
+        for d in self.config["dirs"]:
+            self.backup_directory( d )
+        # wait for queue to empty
+        self.wait_for_workers()
+        # wait for the logger to finish
+        self.logger.wait_for_logger()
+        # snapshot the log
+        if not self.dryrun:
+            fs_mod.fs_put(self.local_log_name,self.remote_log_name,lambda: self.config, verbose=self.verbose)
+    finally:
+        self.stop_workers()
+        self.logger.stop_logger()
+    if self.verbose:
+        print("Exiting backup", file=sys.stderr)
+    # send the log to the logging e-mail
+    if self.errors_count:
+        mail_error( None, open(self.local_log_name,"r"), self.verbose, lambda: self.config )
+        os.remove(self.local_log_name)
+        return 1
+    else:
+        mail_log( None, open(self.local_log_name,"r"), False, self.verbose, lambda: self.config )
+        os.remove(self.local_log_name)
+        return 0
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="bkp_core.bkp_mod.BackupJob.set_dryrun">
+    <p>def <span class="ident">set_dryrun</span>(</p><p>self, dr)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>set the dryrun flag to true to prevent real actions in s3</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-bkp_core.bkp_mod.BackupJob.set_dryrun', this);">Show source &equiv;</a></p>
+  <div id="source-bkp_core.bkp_mod.BackupJob.set_dryrun" class="source">
+    <pre><code>def set_dryrun( self, dr ):
+    """ set the dryrun flag to true to prevent real actions in s3 """
+    self.dryrun = dr
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="bkp_core.bkp_mod.BackupJob.set_verbose">
+    <p>def <span class="ident">set_verbose</span>(</p><p>self, vb)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>set the verbose flag to true to enable extended output</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-bkp_core.bkp_mod.BackupJob.set_verbose', this);">Show source &equiv;</a></p>
+  <div id="source-bkp_core.bkp_mod.BackupJob.set_verbose" class="source">
+    <pre><code>def set_verbose( self, vb ):
+    """ set the verbose flag to true to enable extended output """
+    self.verbose = vb
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="bkp_core.bkp_mod.BackupJob.start_workers">
+    <p>def <span class="ident">start_workers</span>(</p><p>self)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>start the workers in the pool</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-bkp_core.bkp_mod.BackupJob.start_workers', this);">Show source &equiv;</a></p>
+  <div id="source-bkp_core.bkp_mod.BackupJob.start_workers" class="source">
+    <pre><code>def start_workers( self ):
+    """ start the workers in the pool """
+    num_threads = int(self.config["threads"])
+    while num_threads:
+        t = threading.Thread(target=self.process_backup)
+        t.start()
+        self.worker_thread_pool.append(t)
+        num_threads = num_threads - 1
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="bkp_core.bkp_mod.BackupJob.stop_workers">
+    <p>def <span class="ident">stop_workers</span>(</p><p>self)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>stop the workers</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-bkp_core.bkp_mod.BackupJob.stop_workers', this);">Show source &equiv;</a></p>
+  <div id="source-bkp_core.bkp_mod.BackupJob.stop_workers" class="source">
+    <pre><code>def stop_workers( self ):
+    """ stop the workers """
+    self.worker_stop = True
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="bkp_core.bkp_mod.BackupJob.wait_for_workers">
+    <p>def <span class="ident">wait_for_workers</span>(</p><p>self)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>wait for the worker queue to be empty</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-bkp_core.bkp_mod.BackupJob.wait_for_workers', this);">Show source &equiv;</a></p>
+  <div id="source-bkp_core.bkp_mod.BackupJob.wait_for_workers" class="source">
+    <pre><code>def wait_for_workers( self ):
+    """ wait for the worker queue to be empty """
+    if self.verbose:
+        print("waiting for workers to finish", file=sys.stderr)
+    if not self.work_queue.empty():
+        self.work_queue.join()
+    self.stop_workers()
+    for t in self.worker_thread_pool:
+        if t.is_alive():
+            t.join()
+    self.worker_thread_pool = []
+    self.worker_stop = False
+    self.work_queue = queue.Queue()
+    if self.verbose:
+        print("workers are done", file=sys.stderr)
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+          <h3>Instance variables</h3>
+            <div class="item">
+            <p id="bkp_core.bkp_mod.BackupJob.dryrun" class="name">var <span class="ident">dryrun</span></p>
+            
+
+            
+  
+  <div class="source_cont">
+</div>
+
+            </div>
+            <div class="item">
+            <p id="bkp_core.bkp_mod.BackupJob.verbose" class="name">var <span class="ident">verbose</span></p>
+            
+
+            
+  
+  <div class="source_cont">
+</div>
+
+            </div>
+      </div>
+      </div>
+      
+      <div class="item">
+      <p id="bkp_core.bkp_mod.WorkerParams" class="name">class <span class="ident">WorkerParams</span></p>
+      
+  
+    <div class="desc"><p>worker params</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-bkp_core.bkp_mod.WorkerParams', this);">Show source &equiv;</a></p>
+  <div id="source-bkp_core.bkp_mod.WorkerParams" class="source">
+    <pre><code>class WorkerParams:
+    """ worker params """
+    def __init__(self, from_path, to_path):
+        """ set up the copy from and to paths for the worker """
+        self.from_path = from_path
+        self.to_path = to_path
+</code></pre>
+  </div>
+</div>
+
+
+      <div class="class">
+          <h3>Ancestors (in MRO)</h3>
+          <ul class="class_list">
+          <li><a href="#bkp_core.bkp_mod.WorkerParams">WorkerParams</a></li>
+          <li>builtins.object</li>
+          </ul>
+          <h3>Static methods</h3>
+            
+  <div class="item">
+    <div class="name def" id="bkp_core.bkp_mod.WorkerParams.__init__">
+    <p>def <span class="ident">__init__</span>(</p><p>self, from_path, to_path)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>set up the copy from and to paths for the worker</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-bkp_core.bkp_mod.WorkerParams.__init__', this);">Show source &equiv;</a></p>
+  <div id="source-bkp_core.bkp_mod.WorkerParams.__init__" class="source">
+    <pre><code>def __init__(self, from_path, to_path):
+    """ set up the copy from and to paths for the worker """
+    self.from_path = from_path
+    self.to_path = to_path
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+          <h3>Instance variables</h3>
+            <div class="item">
+            <p id="bkp_core.bkp_mod.WorkerParams.from_path" class="name">var <span class="ident">from_path</span></p>
+            
+
+            
+  
+  <div class="source_cont">
+</div>
+
+            </div>
+            <div class="item">
+            <p id="bkp_core.bkp_mod.WorkerParams.to_path" class="name">var <span class="ident">to_path</span></p>
+            
+
+            
+  
+  <div class="source_cont">
+</div>
+
+            </div>
+      </div>
+      </div>
+
+  </section>
+
+    </article>
+  <div class="clear"> </div>
+  <footer id="footer">
+    <p>
+      Documentation generated by
+      <a href="https://github.com/BurntSushi/pdoc">pdoc 0.3.2</a>
+    </p>
+
+    <p>pdoc is in the public domain with the
+      <a href="http://unlicense.org">UNLICENSE</a></p>
+
+    <p>Design by <a href="http://nadh.in">Kailash Nadh</a></p>
+  </footer>
+</div>
+</body>
+</html>

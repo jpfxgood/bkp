@@ -1,24 +1,21 @@
 # Copyright 2013-2014 James P Goodwin bkp@jlgoodwin.com
 """ module to implement shared functions for ssh file systems for the bkp/rstr tool """
-import os     
+import os
 import sys
 import socket
 import traceback
 import stat
 import time
-import bkp_conf
-from file_mod import safe_path
+import math
+from bkp_core.file_mod import safe_path
 import threading
-from StringIO import StringIO
+from io import StringIO
 import paramiko
 import socket
 
-
+sftp_safe_path_lock = threading.Lock()
 thread_local = threading.local()
-
-safe_path_lock = threading.Lock()
 transport_lock = threading.Lock()
-safe_path_cache = {}
 host_keys = {}
 
 # paramiko.util.log_to_file(os.path.expanduser("~/.bkp/ssh_mod.log"))
@@ -29,7 +26,7 @@ def strip_protocol( path ):
         return path[6:]
     else:
         raise Exception("strip_protocol: Missing protocol prefix.",path)
-        
+
 def split_hostpath( remote_path ):
     """ split off the hostname from an ssh://hostname:port/path name and return tuple (hostname, port, path) """
     remote_path = strip_protocol( remote_path )
@@ -43,7 +40,7 @@ def split_hostpath( remote_path ):
         host = parts[0]
         port = int(parts[1])
     return (host,port,path)
-    
+
 
 def lookup_hostkey( hostname ):
     """ return the hostkey for a host if we have one in the local host keys table returns (hostkey, hostkeytype) """
@@ -61,13 +58,13 @@ def lookup_hostkey( hostname ):
                 host_keys = paramiko.util.load_host_keys(os.path.expanduser('~/ssh/known_hosts'))
             except IOError:
                 host_keys = {}
-    
+
     if hostname in host_keys:
-        hostkeytype = host_keys[hostname].keys()[0]
+        hostkeytype = list(host_keys[hostname].keys())[0]
         hostkey = host_keys[hostname][hostkeytype]
     return ( hostkey, hostkeytype )
-    
-                   
+
+
 
 def ssh_transport( hostname, port, username, password, force = False ):
     """ acquire a transport to use SFTP over """
@@ -75,7 +72,8 @@ def ssh_transport( hostname, port, username, password, force = False ):
     transport_pool = getattr(thread_local, "transport_pool", None)
     if transport_pool == None:
         thread_local.transport_pool = {}
-        
+        transport_pool = thread_local.transport_pool
+
     if (not force) and (( hostname, port, username, password ) in transport_pool):
         t = transport_pool[( hostname, port, username, password )]
     else:
@@ -85,7 +83,7 @@ def ssh_transport( hostname, port, username, password, force = False ):
         t.use_compression(True)
         transport_pool[(hostname,port,username,password)] = t
     return t
-    
+
 def sftp_open( hostname, port, username, password ):
     """ get an open SFTP session object for a given hostname, username, password """
     sftp = None
@@ -97,33 +95,32 @@ def sftp_open( hostname, port, username, password ):
     finally:
         transport_lock.release()
     return sftp
-        
-    
+
+
 def sftp_safe_path( sftp, path ):
     """ make sure target sub directories exist """
     try:
-        safe_path_lock.acquire()
+        sftp_safe_path_lock.acquire()
+
         parts = path.split('/')[1:-1]
         pkey = "/".join(parts)
-        if not pkey in safe_path_cache:
-            spath = ''
-            for p in parts:
-                spath = spath + '/' + p
-                try:
-                    st = sftp.stat( spath )
-                except:
-                    sftp.mkdir(spath)
-                    st = sftp.stat( spath )
-    
-                if not stat.S_ISDIR( st.st_mode ):
-                    raise Exception("sftp_safe_path: path element is not a directory!",spath)
-            safe_path_cache[pkey] = True
+        spath = ''
+        for p in parts:
+            spath = spath + '/' + p
+            try:
+                st = sftp.stat( spath )
+            except:
+                sftp.mkdir(spath)
+                st = sftp.stat( spath )
+
+            if not stat.S_ISDIR( st.st_mode ):
+                raise Exception("sftp_safe_path: path element is not a directory!",spath)
     finally:
-        safe_path_lock.release()
-        
+        sftp_safe_path_lock.release()
+
     return path
 
-def ssh_utime( remote_path, times, get_config = bkp_conf.get_config ):
+def ssh_utime( remote_path, times, get_config = lambda: {} ):
     """ set the modified time for a remote file using sftp """
     host, port, path = split_hostpath( remote_path )
     sftp = sftp_open( host, port, get_config()['ssh_username'], get_config()['ssh_password'] )
@@ -131,9 +128,9 @@ def ssh_utime( remote_path, times, get_config = bkp_conf.get_config ):
         sftp.utime( path, times )
     finally:
         sftp.close()
-    
 
-def ssh_get( remote_path, local_path, get_config = bkp_conf.get_config ):
+
+def ssh_get( remote_path, local_path, get_config = lambda: {} ):
     """ copy from remote path to local_path using sftp """
     host, port, path = split_hostpath( remote_path )
     sftp = sftp_open( host, port, get_config()['ssh_username'], get_config()['ssh_password'] )
@@ -142,98 +139,105 @@ def ssh_get( remote_path, local_path, get_config = bkp_conf.get_config ):
     finally:
         sftp.close()
 
-def ssh_put( local_path, remote_path, get_config = bkp_conf.get_config, verbose = False ):
+def ssh_put( local_path, remote_path, get_config = lambda: {}, verbose = False ):
     """ copy to remote path from local_path using sftp """
     host, port, path = split_hostpath( remote_path )
     sftp = sftp_open( host, port, get_config()['ssh_username'], get_config()['ssh_password'] )
-    
+
     def put_progress( bytes_transferred, bytes_remaining ):
         if "last_transferred" not in put_progress.__dict__:
             put_progress.last_transferred = 0
         if bytes_transferred - put_progress.last_transferred > 1000000:
             sys.stderr.write("ssh_put: %s %12d %12d\r"%(os.path.basename(local_path),bytes_transferred,bytes_remaining))
             put_progress.last_transferred = bytes_transferred
-        
+
     try:
         if not verbose:
             sftp.put( local_path, sftp_safe_path(sftp,path) )
         else:
             sftp.put( local_path, sftp_safe_path(sftp,path), put_progress )
-            
+
     finally:
         sftp.close()
-    
 
-def ssh_ls( remote_path, recurse=False, get_config= bkp_conf.get_config, verbose=False ):
+
+def ssh_ls( remote_path, recurse=False, get_config= lambda: {}, verbose=False ):
     """ list directories and files perhaps recursively using sftp """
     host, port, path = split_hostpath( remote_path )
     sftp = sftp_open( host, port, get_config()['ssh_username'], get_config()['ssh_password'] )
     try:
         output = ""
         stream = StringIO()
-        
+
         try:
             st = sftp.lstat(path)
         except IOError:
             return output
-            
+
         if stat.S_ISDIR( st.st_mode):
             dirs = []
             dirs.append( path )
             while dirs:
-                dir = dirs.pop() 
+                dir = dirs.pop()
                 if verbose:
-                    print >>sys.stderr, "Processing ", dir
+                    print("Processing ", dir, file=sys.stderr)
                 try:
                     entries = sftp.listdir(dir)
                 except IOError:
                     continue
-                    
+
                 for entry in entries:
                     fp = os.path.join(dir,entry)
                     # don't do hidden
                     if entry.startswith("."):
                         continue
-                        
+
                     if verbose:
-                        print >>sys.stderr, "Is dir ?", fp
+                        print("Is dir ?", fp, file=sys.stderr)
                     try:
                         st = sftp.lstat(fp)
                     except IOError:
                         continue
-                    
+
                     # don't follow links
                     if stat.S_ISLNK( st.st_mode ):
                         continue
-                        
+
                     if stat.S_ISDIR( st.st_mode ):
                         if recurse:
                             dirs.append( fp )
                         else:
-                            print >>stream, "                           DIR ssh://%s:%s%s/"%(host,port,fp)
+                            print("                           DIR ssh://%s:%s%s/"%(host,port,fp), file=stream)
                     else:
                         mtime = time.localtime(st.st_mtime)
-                        print >>stream, "%04d-%02d-%02d %02d:%02d %9d   ssh://%s:%s%s"%(mtime.tm_year,mtime.tm_mon,mtime.tm_mday,mtime.tm_hour,mtime.tm_min,st.st_size,host,port,fp)
+                        print("%04d-%02d-%02d %02d:%02d %9d   ssh://%s:%s%s"%(mtime.tm_year,mtime.tm_mon,mtime.tm_mday,mtime.tm_hour,mtime.tm_min,st.st_size,host,port,fp), file=stream)
         else:
             mtime = time.localtime(st.st_mtime)
-            print >>stream, "%04d-%02d-%02d %02d:%02d %9d   ssh://%s:%s%s"%(mtime.tm_year,mtime.tm_mon,mtime.tm_mday,mtime.tm_hour,mtime.tm_min,st.st_size,host,port,path)
-    
+            print("%04d-%02d-%02d %02d:%02d %9d   ssh://%s:%s%s"%(mtime.tm_year,mtime.tm_mon,mtime.tm_mday,mtime.tm_hour,mtime.tm_min,st.st_size,host,port,path), file=stream)
+
         output = stream.getvalue()
         stream.close()
     finally:
         sftp.close()
     return output
 
-def ssh_del( remote_path, recurse=False, get_config= bkp_conf.get_config ):
+def ssh_del( remote_path, recurse=False, get_config= lambda: {} ):
     """ remove files or directories perhaps recursively using sftp """
     host, port, path = split_hostpath( remote_path )
     sftp = sftp_open( host, port, get_config()['ssh_username'], get_config()['ssh_password'] )
     try:
-        st = sftp.stat(path)
+        try:
+            st = sftp.stat(path)
+        except IOError as e:
+            if str(e) == "[Errno 2] No such file":
+                return ""
+            else:
+                raise
         if stat.S_ISDIR( st.st_mode):
             dirs = []
             remove_dirs = []
             dirs.append( path )
+            remove_dirs.append( path )
             while dirs:
                 dir = dirs.pop()
                 entries = sftp.listdir(dir)
@@ -248,39 +252,39 @@ def ssh_del( remote_path, recurse=False, get_config= bkp_conf.get_config ):
             while remove_dirs:
                 dir = remove_dirs.pop()
                 sftp.rmdir(dir)
-    
+
         else:
             sftp.remove(path)
     finally:
         sftp.close()
     return ""
-    
 
-def ssh_test( remote_path, verbose = False, get_config= bkp_conf.get_config ):
+
+def ssh_test( remote_path, verbose = False, get_config= lambda: {} ):
     """ test to make sure that we can access the remote path """
-    
+
     try:
         host, port, path = split_hostpath( remote_path+"/." )
-    
+
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         s.connect((host,port))
         data = s.recv(1024)
         if verbose:
-            print >>sys.stderr, "ssh_test: ", data
+            print("ssh_test: ", data, file=sys.stderr)
         s.close()
         return True
-    except:        
+    except:
         if verbose:
-            print >>sys.stderr, traceback.format_exc()
+            print(traceback.format_exc(), file=sys.stderr)
         return False
-        
-def ssh_stat( remote_path, get_config= bkp_conf.get_config ):
-    """ return tuple (mtime, size) for a file return (-1,-1) if no file """
+
+def ssh_stat( remote_path, get_config= lambda: {} ):
+    """ return tuple (mtime, size) for a file return (-1,-1) if no file mtime resolution is seconds """
     host, port, path = split_hostpath( remote_path )
     sftp = sftp_open( host, port, get_config()['ssh_username'], get_config()['ssh_password'] )
     try:
         st = sftp.lstat(path)
-        return (st.st_mtime,st.st_size)
+        return (math.floor(st.st_mtime),st.st_size)
     except:
         pass
     finally:

@@ -1,0 +1,2002 @@
+<!doctype html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+
+    <title>bkp_core.rstr_mod API documentation</title>
+    <meta name="description" content="module to implement shared functions for the rstr tool" />
+
+  <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300' rel='stylesheet' type='text/css'>
+  
+  <style type="text/css">
+  
+* {
+  box-sizing: border-box;
+}
+/*! normalize.css v1.1.1 | MIT License | git.io/normalize */
+
+/* ==========================================================================
+   HTML5 display definitions
+   ========================================================================== */
+
+/**
+ * Correct `block` display not defined in IE 6/7/8/9 and Firefox 3.
+ */
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+nav,
+section,
+summary {
+    display: block;
+}
+
+/**
+ * Correct `inline-block` display not defined in IE 6/7/8/9 and Firefox 3.
+ */
+
+audio,
+canvas,
+video {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+}
+
+/**
+ * Prevent modern browsers from displaying `audio` without controls.
+ * Remove excess height in iOS 5 devices.
+ */
+
+audio:not([controls]) {
+    display: none;
+    height: 0;
+}
+
+/**
+ * Address styling not present in IE 7/8/9, Firefox 3, and Safari 4.
+ * Known issue: no IE 6 support.
+ */
+
+[hidden] {
+    display: none;
+}
+
+/* ==========================================================================
+   Base
+   ========================================================================== */
+
+/**
+ * 1. Prevent system color scheme's background color being used in Firefox, IE,
+ *    and Opera.
+ * 2. Prevent system color scheme's text color being used in Firefox, IE, and
+ *    Opera.
+ * 3. Correct text resizing oddly in IE 6/7 when body `font-size` is set using
+ *    `em` units.
+ * 4. Prevent iOS text size adjust after orientation change, without disabling
+ *    user zoom.
+ */
+
+html {
+    background: #fff; /* 1 */
+    color: #000; /* 2 */
+    font-size: 100%; /* 3 */
+    -webkit-text-size-adjust: 100%; /* 4 */
+    -ms-text-size-adjust: 100%; /* 4 */
+}
+
+/**
+ * Address `font-family` inconsistency between `textarea` and other form
+ * elements.
+ */
+
+html,
+button,
+input,
+select,
+textarea {
+    font-family: sans-serif;
+}
+
+/**
+ * Address margins handled incorrectly in IE 6/7.
+ */
+
+body {
+    margin: 0;
+}
+
+/* ==========================================================================
+   Links
+   ========================================================================== */
+
+/**
+ * Address `outline` inconsistency between Chrome and other browsers.
+ */
+
+a:focus {
+    outline: thin dotted;
+}
+
+/**
+ * Improve readability when focused and also mouse hovered in all browsers.
+ */
+
+a:active,
+a:hover {
+    outline: 0;
+}
+
+/* ==========================================================================
+   Typography
+   ========================================================================== */
+
+/**
+ * Address font sizes and margins set differently in IE 6/7.
+ * Address font sizes within `section` and `article` in Firefox 4+, Safari 5,
+ * and Chrome.
+ */
+
+h1 {
+    font-size: 2em;
+    margin: 0.67em 0;
+}
+
+h2 {
+    font-size: 1.5em;
+    margin: 0.83em 0;
+}
+
+h3 {
+    font-size: 1.17em;
+    margin: 1em 0;
+}
+
+h4 {
+    font-size: 1em;
+    margin: 1.33em 0;
+}
+
+h5 {
+    font-size: 0.83em;
+    margin: 1.67em 0;
+}
+
+h6 {
+    font-size: 0.67em;
+    margin: 2.33em 0;
+}
+
+/**
+ * Address styling not present in IE 7/8/9, Safari 5, and Chrome.
+ */
+
+abbr[title] {
+    border-bottom: 1px dotted;
+}
+
+/**
+ * Address style set to `bolder` in Firefox 3+, Safari 4/5, and Chrome.
+ */
+
+b,
+strong {
+    font-weight: bold;
+}
+
+blockquote {
+    margin: 1em 40px;
+}
+
+/**
+ * Address styling not present in Safari 5 and Chrome.
+ */
+
+dfn {
+    font-style: italic;
+}
+
+/**
+ * Address differences between Firefox and other browsers.
+ * Known issue: no IE 6/7 normalization.
+ */
+
+hr {
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    height: 0;
+}
+
+/**
+ * Address styling not present in IE 6/7/8/9.
+ */
+
+mark {
+    background: #ff0;
+    color: #000;
+}
+
+/**
+ * Address margins set differently in IE 6/7.
+ */
+
+p,
+pre {
+    margin: 1em 0;
+}
+
+/**
+ * Correct font family set oddly in IE 6, Safari 4/5, and Chrome.
+ */
+
+code,
+kbd,
+pre,
+samp {
+    font-family: monospace, serif;
+    _font-family: 'courier new', monospace;
+    font-size: 1em;
+}
+
+/**
+ * Improve readability of pre-formatted text in all browsers.
+ */
+
+pre {
+    white-space: pre;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+/**
+ * Address CSS quotes not supported in IE 6/7.
+ */
+
+q {
+    quotes: none;
+}
+
+/**
+ * Address `quotes` property not supported in Safari 4.
+ */
+
+q:before,
+q:after {
+    content: '';
+    content: none;
+}
+
+/**
+ * Address inconsistent and variable font size in all browsers.
+ */
+
+small {
+    font-size: 80%;
+}
+
+/**
+ * Prevent `sub` and `sup` affecting `line-height` in all browsers.
+ */
+
+sub,
+sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+}
+
+sup {
+    top: -0.5em;
+}
+
+sub {
+    bottom: -0.25em;
+}
+
+/* ==========================================================================
+   Lists
+   ========================================================================== */
+
+/**
+ * Address margins set differently in IE 6/7.
+ */
+
+dl,
+menu,
+ol,
+ul {
+    margin: 1em 0;
+}
+
+dd {
+    margin: 0 0 0 40px;
+}
+
+/**
+ * Address paddings set differently in IE 6/7.
+ */
+
+menu,
+ol,
+ul {
+    padding: 0 0 0 40px;
+}
+
+/**
+ * Correct list images handled incorrectly in IE 7.
+ */
+
+nav ul,
+nav ol {
+    list-style: none;
+    list-style-image: none;
+}
+
+/* ==========================================================================
+   Embedded content
+   ========================================================================== */
+
+/**
+ * 1. Remove border when inside `a` element in IE 6/7/8/9 and Firefox 3.
+ * 2. Improve image quality when scaled in IE 7.
+ */
+
+img {
+    border: 0; /* 1 */
+    -ms-interpolation-mode: bicubic; /* 2 */
+}
+
+/**
+ * Correct overflow displayed oddly in IE 9.
+ */
+
+svg:not(:root) {
+    overflow: hidden;
+}
+
+/* ==========================================================================
+   Figures
+   ========================================================================== */
+
+/**
+ * Address margin not present in IE 6/7/8/9, Safari 5, and Opera 11.
+ */
+
+figure {
+    margin: 0;
+}
+
+/* ==========================================================================
+   Forms
+   ========================================================================== */
+
+/**
+ * Correct margin displayed oddly in IE 6/7.
+ */
+
+form {
+    margin: 0;
+}
+
+/**
+ * Define consistent border, margin, and padding.
+ */
+
+fieldset {
+    border: 1px solid #c0c0c0;
+    margin: 0 2px;
+    padding: 0.35em 0.625em 0.75em;
+}
+
+/**
+ * 1. Correct color not being inherited in IE 6/7/8/9.
+ * 2. Correct text not wrapping in Firefox 3.
+ * 3. Correct alignment displayed oddly in IE 6/7.
+ */
+
+legend {
+    border: 0; /* 1 */
+    padding: 0;
+    white-space: normal; /* 2 */
+    *margin-left: -7px; /* 3 */
+}
+
+/**
+ * 1. Correct font size not being inherited in all browsers.
+ * 2. Address margins set differently in IE 6/7, Firefox 3+, Safari 5,
+ *    and Chrome.
+ * 3. Improve appearance and consistency in all browsers.
+ */
+
+button,
+input,
+select,
+textarea {
+    font-size: 100%; /* 1 */
+    margin: 0; /* 2 */
+    vertical-align: baseline; /* 3 */
+    *vertical-align: middle; /* 3 */
+}
+
+/**
+ * Address Firefox 3+ setting `line-height` on `input` using `!important` in
+ * the UA stylesheet.
+ */
+
+button,
+input {
+    line-height: normal;
+}
+
+/**
+ * Address inconsistent `text-transform` inheritance for `button` and `select`.
+ * All other form control elements do not inherit `text-transform` values.
+ * Correct `button` style inheritance in Chrome, Safari 5+, and IE 6+.
+ * Correct `select` style inheritance in Firefox 4+ and Opera.
+ */
+
+button,
+select {
+    text-transform: none;
+}
+
+/**
+ * 1. Avoid the WebKit bug in Android 4.0.* where (2) destroys native `audio`
+ *    and `video` controls.
+ * 2. Correct inability to style clickable `input` types in iOS.
+ * 3. Improve usability and consistency of cursor style between image-type
+ *    `input` and others.
+ * 4. Remove inner spacing in IE 7 without affecting normal text inputs.
+ *    Known issue: inner spacing remains in IE 6.
+ */
+
+button,
+html input[type="button"], /* 1 */
+input[type="reset"],
+input[type="submit"] {
+    -webkit-appearance: button; /* 2 */
+    cursor: pointer; /* 3 */
+    *overflow: visible;  /* 4 */
+}
+
+/**
+ * Re-set default cursor for disabled elements.
+ */
+
+button[disabled],
+html input[disabled] {
+    cursor: default;
+}
+
+/**
+ * 1. Address box sizing set to content-box in IE 8/9.
+ * 2. Remove excess padding in IE 8/9.
+ * 3. Remove excess padding in IE 7.
+ *    Known issue: excess padding remains in IE 6.
+ */
+
+input[type="checkbox"],
+input[type="radio"] {
+    box-sizing: border-box; /* 1 */
+    padding: 0; /* 2 */
+    *height: 13px; /* 3 */
+    *width: 13px; /* 3 */
+}
+
+/**
+ * 1. Address `appearance` set to `searchfield` in Safari 5 and Chrome.
+ * 2. Address `box-sizing` set to `border-box` in Safari 5 and Chrome
+ *    (include `-moz` to future-proof).
+ */
+
+input[type="search"] {
+    -webkit-appearance: textfield; /* 1 */
+    -moz-box-sizing: content-box;
+    -webkit-box-sizing: content-box; /* 2 */
+    box-sizing: content-box;
+}
+
+/**
+ * Remove inner padding and search cancel button in Safari 5 and Chrome
+ * on OS X.
+ */
+
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+    -webkit-appearance: none;
+}
+
+/**
+ * Remove inner padding and border in Firefox 3+.
+ */
+
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+}
+
+/**
+ * 1. Remove default vertical scrollbar in IE 6/7/8/9.
+ * 2. Improve readability and alignment in all browsers.
+ */
+
+textarea {
+    overflow: auto; /* 1 */
+    vertical-align: top; /* 2 */
+}
+
+/* ==========================================================================
+   Tables
+   ========================================================================== */
+
+/**
+ * Remove most spacing between table cells.
+ */
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+  </style>
+
+  <style type="text/css">
+  
+  html, body {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+  }
+  body {
+    background: #fff;
+    font-family: "Source Sans Pro", "Helvetica Neueue", Helvetica, sans;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 1.6em;
+  }
+  #content {
+    width: 70%;
+    max-width: 850px;
+    float: left;
+    padding: 30px 60px;
+    border-left: 1px solid #ddd;
+  }
+  #sidebar {
+    width: 25%;
+    float: left;
+    padding: 30px;
+    overflow: hidden;
+  }
+  #nav {
+    font-size: 130%;
+    margin: 0 0 15px 0;
+  }
+
+  #top {
+    display: block;
+    position: fixed;
+    bottom: 5px;
+    left: 5px;
+    font-size: .85em;
+    text-transform: uppercase;
+  }
+
+  #footer {
+    font-size: .75em;
+    padding: 5px 30px;
+    border-top: 1px solid #ddd;
+    text-align: right;
+  }
+    #footer p {
+      margin: 0 0 0 30px;
+      display: inline-block;
+    }
+
+  h1, h2, h3, h4, h5 {
+    font-weight: 300;
+  }
+  h1 {
+    font-size: 2.5em;
+    line-height: 1.1em;
+    margin: 0 0 .50em 0;
+  }
+
+  h2 {
+    font-size: 1.75em;
+    margin: 1em 0 .50em 0;
+  }
+
+  h3 {
+    margin: 25px 0 10px 0;
+  }
+
+  h4 {
+    margin: 0;
+    font-size: 105%;
+  }
+
+  a {
+    color: #058;
+    text-decoration: none;
+    transition: color .3s ease-in-out;
+  }
+
+  a:hover {
+    color: #e08524;
+    transition: color .3s ease-in-out;
+  }
+
+  pre, code, .mono, .name {
+    font-family: "Ubuntu Mono", "Cousine", "DejaVu Sans Mono", monospace;
+  }
+
+  .title .name {
+    font-weight: bold;
+  }
+  .section-title {
+    margin-top: 2em;
+  }
+  .ident {
+    color: #900;
+  }
+
+  code {
+    background: #f9f9f9;
+  } 
+
+  pre {
+    background: #fefefe;
+    border: 1px solid #ddd;
+    box-shadow: 2px 2px 0 #f3f3f3;
+    margin: 0 30px;
+    padding: 15px 30px;
+  }
+
+  .codehilite {
+    margin: 0 30px 10px 30px;
+  }
+
+    .codehilite pre {
+      margin: 0;
+    }
+    .codehilite .err { background: #ff3300; color: #fff !important; } 
+
+  table#module-list {
+    font-size: 110%;
+  }
+
+    table#module-list tr td:first-child {
+      padding-right: 10px;
+      white-space: nowrap;
+    }
+
+    table#module-list td {
+      vertical-align: top;
+      padding-bottom: 8px;
+    }
+
+      table#module-list td p {
+        margin: 0 0 7px 0;
+      }
+
+  .def {
+    display: table;
+  }
+
+    .def p {
+      display: table-cell;
+      vertical-align: top;
+      text-align: left;
+    }
+
+    .def p:first-child {
+      white-space: nowrap;
+    }
+
+    .def p:last-child {
+      width: 100%;
+    }
+
+
+  #index {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+    ul#index .class_name {
+      /* font-size: 110%; */
+      font-weight: bold;
+    }
+    #index ul {
+      margin: 0;
+    }
+
+  .item {
+    margin: 0 0 15px 0;
+  }
+
+    .item .class {
+      margin: 0 0 25px 30px;
+    }
+
+      .item .class ul.class_list {
+        margin: 0 0 20px 0;
+      }
+
+    .item .name {
+      background: #fafafa;
+      margin: 0;
+      font-weight: bold;
+      padding: 5px 10px;
+      border-radius: 3px;
+      display: inline-block;
+      min-width: 40%;
+    }
+      .item .name:hover {
+        background: #f6f6f6;
+      }
+
+    .item .empty_desc {
+      margin: 0 0 5px 0;
+      padding: 0;
+    }
+
+    .item .inheritance {
+      margin: 3px 0 0 30px;
+    }
+
+    .item .inherited {
+      color: #666;
+    }
+
+    .item .desc {
+      padding: 0 8px;
+      margin: 0;
+    }
+
+      .item .desc p {
+        margin: 0 0 10px 0;
+      }
+
+    .source_cont {
+      margin: 0;
+      padding: 0;
+    }
+
+    .source_link a {
+      background: #ffc300;
+      font-weight: 400;
+      font-size: .75em;
+      text-transform: uppercase;
+      color: #fff;
+      text-shadow: 1px 1px 0 #f4b700;
+      
+      padding: 3px 8px;
+      border-radius: 2px;
+      transition: background .3s ease-in-out;
+    }
+      .source_link a:hover {
+        background: #FF7200;
+        text-shadow: none;
+        transition: background .3s ease-in-out;
+      }
+
+    .source {
+      display: none;
+      max-height: 600px;
+      overflow-y: scroll;
+      margin-bottom: 15px;
+    }
+
+      .source .codehilite {
+        margin: 0;
+      }
+
+  .desc h1, .desc h2, .desc h3 {
+    font-size: 100% !important;
+  }
+  .clear {
+    clear: both;
+  }
+
+  @media all and (max-width: 950px) {
+    #sidebar {
+      width: 35%;
+    }
+    #content {
+      width: 65%;
+    }
+  }
+  @media all and (max-width: 650px) {
+    #top {
+      display: none;
+    }
+    #sidebar {
+      float: none;
+      width: auto;
+    }
+    #content {
+      float: none;
+      width: auto;
+      padding: 30px;
+    }
+
+    #index ul {
+      padding: 0;
+      margin-bottom: 15px;
+    }
+    #index ul li {
+      display: inline-block;
+      margin-right: 30px;
+    }
+    #footer {
+      text-align: left;
+    }
+    #footer p {
+      display: block;
+      margin: inherit;
+    }
+  }
+
+  /*****************************/
+
+  </style>
+
+
+  <style type="text/css">
+  
+/* ==========================================================================
+   EXAMPLE Media Queries for Responsive Design.
+   These examples override the primary ('mobile first') styles.
+   Modify as content requires.
+   ========================================================================== */
+
+@media only screen and (min-width: 35em) {
+    /* Style adjustments for viewports that meet the condition */
+}
+
+@media print,
+       (-o-min-device-pixel-ratio: 5/4),
+       (-webkit-min-device-pixel-ratio: 1.25),
+       (min-resolution: 120dpi) {
+    /* Style adjustments for high resolution devices */
+}
+
+/* ==========================================================================
+   Print styles.
+   Inlined to avoid required HTTP connection: h5bp.com/r
+   ========================================================================== */
+
+@media print {
+    * {
+        background: transparent !important;
+        color: #000 !important; /* Black prints faster: h5bp.com/s */
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+
+    a,
+    a:visited {
+        text-decoration: underline;
+    }
+
+    a[href]:after {
+        content: " (" attr(href) ")";
+    }
+
+    abbr[title]:after {
+        content: " (" attr(title) ")";
+    }
+
+    /*
+     * Don't show links for images, or javascript/internal links
+     */
+
+    .ir a:after,
+    a[href^="javascript:"]:after,
+    a[href^="#"]:after {
+        content: "";
+    }
+
+    pre,
+    blockquote {
+        border: 1px solid #999;
+        page-break-inside: avoid;
+    }
+
+    thead {
+        display: table-header-group; /* h5bp.com/t */
+    }
+
+    tr,
+    img {
+        page-break-inside: avoid;
+    }
+
+    img {
+        max-width: 100% !important;
+    }
+
+    @page {
+        margin: 0.5cm;
+    }
+
+    p,
+    h2,
+    h3 {
+        orphans: 3;
+        widows: 3;
+    }
+
+    h2,
+    h3 {
+        page-break-after: avoid;
+    }
+}
+
+  </style>
+
+  <script type="text/javascript">
+  function toggle(id, $link) {
+    $node = document.getElementById(id);
+    if (!$node)
+    return;
+    if (!$node.style.display || $node.style.display == 'none') {
+    $node.style.display = 'block';
+    $link.innerHTML = 'Hide source &nequiv;';
+    } else {
+    $node.style.display = 'none';
+    $link.innerHTML = 'Show source &equiv;';
+    }
+  }
+  </script>
+</head>
+<body>
+<a href="#" id="top">Top</a>
+
+<div id="container">
+    
+  
+  <div id="sidebar">
+    <h1>Index</h1>
+    <ul id="index">
+
+
+    <li class="set"><h3><a href="#header-classes">Classes</a></h3>
+      <ul>
+        <li class="mono">
+        <span class="class_name"><a href="#bkp_core.rstr_mod.Restore">Restore</a></span>
+        
+          
+  <ul>
+    <li class="mono"><a href="#bkp_core.rstr_mod.Restore.__init__">__init__</a></li>
+  </ul>
+
+        </li>
+        <li class="mono">
+        <span class="class_name"><a href="#bkp_core.rstr_mod.RestoreJob">RestoreJob</a></span>
+        
+          
+  <ul>
+    <li class="mono"><a href="#bkp_core.rstr_mod.RestoreJob.__init__">__init__</a></li>
+    <li class="mono"><a href="#bkp_core.rstr_mod.RestoreJob.init">init</a></li>
+    <li class="mono"><a href="#bkp_core.rstr_mod.RestoreJob.perform_restore">perform_restore</a></li>
+    <li class="mono"><a href="#bkp_core.rstr_mod.RestoreJob.restore">restore</a></li>
+    <li class="mono"><a href="#bkp_core.rstr_mod.RestoreJob.set_dryrun">set_dryrun</a></li>
+    <li class="mono"><a href="#bkp_core.rstr_mod.RestoreJob.set_verbose">set_verbose</a></li>
+    <li class="mono"><a href="#bkp_core.rstr_mod.RestoreJob.start_restore_workers">start_restore_workers</a></li>
+    <li class="mono"><a href="#bkp_core.rstr_mod.RestoreJob.stop_restore_workers">stop_restore_workers</a></li>
+    <li class="mono"><a href="#bkp_core.rstr_mod.RestoreJob.wait_for_restore_workers">wait_for_restore_workers</a></li>
+  </ul>
+
+        </li>
+      </ul>
+    </li>
+
+    </ul>
+  </div>
+
+    <article id="content">
+      
+  
+
+  
+
+
+  <header id="section-intro">
+  <h1 class="title"><span class="name">bkp_core.rstr_mod</span> module</h1>
+  <p>module to implement shared functions for the rstr tool</p>
+  
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-bkp_core.rstr_mod', this);">Show source &equiv;</a></p>
+  <div id="source-bkp_core.rstr_mod" class="source">
+    <pre><code># Copyright 2013-2014 James P Goodwin bkp@jlgoodwin.com
+""" module to implement shared functions for the rstr tool """
+import sys
+import os
+import tempfile
+import re
+import traceback
+import queue
+import threading
+import platform
+import time
+import subprocess
+import datetime
+import urllib.request, urllib.parse, urllib.error
+import io
+from bkp_core import bkp_mod
+from bkp_core import bkp_conf
+from bkp_core.util import get_contents
+from bkp_core.fs_mod import fs_get,fs_put,fs_ls
+from bkp_core.logger import Logger
+
+class Restore:
+    """ class to represent parameters about a restore candidate """
+
+    def __init__(self, r_path, l_path, t_path, time ):
+        """ constructor takes remote path, orignal local path, target local path, and the for the file as a float """
+        self.remote_path = r_path
+        self.original_path = l_path
+        self.local_path = t_path
+        self.time = time
+
+class RestoreJob:
+    def __init__( self, config):
+        self.dryrun = False
+        self.verbose = False
+        self.init( config )
+
+    def init( self, config ):
+        """ initialize the internal state for another run """
+        self.config = config
+        self.restore_worker_thread_pool = []
+        self.restore_work_queue = queue.Queue()
+        self.restore_workers_stop = False
+        self.logger = Logger()
+
+    def set_dryrun( self, dr ):
+        """ set the dryrun flag to true to have it just log all the actions but not perform them """
+        self.dryrun = dr
+
+    def set_verbose( self, vb ):
+        """ set the verbose flag to log a lot more detail about the process """
+        self.verbose = vb
+
+    def perform_restore( self ):
+        """ worker thread body that pulls restore actions off the queue and performs them """
+        while not self.restore_workers_stop:
+            try:
+                params = self.restore_work_queue.get(True,1)
+                try:
+                    if not self.dryrun:
+                        fs_get( params.remote_path, params.local_path, lambda: self.config )
+                        os.utime( params.local_path, (params.time, params.time))
+                    self.logger.log( "Restored %s to %s"%(params.remote_path,params.local_path))
+                    self.restore_work_queue.task_done()
+                except:
+                    tb = traceback.format_exc()
+                    self.logger.log( tb )
+                    self.restore_work_queue.task_done()
+            except queue.Empty:
+                continue
+
+    def start_restore_workers(self):
+        """ start the right number of restore worker threads to perform the restoring """
+        num_threads = int(self.config["threads"])
+
+        while num_threads:
+            t = threading.Thread(target=self.perform_restore)
+            t.start()
+            self.restore_worker_thread_pool.append(t)
+            num_threads = num_threads - 1
+
+    def stop_restore_workers(self):
+        """ set a flag that causes all of the restore workers to exit """
+        self.restore_workers_stop = True
+
+    def wait_for_restore_workers(self):
+        """ wait until the restore queue clears """
+
+        if not self.restore_work_queue.empty():
+            self.restore_work_queue.join()
+        self.stop_restore_workers()
+        for r in self.restore_worker_thread_pool:
+            if r.is_alive():
+                r.join()
+        self.restore_worker_thread_pool = []
+        self.restore_worker_stop = False
+        self.restore_work_queue = queue.Queue()
+
+    def restore( self, machine=platform.node(), restore_path = "", exclude_pats = [], asof = "", restore_pats = [] ):
+        """ main restore driver, will loop over all backups for this server and restore all files to the restore path that match the restore_pats and are not excluded by the exlcude patterns up to the asof date """
+        try:
+            # initialize our internal state to begin a new run
+            self.init(self.config)
+
+            # start the logger
+            self.logger.start_logger()
+
+            # expand user path references in restore_path
+            restore_path = os.path.expanduser(restore_path)
+
+            # if asof is not specified then restore as of now
+            if not asof:
+                end_time_t = time.localtime(time.time())
+                asof = "%04d.%02d.%02d.%02d.%02d.%02d"%(end_time_t.tm_year, end_time_t.tm_mon, end_time_t.tm_mday, end_time_t.tm_hour, end_time_t.tm_min, end_time_t.tm_sec)
+
+            # get asof as a time value
+            asof_time = bkp_mod.timestamp2time( asof )
+
+            # the backups for a given machine will be in s3://bucket/bkp/machine_name
+            machine_path = self.config["bucket"]+"/bkp/"+machine
+
+            try:
+                # get backup paths and timestamps returns Backup objects with  (time, timestamp, path)
+                backups = bkp_mod.get_backups( machine_path, self.config, self.verbose )
+
+                # loop over the backups, process the log files and collect the correct versions of matching files
+                restore_map = {}
+                for bk in backups:
+                    if self.verbose:
+                        self.logger.log("Examining backup: %s"%(bk.path))
+
+                    # if the backup is after the asof date then skip it
+                    if bk.time > asof_time:
+                        if self.verbose:
+                            self.logger.log("Skipping because it is newer than asof backup: %s"%(bk.path))
+                        continue
+
+                    # fetch the contents of the backup log
+                    contents = get_contents(machine_path,bk.timestamp+"/bkp/bkp."+bk.timestamp+".log",self.verbose, lambda: self.config)
+
+                    # collect the newest version less than the asof time and apply all the filters
+                    # if there's a backup log then we do this the easy way
+                    if contents:
+                        if self.verbose:
+                            self.logger.log("Found log file and processing it")
+
+                        past_config = False
+                        for l in io.StringIO(contents):
+                            if not past_config:
+                                if l.startswith("end_config"):
+                                    past_config = True
+                            else:
+                                local_path,remote_path,status,msg = l.split(";",3)
+                                if status == "error":
+                                    if self.verbose:
+                                        self.logger.log("Skipping because of error: %s"%(local_path))
+                                    continue
+                                if local_path in restore_map and restore_map[local_path].time > bk.time:
+                                    if self.verbose:
+                                        self.logger.log("Skipping because we already have a newer one: %s"%(local_path))
+                                    continue
+                                exclude = False
+                                for ex in exclude_pats:
+                                    if re.match(ex,local_path):
+                                        exclude = True
+                                        break
+                                if exclude:
+                                    if self.verbose:
+                                        self.logger.log("Skipping because of exclude %s %s"%(ex,local_path))
+                                    continue
+                                restore = False
+                                for rs in restore_pats:
+                                    if re.match(rs,local_path):
+                                        restore = True
+                                        break
+                                if not restore:
+                                    if self.verbose:
+                                        self.logger.log("Skipping because not included: %s"%(local_path))
+                                    continue
+                                if self.verbose:
+                                    self.logger.log("Including: %s"%(local_path))
+
+                                restore_map[local_path] = Restore(remote_path,local_path,os.path.join(restore_path,local_path[1:]),bk.time)
+                    else:
+                        if self.verbose:
+                            self.logger.log("No log file doing a recursive ls of %s"%bk.path)
+                        # ok this is a screwed up one that doesn't have a log so recurse using ls and build the list off of that
+                        for l in io.StringIO(fs_ls(bk.path,True, lambda: self.config)):
+                            prefix,path = re.split(bk.timestamp,l)
+                            path = path.strip()
+                            local_path = urllib.request.url2pathname(path)
+                            remote_path = bk.path + path[1:]
+                            if local_path in restore_map:
+                                if self.verbose:
+                                    self.logger.log( "Found in map: %s"%(local_path))
+                                if restore_map[local_path].time > bk.time:
+                                    if self.verbose:
+                                        self.logger.log("Skipping because we already have a newer one %s"%(local_path))
+                                    continue
+                            exclude = False
+                            for ex in exclude_pats:
+                                if re.match(ex,local_path):
+                                    exclude = True
+                                    break
+                            if exclude:
+                                if self.verbose:
+                                    self.logger.log("Skipping because of exclude %s %s"%(ex,local_path))
+                                continue
+                            restore = False
+                            for rs in restore_pats:
+                                if re.match(rs,local_path):
+                                    restore = True
+                                    break
+                            if not restore:
+                                if self.verbose:
+                                    self.logger.log("Skipping because not included %s"%(local_path))
+                                continue
+                            if self.verbose:
+                                self.logger.log("Including: %s"%(local_path))
+                            restore_map[local_path] = Restore(remote_path,local_path,os.path.join(restore_path,local_path[1:]),bk.time)
+            except:
+                self.logger.log("Exception while processing: "+traceback.format_exc())
+
+            # if we have things to restore then go for it
+            if restore_map:
+                # start up the restore workers
+                self.start_restore_workers()
+
+                # enqueue all of the restore tasks
+                for rest in restore_map.values():
+                    self.restore_work_queue.put(rest)
+
+                # wait for the restore workers
+                self.wait_for_restore_workers()
+
+            # wait for logging to complete
+            self.logger.wait_for_logger()
+        except:
+            # stop the restore workers
+            self.stop_restore_workers()
+
+            # stop the restore logger
+            self.logger.stop_logger()
+            raise
+</code></pre>
+  </div>
+
+  </header>
+
+  <section id="section-items">
+
+
+    <h2 class="section-title" id="header-classes">Classes</h2>
+      
+      <div class="item">
+      <p id="bkp_core.rstr_mod.Restore" class="name">class <span class="ident">Restore</span></p>
+      
+  
+    <div class="desc"><p>class to represent parameters about a restore candidate</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-bkp_core.rstr_mod.Restore', this);">Show source &equiv;</a></p>
+  <div id="source-bkp_core.rstr_mod.Restore" class="source">
+    <pre><code>class Restore:
+    """ class to represent parameters about a restore candidate """
+
+    def __init__(self, r_path, l_path, t_path, time ):
+        """ constructor takes remote path, orignal local path, target local path, and the for the file as a float """
+        self.remote_path = r_path
+        self.original_path = l_path
+        self.local_path = t_path
+        self.time = time
+</code></pre>
+  </div>
+</div>
+
+
+      <div class="class">
+          <h3>Ancestors (in MRO)</h3>
+          <ul class="class_list">
+          <li><a href="#bkp_core.rstr_mod.Restore">Restore</a></li>
+          <li>builtins.object</li>
+          </ul>
+          <h3>Static methods</h3>
+            
+  <div class="item">
+    <div class="name def" id="bkp_core.rstr_mod.Restore.__init__">
+    <p>def <span class="ident">__init__</span>(</p><p>self, r_path, l_path, t_path, time)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>constructor takes remote path, orignal local path, target local path, and the for the file as a float</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-bkp_core.rstr_mod.Restore.__init__', this);">Show source &equiv;</a></p>
+  <div id="source-bkp_core.rstr_mod.Restore.__init__" class="source">
+    <pre><code>def __init__(self, r_path, l_path, t_path, time ):
+    """ constructor takes remote path, orignal local path, target local path, and the for the file as a float """
+    self.remote_path = r_path
+    self.original_path = l_path
+    self.local_path = t_path
+    self.time = time
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+          <h3>Instance variables</h3>
+            <div class="item">
+            <p id="bkp_core.rstr_mod.Restore.local_path" class="name">var <span class="ident">local_path</span></p>
+            
+
+            
+  
+  <div class="source_cont">
+</div>
+
+            </div>
+            <div class="item">
+            <p id="bkp_core.rstr_mod.Restore.original_path" class="name">var <span class="ident">original_path</span></p>
+            
+
+            
+  
+  <div class="source_cont">
+</div>
+
+            </div>
+            <div class="item">
+            <p id="bkp_core.rstr_mod.Restore.remote_path" class="name">var <span class="ident">remote_path</span></p>
+            
+
+            
+  
+  <div class="source_cont">
+</div>
+
+            </div>
+            <div class="item">
+            <p id="bkp_core.rstr_mod.Restore.time" class="name">var <span class="ident">time</span></p>
+            
+
+            
+  
+  <div class="source_cont">
+</div>
+
+            </div>
+      </div>
+      </div>
+      
+      <div class="item">
+      <p id="bkp_core.rstr_mod.RestoreJob" class="name">class <span class="ident">RestoreJob</span></p>
+      
+  
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-bkp_core.rstr_mod.RestoreJob', this);">Show source &equiv;</a></p>
+  <div id="source-bkp_core.rstr_mod.RestoreJob" class="source">
+    <pre><code>class RestoreJob:
+    def __init__( self, config):
+        self.dryrun = False
+        self.verbose = False
+        self.init( config )
+
+    def init( self, config ):
+        """ initialize the internal state for another run """
+        self.config = config
+        self.restore_worker_thread_pool = []
+        self.restore_work_queue = queue.Queue()
+        self.restore_workers_stop = False
+        self.logger = Logger()
+
+    def set_dryrun( self, dr ):
+        """ set the dryrun flag to true to have it just log all the actions but not perform them """
+        self.dryrun = dr
+
+    def set_verbose( self, vb ):
+        """ set the verbose flag to log a lot more detail about the process """
+        self.verbose = vb
+
+    def perform_restore( self ):
+        """ worker thread body that pulls restore actions off the queue and performs them """
+        while not self.restore_workers_stop:
+            try:
+                params = self.restore_work_queue.get(True,1)
+                try:
+                    if not self.dryrun:
+                        fs_get( params.remote_path, params.local_path, lambda: self.config )
+                        os.utime( params.local_path, (params.time, params.time))
+                    self.logger.log( "Restored %s to %s"%(params.remote_path,params.local_path))
+                    self.restore_work_queue.task_done()
+                except:
+                    tb = traceback.format_exc()
+                    self.logger.log( tb )
+                    self.restore_work_queue.task_done()
+            except queue.Empty:
+                continue
+
+    def start_restore_workers(self):
+        """ start the right number of restore worker threads to perform the restoring """
+        num_threads = int(self.config["threads"])
+
+        while num_threads:
+            t = threading.Thread(target=self.perform_restore)
+            t.start()
+            self.restore_worker_thread_pool.append(t)
+            num_threads = num_threads - 1
+
+    def stop_restore_workers(self):
+        """ set a flag that causes all of the restore workers to exit """
+        self.restore_workers_stop = True
+
+    def wait_for_restore_workers(self):
+        """ wait until the restore queue clears """
+
+        if not self.restore_work_queue.empty():
+            self.restore_work_queue.join()
+        self.stop_restore_workers()
+        for r in self.restore_worker_thread_pool:
+            if r.is_alive():
+                r.join()
+        self.restore_worker_thread_pool = []
+        self.restore_worker_stop = False
+        self.restore_work_queue = queue.Queue()
+
+    def restore( self, machine=platform.node(), restore_path = "", exclude_pats = [], asof = "", restore_pats = [] ):
+        """ main restore driver, will loop over all backups for this server and restore all files to the restore path that match the restore_pats and are not excluded by the exlcude patterns up to the asof date """
+        try:
+            # initialize our internal state to begin a new run
+            self.init(self.config)
+
+            # start the logger
+            self.logger.start_logger()
+
+            # expand user path references in restore_path
+            restore_path = os.path.expanduser(restore_path)
+
+            # if asof is not specified then restore as of now
+            if not asof:
+                end_time_t = time.localtime(time.time())
+                asof = "%04d.%02d.%02d.%02d.%02d.%02d"%(end_time_t.tm_year, end_time_t.tm_mon, end_time_t.tm_mday, end_time_t.tm_hour, end_time_t.tm_min, end_time_t.tm_sec)
+
+            # get asof as a time value
+            asof_time = bkp_mod.timestamp2time( asof )
+
+            # the backups for a given machine will be in s3://bucket/bkp/machine_name
+            machine_path = self.config["bucket"]+"/bkp/"+machine
+
+            try:
+                # get backup paths and timestamps returns Backup objects with  (time, timestamp, path)
+                backups = bkp_mod.get_backups( machine_path, self.config, self.verbose )
+
+                # loop over the backups, process the log files and collect the correct versions of matching files
+                restore_map = {}
+                for bk in backups:
+                    if self.verbose:
+                        self.logger.log("Examining backup: %s"%(bk.path))
+
+                    # if the backup is after the asof date then skip it
+                    if bk.time > asof_time:
+                        if self.verbose:
+                            self.logger.log("Skipping because it is newer than asof backup: %s"%(bk.path))
+                        continue
+
+                    # fetch the contents of the backup log
+                    contents = get_contents(machine_path,bk.timestamp+"/bkp/bkp."+bk.timestamp+".log",self.verbose, lambda: self.config)
+
+                    # collect the newest version less than the asof time and apply all the filters
+                    # if there's a backup log then we do this the easy way
+                    if contents:
+                        if self.verbose:
+                            self.logger.log("Found log file and processing it")
+
+                        past_config = False
+                        for l in io.StringIO(contents):
+                            if not past_config:
+                                if l.startswith("end_config"):
+                                    past_config = True
+                            else:
+                                local_path,remote_path,status,msg = l.split(";",3)
+                                if status == "error":
+                                    if self.verbose:
+                                        self.logger.log("Skipping because of error: %s"%(local_path))
+                                    continue
+                                if local_path in restore_map and restore_map[local_path].time > bk.time:
+                                    if self.verbose:
+                                        self.logger.log("Skipping because we already have a newer one: %s"%(local_path))
+                                    continue
+                                exclude = False
+                                for ex in exclude_pats:
+                                    if re.match(ex,local_path):
+                                        exclude = True
+                                        break
+                                if exclude:
+                                    if self.verbose:
+                                        self.logger.log("Skipping because of exclude %s %s"%(ex,local_path))
+                                    continue
+                                restore = False
+                                for rs in restore_pats:
+                                    if re.match(rs,local_path):
+                                        restore = True
+                                        break
+                                if not restore:
+                                    if self.verbose:
+                                        self.logger.log("Skipping because not included: %s"%(local_path))
+                                    continue
+                                if self.verbose:
+                                    self.logger.log("Including: %s"%(local_path))
+
+                                restore_map[local_path] = Restore(remote_path,local_path,os.path.join(restore_path,local_path[1:]),bk.time)
+                    else:
+                        if self.verbose:
+                            self.logger.log("No log file doing a recursive ls of %s"%bk.path)
+                        # ok this is a screwed up one that doesn't have a log so recurse using ls and build the list off of that
+                        for l in io.StringIO(fs_ls(bk.path,True, lambda: self.config)):
+                            prefix,path = re.split(bk.timestamp,l)
+                            path = path.strip()
+                            local_path = urllib.request.url2pathname(path)
+                            remote_path = bk.path + path[1:]
+                            if local_path in restore_map:
+                                if self.verbose:
+                                    self.logger.log( "Found in map: %s"%(local_path))
+                                if restore_map[local_path].time > bk.time:
+                                    if self.verbose:
+                                        self.logger.log("Skipping because we already have a newer one %s"%(local_path))
+                                    continue
+                            exclude = False
+                            for ex in exclude_pats:
+                                if re.match(ex,local_path):
+                                    exclude = True
+                                    break
+                            if exclude:
+                                if self.verbose:
+                                    self.logger.log("Skipping because of exclude %s %s"%(ex,local_path))
+                                continue
+                            restore = False
+                            for rs in restore_pats:
+                                if re.match(rs,local_path):
+                                    restore = True
+                                    break
+                            if not restore:
+                                if self.verbose:
+                                    self.logger.log("Skipping because not included %s"%(local_path))
+                                continue
+                            if self.verbose:
+                                self.logger.log("Including: %s"%(local_path))
+                            restore_map[local_path] = Restore(remote_path,local_path,os.path.join(restore_path,local_path[1:]),bk.time)
+            except:
+                self.logger.log("Exception while processing: "+traceback.format_exc())
+
+            # if we have things to restore then go for it
+            if restore_map:
+                # start up the restore workers
+                self.start_restore_workers()
+
+                # enqueue all of the restore tasks
+                for rest in restore_map.values():
+                    self.restore_work_queue.put(rest)
+
+                # wait for the restore workers
+                self.wait_for_restore_workers()
+
+            # wait for logging to complete
+            self.logger.wait_for_logger()
+        except:
+            # stop the restore workers
+            self.stop_restore_workers()
+
+            # stop the restore logger
+            self.logger.stop_logger()
+            raise
+</code></pre>
+  </div>
+</div>
+
+
+      <div class="class">
+          <h3>Ancestors (in MRO)</h3>
+          <ul class="class_list">
+          <li><a href="#bkp_core.rstr_mod.RestoreJob">RestoreJob</a></li>
+          <li>builtins.object</li>
+          </ul>
+          <h3>Static methods</h3>
+            
+  <div class="item">
+    <div class="name def" id="bkp_core.rstr_mod.RestoreJob.__init__">
+    <p>def <span class="ident">__init__</span>(</p><p>self, config)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Initialize self.  See help(type(self)) for accurate signature.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-bkp_core.rstr_mod.RestoreJob.__init__', this);">Show source &equiv;</a></p>
+  <div id="source-bkp_core.rstr_mod.RestoreJob.__init__" class="source">
+    <pre><code>def __init__( self, config):
+    self.dryrun = False
+    self.verbose = False
+    self.init( config )
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="bkp_core.rstr_mod.RestoreJob.init">
+    <p>def <span class="ident">init</span>(</p><p>self, config)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>initialize the internal state for another run</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-bkp_core.rstr_mod.RestoreJob.init', this);">Show source &equiv;</a></p>
+  <div id="source-bkp_core.rstr_mod.RestoreJob.init" class="source">
+    <pre><code>def init( self, config ):
+    """ initialize the internal state for another run """
+    self.config = config
+    self.restore_worker_thread_pool = []
+    self.restore_work_queue = queue.Queue()
+    self.restore_workers_stop = False
+    self.logger = Logger()
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="bkp_core.rstr_mod.RestoreJob.perform_restore">
+    <p>def <span class="ident">perform_restore</span>(</p><p>self)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>worker thread body that pulls restore actions off the queue and performs them</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-bkp_core.rstr_mod.RestoreJob.perform_restore', this);">Show source &equiv;</a></p>
+  <div id="source-bkp_core.rstr_mod.RestoreJob.perform_restore" class="source">
+    <pre><code>def perform_restore( self ):
+    """ worker thread body that pulls restore actions off the queue and performs them """
+    while not self.restore_workers_stop:
+        try:
+            params = self.restore_work_queue.get(True,1)
+            try:
+                if not self.dryrun:
+                    fs_get( params.remote_path, params.local_path, lambda: self.config )
+                    os.utime( params.local_path, (params.time, params.time))
+                self.logger.log( "Restored %s to %s"%(params.remote_path,params.local_path))
+                self.restore_work_queue.task_done()
+            except:
+                tb = traceback.format_exc()
+                self.logger.log( tb )
+                self.restore_work_queue.task_done()
+        except queue.Empty:
+            continue
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="bkp_core.rstr_mod.RestoreJob.restore">
+    <p>def <span class="ident">restore</span>(</p><p>self, machine=&#39;james-server1&#39;, restore_path=&#39;&#39;, exclude_pats=[], asof=&#39;&#39;, restore_pats=[])</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>main restore driver, will loop over all backups for this server and restore all files to the restore path that match the restore_pats and are not excluded by the exlcude patterns up to the asof date</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-bkp_core.rstr_mod.RestoreJob.restore', this);">Show source &equiv;</a></p>
+  <div id="source-bkp_core.rstr_mod.RestoreJob.restore" class="source">
+    <pre><code>def restore( self, machine=platform.node(), restore_path = "", exclude_pats = [], asof = "", restore_pats = [] ):
+    """ main restore driver, will loop over all backups for this server and restore all files to the restore path that match the restore_pats and are not excluded by the exlcude patterns up to the asof date """
+    try:
+        # initialize our internal state to begin a new run
+        self.init(self.config)
+        # start the logger
+        self.logger.start_logger()
+        # expand user path references in restore_path
+        restore_path = os.path.expanduser(restore_path)
+        # if asof is not specified then restore as of now
+        if not asof:
+            end_time_t = time.localtime(time.time())
+            asof = "%04d.%02d.%02d.%02d.%02d.%02d"%(end_time_t.tm_year, end_time_t.tm_mon, end_time_t.tm_mday, end_time_t.tm_hour, end_time_t.tm_min, end_time_t.tm_sec)
+        # get asof as a time value
+        asof_time = bkp_mod.timestamp2time( asof )
+        # the backups for a given machine will be in s3://bucket/bkp/machine_name
+        machine_path = self.config["bucket"]+"/bkp/"+machine
+        try:
+            # get backup paths and timestamps returns Backup objects with  (time, timestamp, path)
+            backups = bkp_mod.get_backups( machine_path, self.config, self.verbose )
+            # loop over the backups, process the log files and collect the correct versions of matching files
+            restore_map = {}
+            for bk in backups:
+                if self.verbose:
+                    self.logger.log("Examining backup: %s"%(bk.path))
+                # if the backup is after the asof date then skip it
+                if bk.time > asof_time:
+                    if self.verbose:
+                        self.logger.log("Skipping because it is newer than asof backup: %s"%(bk.path))
+                    continue
+                # fetch the contents of the backup log
+                contents = get_contents(machine_path,bk.timestamp+"/bkp/bkp."+bk.timestamp+".log",self.verbose, lambda: self.config)
+                # collect the newest version less than the asof time and apply all the filters
+                # if there's a backup log then we do this the easy way
+                if contents:
+                    if self.verbose:
+                        self.logger.log("Found log file and processing it")
+                    past_config = False
+                    for l in io.StringIO(contents):
+                        if not past_config:
+                            if l.startswith("end_config"):
+                                past_config = True
+                        else:
+                            local_path,remote_path,status,msg = l.split(";",3)
+                            if status == "error":
+                                if self.verbose:
+                                    self.logger.log("Skipping because of error: %s"%(local_path))
+                                continue
+                            if local_path in restore_map and restore_map[local_path].time > bk.time:
+                                if self.verbose:
+                                    self.logger.log("Skipping because we already have a newer one: %s"%(local_path))
+                                continue
+                            exclude = False
+                            for ex in exclude_pats:
+                                if re.match(ex,local_path):
+                                    exclude = True
+                                    break
+                            if exclude:
+                                if self.verbose:
+                                    self.logger.log("Skipping because of exclude %s %s"%(ex,local_path))
+                                continue
+                            restore = False
+                            for rs in restore_pats:
+                                if re.match(rs,local_path):
+                                    restore = True
+                                    break
+                            if not restore:
+                                if self.verbose:
+                                    self.logger.log("Skipping because not included: %s"%(local_path))
+                                continue
+                            if self.verbose:
+                                self.logger.log("Including: %s"%(local_path))
+                            restore_map[local_path] = Restore(remote_path,local_path,os.path.join(restore_path,local_path[1:]),bk.time)
+                else:
+                    if self.verbose:
+                        self.logger.log("No log file doing a recursive ls of %s"%bk.path)
+                    # ok this is a screwed up one that doesn't have a log so recurse using ls and build the list off of that
+                    for l in io.StringIO(fs_ls(bk.path,True, lambda: self.config)):
+                        prefix,path = re.split(bk.timestamp,l)
+                        path = path.strip()
+                        local_path = urllib.request.url2pathname(path)
+                        remote_path = bk.path + path[1:]
+                        if local_path in restore_map:
+                            if self.verbose:
+                                self.logger.log( "Found in map: %s"%(local_path))
+                            if restore_map[local_path].time > bk.time:
+                                if self.verbose:
+                                    self.logger.log("Skipping because we already have a newer one %s"%(local_path))
+                                continue
+                        exclude = False
+                        for ex in exclude_pats:
+                            if re.match(ex,local_path):
+                                exclude = True
+                                break
+                        if exclude:
+                            if self.verbose:
+                                self.logger.log("Skipping because of exclude %s %s"%(ex,local_path))
+                            continue
+                        restore = False
+                        for rs in restore_pats:
+                            if re.match(rs,local_path):
+                                restore = True
+                                break
+                        if not restore:
+                            if self.verbose:
+                                self.logger.log("Skipping because not included %s"%(local_path))
+                            continue
+                        if self.verbose:
+                            self.logger.log("Including: %s"%(local_path))
+                        restore_map[local_path] = Restore(remote_path,local_path,os.path.join(restore_path,local_path[1:]),bk.time)
+        except:
+            self.logger.log("Exception while processing: "+traceback.format_exc())
+        # if we have things to restore then go for it
+        if restore_map:
+            # start up the restore workers
+            self.start_restore_workers()
+            # enqueue all of the restore tasks
+            for rest in restore_map.values():
+                self.restore_work_queue.put(rest)
+            # wait for the restore workers
+            self.wait_for_restore_workers()
+        # wait for logging to complete
+        self.logger.wait_for_logger()
+    except:
+        # stop the restore workers
+        self.stop_restore_workers()
+        # stop the restore logger
+        self.logger.stop_logger()
+        raise
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="bkp_core.rstr_mod.RestoreJob.set_dryrun">
+    <p>def <span class="ident">set_dryrun</span>(</p><p>self, dr)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>set the dryrun flag to true to have it just log all the actions but not perform them</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-bkp_core.rstr_mod.RestoreJob.set_dryrun', this);">Show source &equiv;</a></p>
+  <div id="source-bkp_core.rstr_mod.RestoreJob.set_dryrun" class="source">
+    <pre><code>def set_dryrun( self, dr ):
+    """ set the dryrun flag to true to have it just log all the actions but not perform them """
+    self.dryrun = dr
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="bkp_core.rstr_mod.RestoreJob.set_verbose">
+    <p>def <span class="ident">set_verbose</span>(</p><p>self, vb)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>set the verbose flag to log a lot more detail about the process</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-bkp_core.rstr_mod.RestoreJob.set_verbose', this);">Show source &equiv;</a></p>
+  <div id="source-bkp_core.rstr_mod.RestoreJob.set_verbose" class="source">
+    <pre><code>def set_verbose( self, vb ):
+    """ set the verbose flag to log a lot more detail about the process """
+    self.verbose = vb
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="bkp_core.rstr_mod.RestoreJob.start_restore_workers">
+    <p>def <span class="ident">start_restore_workers</span>(</p><p>self)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>start the right number of restore worker threads to perform the restoring</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-bkp_core.rstr_mod.RestoreJob.start_restore_workers', this);">Show source &equiv;</a></p>
+  <div id="source-bkp_core.rstr_mod.RestoreJob.start_restore_workers" class="source">
+    <pre><code>def start_restore_workers(self):
+    """ start the right number of restore worker threads to perform the restoring """
+    num_threads = int(self.config["threads"])
+    while num_threads:
+        t = threading.Thread(target=self.perform_restore)
+        t.start()
+        self.restore_worker_thread_pool.append(t)
+        num_threads = num_threads - 1
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="bkp_core.rstr_mod.RestoreJob.stop_restore_workers">
+    <p>def <span class="ident">stop_restore_workers</span>(</p><p>self)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>set a flag that causes all of the restore workers to exit</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-bkp_core.rstr_mod.RestoreJob.stop_restore_workers', this);">Show source &equiv;</a></p>
+  <div id="source-bkp_core.rstr_mod.RestoreJob.stop_restore_workers" class="source">
+    <pre><code>def stop_restore_workers(self):
+    """ set a flag that causes all of the restore workers to exit """
+    self.restore_workers_stop = True
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="bkp_core.rstr_mod.RestoreJob.wait_for_restore_workers">
+    <p>def <span class="ident">wait_for_restore_workers</span>(</p><p>self)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>wait until the restore queue clears</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-bkp_core.rstr_mod.RestoreJob.wait_for_restore_workers', this);">Show source &equiv;</a></p>
+  <div id="source-bkp_core.rstr_mod.RestoreJob.wait_for_restore_workers" class="source">
+    <pre><code>def wait_for_restore_workers(self):
+    """ wait until the restore queue clears """
+    if not self.restore_work_queue.empty():
+        self.restore_work_queue.join()
+    self.stop_restore_workers()
+    for r in self.restore_worker_thread_pool:
+        if r.is_alive():
+            r.join()
+    self.restore_worker_thread_pool = []
+    self.restore_worker_stop = False
+    self.restore_work_queue = queue.Queue()
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+          <h3>Instance variables</h3>
+            <div class="item">
+            <p id="bkp_core.rstr_mod.RestoreJob.dryrun" class="name">var <span class="ident">dryrun</span></p>
+            
+
+            
+  
+  <div class="source_cont">
+</div>
+
+            </div>
+            <div class="item">
+            <p id="bkp_core.rstr_mod.RestoreJob.verbose" class="name">var <span class="ident">verbose</span></p>
+            
+
+            
+  
+  <div class="source_cont">
+</div>
+
+            </div>
+      </div>
+      </div>
+
+  </section>
+
+    </article>
+  <div class="clear"> </div>
+  <footer id="footer">
+    <p>
+      Documentation generated by
+      <a href="https://github.com/BurntSushi/pdoc">pdoc 0.3.2</a>
+    </p>
+
+    <p>pdoc is in the public domain with the
+      <a href="http://unlicense.org">UNLICENSE</a></p>
+
+    <p>Design by <a href="http://nadh.in">Kailash Nadh</a></p>
+  </footer>
+</div>
+</body>
+</html>

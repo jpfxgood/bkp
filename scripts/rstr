@@ -1,28 +1,31 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
+# code=UTF-8
 # Copyright 2013-2014 James P Goodwin bkp@jlgoodwin.com
 # This is the restore program that goes with bkp created by James
-import sys                        
-import os     
+import sys
+import os
 import re
 from optparse import OptionParser
-import bkp_mod
-import bkp_conf
-import rstr_mod
+from bkp_core import bkp_conf
+from bkp_core.rstr_mod import RestoreJob
 import traceback
 import platform
 
 def main(options, args):
     """ The main driver for the bkp utility """
+    os.set_blocking(sys.stderr.fileno(),1)
+
+    config = bkp_conf.config(options.config_file)
+
+    restore_job = RestoreJob(config)
+
     if options.dryrun:
-        bkp_mod.set_dryrun(True)
-        
+        restore_job.set_dryrun(True)
+
     if options.verbose:
-        bkp_mod.set_verbose(True)
-        
-    if options.config_file:
-        bkp_conf.config(options.config_file)
-        
-    return rstr_mod.restore(options.machine,options.restore_path,options.exclude,options.asof,args)
+        restore_job.set_verbose(True)
+
+    return restore_job.restore(options.machine,options.restore_path,options.exclude,options.asof,args)
 
 
 if __name__ == '__main__':
@@ -36,12 +39,12 @@ if __name__ == '__main__':
     parser.add_option("-e","--exclude",dest="exclude",action="append", default=[],help="Pattern on ENTIRE target path to exclude files from restore. Use multiple args to add multiple filters." )
 
     (options,args) = parser.parse_args()
-                           
+
     try:
         ret = main(options,args)
     except:
         tb = traceback.format_exc()
-        print >>sys.stderr, tb
+        print(tb, file=sys.stderr)
         exit(1)
-        
+
     exit(ret)

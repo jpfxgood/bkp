@@ -1,0 +1,3 @@
+#!/bin/sh
+# Copyright 2013-2014 James P Goodwin bkp@jlgoodwin.com
+s3cmd --configure

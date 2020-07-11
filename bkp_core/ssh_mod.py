@@ -101,7 +101,7 @@ def sftp_safe_path( sftp, path ):
     """ make sure target sub directories exist """
     try:
         sftp_safe_path_lock.acquire()
-        
+
         parts = path.split('/')[1:-1]
         pkey = "/".join(parts)
         spath = ''
@@ -112,7 +112,7 @@ def sftp_safe_path( sftp, path ):
             except:
                 sftp.mkdir(spath)
                 st = sftp.stat( spath )
-    
+
             if not stat.S_ISDIR( st.st_mode ):
                 raise Exception("sftp_safe_path: path element is not a directory!",spath)
     finally:
@@ -226,11 +226,18 @@ def ssh_del( remote_path, recurse=False, get_config= lambda: {} ):
     host, port, path = split_hostpath( remote_path )
     sftp = sftp_open( host, port, get_config()['ssh_username'], get_config()['ssh_password'] )
     try:
-        st = sftp.stat(path)
+        try:
+            st = sftp.stat(path)
+        except IOError as e:
+            if str(e) == "[Errno 2] No such file":
+                return ""
+            else:
+                raise
         if stat.S_ISDIR( st.st_mode):
             dirs = []
             remove_dirs = []
             dirs.append( path )
+            remove_dirs.append( path )
             while dirs:
                 dir = dirs.pop()
                 entries = sftp.listdir(dir)

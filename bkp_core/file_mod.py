@@ -83,6 +83,7 @@ def file_del( remote_path, recurse=False ):
                     os.rmdir(os.path.join(os.path.abspath(root),d))
             else:
                 break
+        os.rmdir(remote_path)
     else:
         os.remove(os.path.abspath(remote_path))
     return ""

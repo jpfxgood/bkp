@@ -16,7 +16,7 @@ from bkp_core.util import mail_error
 def main(options, args):
     """ The main driver for the bkp utility """
     os.set_blocking(sys.stderr.fileno(),1)
-    
+
     if options.configure:
         return bkp_conf.configure()
 
@@ -27,7 +27,7 @@ def main(options, args):
             return bkp_mod.compact(config, options.dryrun, options.verbose)
 
         if options.list:
-            return bkp_mod.list(config)
+            return bkp_mod.list(config, options.verbose)
 
         bkp_job = bkp_mod.BackupJob(config)
 

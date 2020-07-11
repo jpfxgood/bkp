@@ -5,6 +5,7 @@ from bkp_core import util
 from bkp_test_util import bkp_testdir
 import platform
 import os
+import sys
 import time
 from io import StringIO
 import math
@@ -145,6 +146,27 @@ def do_bkp_test( t_dir, base_path ):
                 backed_up_count += 1
     assert(backed_up_count == len(t_dir["local_files"]))
     assert(backup_count == 2)
+
+    assert(not bkp_job_1.backup())
+    backups = bkp_mod.get_backups( machine_path, bkp_config )
+    assert(len(backups) == 3)
+
+    old_stdout = sys.stdout
+    file_list = StringIO()
+    sys.stdout = file_list
+    try:
+        bkp_mod.list( bkp_config, True )
+        sys.stdout = old_stdout
+    finally:
+        sys.stdout = old_stdout
+    for l in file_list:
+        parts = l.strip().split(" ",5)
+        assert(os.path.basename(local_path) in t_dir["local_files"])
+
+    bkp_mod.compact(bkp_config,False, True )
+    backups = bkp_mod.get_backups( machine_path, bkp_config )
+    assert(len(backups) == 2)
+
 
 def test_bkp_mod_fs(bkp_testdir):
     """ test suite for the bkp_mod module covering file system functionality """

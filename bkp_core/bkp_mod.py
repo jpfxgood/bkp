@@ -110,15 +110,16 @@ def get_backedup_files( machine_path, config, verbose = False ):
 
     return backedup
 
-def list( config ):
+def list( config, verbose = False ):
     """ generate a listing of all of the files backed up for this machine with the dates available """
     # the backups for a given machine will be in s3://bucket/bkp/machine_name
     machine_path = config["bucket"]+"/bkp/"+platform.node()
 
     # get the backed up files for this machine
-    backedup = get_backedup_files(machine_path, config)
-
-    for lpath, dates in list(backedup.items()):
+    backedup = get_backedup_files(machine_path, config, verbose)
+    
+    backedup_list = [ item for item in backedup.items() ]
+    for lpath, dates in backedup_list:
         for d in dates:
             print("%s %s"%(time.ctime(d),lpath))
 

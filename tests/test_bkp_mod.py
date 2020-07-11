@@ -163,7 +163,7 @@ def do_bkp_test( t_dir, base_path ):
         sys.stdout = old_stdout
     for l in file_list:
         parts = l.strip().split(" ",5)
-        assert(os.path.basename(local_path) in t_dir["local_files"])
+        assert(os.path.basename(parts[-1]) in t_dir["local_files"])
 
     bkp_mod.compact(bkp_config,False, True )
     backups = bkp_mod.get_backups( machine_path, bkp_config )

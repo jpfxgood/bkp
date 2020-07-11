@@ -15,7 +15,7 @@ def main(options, args):
     """ The main driver for the bkp utility """
     os.set_blocking(sys.stderr.fileno(),1)
 
-    confing = bkp_conf.config(options.config_file)
+    config = bkp_conf.config(options.config_file)
 
     restore_job = RestoreJob(config)
 

@@ -1,6 +1,6 @@
 #!/bin/bash
 OLDPYTHONPATH=$PYTHONPATH
-export PYTHONPATH=.
+export PYTHONPATH="."
 python3 -m pytest tests "$@" 2>&1 | tee runtests.out
 set status=${PIPESTATUS[0]}
 export PYTHONPATH=$OLDPYTHONPATH

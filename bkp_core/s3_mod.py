@@ -7,6 +7,7 @@ from io import StringIO
 import copy
 import os
 import time
+import traceback
 from datetime import datetime
 
 def s3_get( remote_path, local_path ):

@@ -124,7 +124,7 @@ def list( config ):
 
     return 0
 
-def compact( config, verbose = False):
+def compact( config, dryrun = False, verbose = False):
     """ loop over all backups and remove empty ones compacting the s3 forest to only be backups with changed files """
     base_path = config["bucket"]+"/bkp/"
 
@@ -170,13 +170,13 @@ def check_interrupted( verbose, config ):
 
 class BackupJob:
     def __init__( self, config ):
+        self.dryrun = False
+        self.verbose = False
         self.init(config)
 
     def init( self, config ):
         """ reset or initialize the internal state for another job run """
         self.config = config
-        self.dryrun = False
-        self.verbose = False
         self.start_time = 0.0
         self.end_time = 0.0
         self.machine_path = ""

@@ -14,6 +14,8 @@ import signal
 
 def main(options, args):
     """ The main driver for the sync utility """
+    os.set_blocking(sys.stderr.fileno(),1)
+
     if options.configure:
         return sync_conf.configure()
 

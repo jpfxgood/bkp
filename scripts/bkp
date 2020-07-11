@@ -15,34 +15,36 @@ from bkp_core.util import mail_error
 
 def main(options, args):
     """ The main driver for the bkp utility """
+    os.set_blocking(sys.stderr.fileno(),1)
+    
     if options.configure:
         return bkp_conf.configure()
 
     config =  bkp_conf.config(options.config_file)
-                      
+
     try:
         if options.compact:
-            return bkp_mod.compact(config,options.verbose)
-    
+            return bkp_mod.compact(config, options.dryrun, options.verbose)
+
         if options.list:
             return bkp_mod.list(config)
-    
+
         bkp_job = bkp_mod.BackupJob(config)
-    
+
         if options.dryrun:
             bkp_job.set_dryrun(True)
-    
+
         if options.verbose:
             bkp_job.set_verbose(True)
-    
+
         if options.restart_file:
             return bkp_job.restart(options.restart_file)
-    
+
         return bkp_job.backup()
     except:
         tb = traceback.format_exc()
         print(tb, file=sys.stderr)
-        mail_error( tb, None, bkp_mod.verbose, lambda: config )
+        mail_error( tb, None, options.verbose, lambda: config )
         return 1
 
 if __name__ == '__main__':

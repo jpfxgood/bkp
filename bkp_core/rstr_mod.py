@@ -31,6 +31,8 @@ class Restore:
 
 class RestoreJob:
     def __init__( self, config):
+        self.dryrun = False
+        self.verbose = False
         self.init( config )
 
     def init( self, config ):
@@ -39,7 +41,6 @@ class RestoreJob:
         self.restore_worker_thread_pool = []
         self.restore_work_queue = queue.Queue()
         self.restore_workers_stop = False
-        self.dryrun = False
         self.logger = Logger()
 
     def set_dryrun( self, dr ):

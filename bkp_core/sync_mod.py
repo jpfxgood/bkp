@@ -24,13 +24,13 @@ class WorkerParams:
 
 class SyncJob:
     def __init__( self, config ):
+        self.dryrun = False
+        self.verbose = False
         self.init( config )
 
     def init( self, config ):
         """ initialize our internal state for a new run """
         self.config = config
-        self.dryrun = False
-        self.verbose = False
         self.work_queue = queue.Queue()
         self.machine_path = ""
         self.errors_count = 0
@@ -39,7 +39,7 @@ class SyncJob:
         self.processed_dirs = {}
         self.pending_markers = []
         self.worker_stop = False
-        self.remote_processed_files = {}             
+        self.remote_processed_files = {}
         if not os.path.exists(os.path.expanduser("~/.sync")):
             os.mkdir(os.path.expanduser("~/.sync"))
         self.remote_processed_files_name = os.path.expanduser("~/.sync/.sync.processed")

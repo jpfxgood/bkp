@@ -63,6 +63,8 @@ def do_restore_test(t_dir,test_basepath):
             assert(orig_size == restored_size)
             assert(restored_mtime == backups[0].time)
 
+    time.sleep(1) # guarantee at least 1 second between backup jobs
+
     changed_file = os.path.join(t_dir["local_path"],t_dir["local_files"][0])
     print("Overwrite the first local file!",file=open(changed_file,"w"))
 
@@ -125,4 +127,3 @@ def test_rstr_mod_ssh(bkp_testdir):
 def test_rstr_mod_s3(bkp_testdir):
     """ test suite for the rstr_mod module covering s3 system functionality """
     do_restore_test(bkp_testdir, bkp_testdir["s3_basepath"])
-

@@ -91,6 +91,7 @@ def do_bkp_test( t_dir, base_path ):
     bkp_job_1 = bkp_mod.BackupJob(bkp_config)
     bkp_job_1.set_verbose(True)
 
+    time.sleep(1) # guarantee at least 1 second between backup jobs
     assert(not bkp_job_1.backup())
 
     next = util.get_contents( machine_path, "next", False, lambda: bkp_config )
@@ -147,6 +148,7 @@ def do_bkp_test( t_dir, base_path ):
     assert(backed_up_count == len(t_dir["local_files"]))
     assert(backup_count == 2)
 
+    time.sleep(1) # guarantee at least 1 second between backup jobs
     assert(not bkp_job_1.backup())
     backups = bkp_mod.get_backups( machine_path, bkp_config )
     assert(len(backups) == 3)

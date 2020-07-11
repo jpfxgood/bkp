@@ -44,6 +44,7 @@ def do_sync_mod_test( t_dir, test_basepath ):
     deleted_on_client = []
     for cases in range(0,5):
 
+        time.sleep(1) # guarantee at least 1 second between sync jobs
         assert(not sync_job.synchronize())
 
         for local_file in t_dir["local_files"]:

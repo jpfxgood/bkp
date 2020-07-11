@@ -1009,18 +1009,17 @@ import os
 import tempfile
 import re
 import traceback
-from bkp_core import bkp_conf
 import platform
 import datetime
 import subprocess
 import time
 
-def get_contents( path, name, verbose = False, get_config=bkp_conf.get_config ):
+def get_contents( path, name, verbose = False, get_config=lambda: {} ):
     """ fetch the contents of an s3 file and return it's contents as a string """
     t_file_fh, t_file_name = tempfile.mkstemp()
     os.close(t_file_fh)
     try:
-        fs_mod.fs_get( path+"/"+name, t_file_name, get_config=bkp_conf.get_config )
+        fs_mod.fs_get( path+"/"+name, t_file_name, get_config )
     except:
         if verbose:
             print("get_contents exception:",traceback.format_exc(), file=sys.stderr)
@@ -1029,7 +1028,7 @@ def get_contents( path, name, verbose = False, get_config=bkp_conf.get_config ):
     os.remove(t_file_name)
     return contents
 
-def put_contents( path, name, contents, dryrun = False, get_config=bkp_conf.get_config, verbose=False ):
+def put_contents( path, name, contents, dryrun = False, get_config=lambda: {}, verbose=False ):
     """ put the contents string to the s3 file at path, name  """
     t_file_fh, t_file_name = tempfile.mkstemp()
     os.close(t_file_fh)
@@ -1058,11 +1057,11 @@ def send_email( mime_msg ):
         raise Exception(cmd,output,result)
     return output
 
-def mail_error( error, log_file=None, verbose = False, get_config=bkp_conf.get_config ):
+def mail_error( error, log_file=None, verbose = False, get_config=lambda: {} ):
     """ e-mail an error report to the error e-mail account """
     return mail_log( error, log_file, True, verbose, get_config=get_config )
 
-def mail_log( log, log_file=None, is_error = False, verbose = False, get_config=bkp_conf.get_config ):
+def mail_log( log, log_file=None, is_error = False, verbose = False, get_config=lambda: {} ):
     """ e-mail a log file to the log e-mail account """
     tries = 3
     log_text = ""
@@ -1117,7 +1116,7 @@ def mail_log( log, log_file=None, is_error = False, verbose = False, get_config=
       
   <div class="item">
     <div class="name def" id="bkp_core.util.get_contents">
-    <p>def <span class="ident">get_contents</span>(</p><p>path, name, verbose=False, get_config=&lt;function get_config at 0x7f98612882f0&gt;)</p>
+    <p>def <span class="ident">get_contents</span>(</p><p>path, name, verbose=False, get_config=&lt;function &lt;lambda&gt; at 0x7f28487c3048&gt;)</p>
     </div>
     
 
@@ -1127,12 +1126,12 @@ def mail_log( log, log_file=None, is_error = False, verbose = False, get_config=
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-bkp_core.util.get_contents', this);">Show source &equiv;</a></p>
   <div id="source-bkp_core.util.get_contents" class="source">
-    <pre><code>def get_contents( path, name, verbose = False, get_config=bkp_conf.get_config ):
+    <pre><code>def get_contents( path, name, verbose = False, get_config=lambda: {} ):
     """ fetch the contents of an s3 file and return it's contents as a string """
     t_file_fh, t_file_name = tempfile.mkstemp()
     os.close(t_file_fh)
     try:
-        fs_mod.fs_get( path+"/"+name, t_file_name, get_config=bkp_conf.get_config )
+        fs_mod.fs_get( path+"/"+name, t_file_name, get_config )
     except:
         if verbose:
             print("get_contents exception:",traceback.format_exc(), file=sys.stderr)
@@ -1149,7 +1148,7 @@ def mail_log( log, log_file=None, is_error = False, verbose = False, get_config=
       
   <div class="item">
     <div class="name def" id="bkp_core.util.mail_error">
-    <p>def <span class="ident">mail_error</span>(</p><p>error, log_file=None, verbose=False, get_config=&lt;function get_config at 0x7f98612882f0&gt;)</p>
+    <p>def <span class="ident">mail_error</span>(</p><p>error, log_file=None, verbose=False, get_config=&lt;function &lt;lambda&gt; at 0x7f28470a9730&gt;)</p>
     </div>
     
 
@@ -1159,7 +1158,7 @@ def mail_log( log, log_file=None, is_error = False, verbose = False, get_config=
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-bkp_core.util.mail_error', this);">Show source &equiv;</a></p>
   <div id="source-bkp_core.util.mail_error" class="source">
-    <pre><code>def mail_error( error, log_file=None, verbose = False, get_config=bkp_conf.get_config ):
+    <pre><code>def mail_error( error, log_file=None, verbose = False, get_config=lambda: {} ):
     """ e-mail an error report to the error e-mail account """
     return mail_log( error, log_file, True, verbose, get_config=get_config )
 </code></pre>
@@ -1171,7 +1170,7 @@ def mail_log( log, log_file=None, is_error = False, verbose = False, get_config=
       
   <div class="item">
     <div class="name def" id="bkp_core.util.mail_log">
-    <p>def <span class="ident">mail_log</span>(</p><p>log, log_file=None, is_error=False, verbose=False, get_config=&lt;function get_config at 0x7f98612882f0&gt;)</p>
+    <p>def <span class="ident">mail_log</span>(</p><p>log, log_file=None, is_error=False, verbose=False, get_config=&lt;function &lt;lambda&gt; at 0x7f28470a9840&gt;)</p>
     </div>
     
 
@@ -1181,7 +1180,7 @@ def mail_log( log, log_file=None, is_error = False, verbose = False, get_config=
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-bkp_core.util.mail_log', this);">Show source &equiv;</a></p>
   <div id="source-bkp_core.util.mail_log" class="source">
-    <pre><code>def mail_log( log, log_file=None, is_error = False, verbose = False, get_config=bkp_conf.get_config ):
+    <pre><code>def mail_log( log, log_file=None, is_error = False, verbose = False, get_config=lambda: {} ):
     """ e-mail a log file to the log e-mail account """
     tries = 3
     log_text = ""
@@ -1234,7 +1233,7 @@ def mail_log( log, log_file=None, is_error = False, verbose = False, get_config=
       
   <div class="item">
     <div class="name def" id="bkp_core.util.put_contents">
-    <p>def <span class="ident">put_contents</span>(</p><p>path, name, contents, dryrun=False, get_config=&lt;function get_config at 0x7f98612882f0&gt;, verbose=False)</p>
+    <p>def <span class="ident">put_contents</span>(</p><p>path, name, contents, dryrun=False, get_config=&lt;function &lt;lambda&gt; at 0x7f28470a9598&gt;, verbose=False)</p>
     </div>
     
 
@@ -1244,7 +1243,7 @@ def mail_log( log, log_file=None, is_error = False, verbose = False, get_config=
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-bkp_core.util.put_contents', this);">Show source &equiv;</a></p>
   <div id="source-bkp_core.util.put_contents" class="source">
-    <pre><code>def put_contents( path, name, contents, dryrun = False, get_config=bkp_conf.get_config, verbose=False ):
+    <pre><code>def put_contents( path, name, contents, dryrun = False, get_config=lambda: {}, verbose=False ):
     """ put the contents string to the s3 file at path, name  """
     t_file_fh, t_file_name = tempfile.mkstemp()
     os.close(t_file_fh)

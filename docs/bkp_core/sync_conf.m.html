@@ -969,20 +969,12 @@ table {
   <div id="sidebar">
     <h1>Index</h1>
     <ul id="index">
-    <li class="set"><h3><a href="#header-variables">Module variables</a></h3>
-      
-  <ul>
-    <li class="mono"><a href="#bkp_core.sync_conf.sync_config">sync_config</a></li>
-  </ul>
-
-    </li>
 
     <li class="set"><h3><a href="#header-functions">Functions</a></h3>
       
   <ul>
     <li class="mono"><a href="#bkp_core.sync_conf.config">config</a></li>
     <li class="mono"><a href="#bkp_core.sync_conf.configure">configure</a></li>
-    <li class="mono"><a href="#bkp_core.sync_conf.get_config">get_config</a></li>
     <li class="mono"><a href="#bkp_core.sync_conf.save_config">save_config</a></li>
   </ul>
 
@@ -1010,13 +1002,7 @@ table {
 import os
 import sys
 
-sync_config = {}
-
-def get_config():
-    global sync_config
-    return sync_config
-
-def save_config( config_file ):
+def save_config( sync_config, config_file ):
     """ save the configuration to the file object passed as a parameter """
     print("target =", sync_config["target"], file=config_file)
     print("dirs = ", ";".join(sync_config["dirs"]), file=config_file)
@@ -1027,8 +1013,9 @@ def save_config( config_file ):
     print("ssh_password = ",sync_config["ssh_password"], file=config_file)
     print("end_config = True", file=config_file)
     return 0
-    
+
 def configure ():
+    sync_config = {}
     """ prompt for configuration parameters to build initial ~/.sync/sync_config """
     sync_config["target"] = input("Enter the name of the ssh path to synchronize with:")
     sync_config["dirs"] = input("Enter a semicolon (;) delimited list of directories to backup (will include subdirectories):").split(";")
@@ -1037,22 +1024,22 @@ def configure ():
     sync_config["ssh_username"] = input("Enter your ssh user name:")
     sync_config["ssh_password"] = input("Enter your ssh password:")
     sync_config["threads"] = input("Enter the number of threads to use for transfers:")
-                
+
     sync_dir = os.path.expanduser("~/.sync")
     if not os.path.exists(sync_dir):
         os.mkdir(sync_dir)
-    save_config(open(os.path.join(sync_dir,"sync_config"), "w"))
-    return 0                    
+    save_config(sync_config,open(os.path.join(sync_dir,"sync_config"), "w"))
+    return 0
 
 def config( config_file, verbose ):
     """ load configuration for a backup from a config file """
-    global sync_config
+    sync_config = {}
     config_path = os.path.expanduser(config_file)
     for l in open(config_path,"r"):
         l = l.strip()
         if l :
             key, value = l.split("=",1)
-            key = key.strip().lower() 
+            key = key.strip().lower()
             if key == "end_config":
                 break
             value = value.strip()
@@ -1068,15 +1055,6 @@ def config( config_file, verbose ):
   </header>
 
   <section id="section-items">
-    <h2 class="section-title" id="header-variables">Module variables</h2>
-      <div class="item">
-      <p id="bkp_core.sync_conf.sync_config" class="name">var <span class="ident">sync_config</span></p>
-      
-  
-  <div class="source_cont">
-</div>
-
-      </div>
 
     <h2 class="section-title" id="header-functions">Functions</h2>
       
@@ -1094,13 +1072,13 @@ def config( config_file, verbose ):
   <div id="source-bkp_core.sync_conf.config" class="source">
     <pre><code>def config( config_file, verbose ):
     """ load configuration for a backup from a config file """
-    global sync_config
+    sync_config = {}
     config_path = os.path.expanduser(config_file)
     for l in open(config_path,"r"):
         l = l.strip()
         if l :
             key, value = l.split("=",1)
-            key = key.strip().lower() 
+            key = key.strip().lower()
             if key == "end_config":
                 break
             value = value.strip()
@@ -1125,11 +1103,11 @@ def config( config_file, verbose ):
 
     
   
-    <div class="desc"><p>prompt for configuration parameters to build initial ~/.sync/sync_config</p></div>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-bkp_core.sync_conf.configure', this);">Show source &equiv;</a></p>
   <div id="source-bkp_core.sync_conf.configure" class="source">
     <pre><code>def configure ():
+    sync_config = {}
     """ prompt for configuration parameters to build initial ~/.sync/sync_config """
     sync_config["target"] = input("Enter the name of the ssh path to synchronize with:")
     sync_config["dirs"] = input("Enter a semicolon (;) delimited list of directories to backup (will include subdirectories):").split(";")
@@ -1138,33 +1116,12 @@ def config( config_file, verbose ):
     sync_config["ssh_username"] = input("Enter your ssh user name:")
     sync_config["ssh_password"] = input("Enter your ssh password:")
     sync_config["threads"] = input("Enter the number of threads to use for transfers:")
-                
+
     sync_dir = os.path.expanduser("~/.sync")
     if not os.path.exists(sync_dir):
         os.mkdir(sync_dir)
-    save_config(open(os.path.join(sync_dir,"sync_config"), "w"))
-    return 0                    
-</code></pre>
-  </div>
-</div>
-
-  </div>
-  
-      
-  <div class="item">
-    <div class="name def" id="bkp_core.sync_conf.get_config">
-    <p>def <span class="ident">get_config</span>(</p><p>)</p>
-    </div>
-    
-
-    
-  
-  <div class="source_cont">
-  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-bkp_core.sync_conf.get_config', this);">Show source &equiv;</a></p>
-  <div id="source-bkp_core.sync_conf.get_config" class="source">
-    <pre><code>def get_config():
-    global sync_config
-    return sync_config
+    save_config(sync_config,open(os.path.join(sync_dir,"sync_config"), "w"))
+    return 0
 </code></pre>
   </div>
 </div>
@@ -1174,7 +1131,7 @@ def config( config_file, verbose ):
       
   <div class="item">
     <div class="name def" id="bkp_core.sync_conf.save_config">
-    <p>def <span class="ident">save_config</span>(</p><p>config_file)</p>
+    <p>def <span class="ident">save_config</span>(</p><p>sync_config, config_file)</p>
     </div>
     
 
@@ -1184,7 +1141,7 @@ def config( config_file, verbose ):
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-bkp_core.sync_conf.save_config', this);">Show source &equiv;</a></p>
   <div id="source-bkp_core.sync_conf.save_config" class="source">
-    <pre><code>def save_config( config_file ):
+    <pre><code>def save_config( sync_config, config_file ):
     """ save the configuration to the file object passed as a parameter """
     print("target =", sync_config["target"], file=config_file)
     print("dirs = ", ";".join(sync_config["dirs"]), file=config_file)

@@ -969,20 +969,12 @@ table {
   <div id="sidebar">
     <h1>Index</h1>
     <ul id="index">
-    <li class="set"><h3><a href="#header-variables">Module variables</a></h3>
-      
-  <ul>
-    <li class="mono"><a href="#bkp_core.bkp_conf.bkp_config">bkp_config</a></li>
-  </ul>
-
-    </li>
 
     <li class="set"><h3><a href="#header-functions">Functions</a></h3>
       
   <ul>
     <li class="mono"><a href="#bkp_core.bkp_conf.config">config</a></li>
     <li class="mono"><a href="#bkp_core.bkp_conf.configure">configure</a></li>
-    <li class="mono"><a href="#bkp_core.bkp_conf.get_config">get_config</a></li>
     <li class="mono"><a href="#bkp_core.bkp_conf.save_config">save_config</a></li>
   </ul>
 
@@ -1010,13 +1002,7 @@ table {
 import os
 import sys
 
-bkp_config = {}
-
-def get_config():
-    global bkp_config
-    return bkp_config
-
-def save_config( config_file, for_restart = False ):
+def save_config( bkp_config, config_file, for_restart = False ):
     """ save the configuration to the file object passed as a parameter """
     print("bucket =", bkp_config["bucket"], file=config_file)
     print("dirs = ", ";".join(bkp_config["dirs"]), file=config_file)
@@ -1025,9 +1011,6 @@ def save_config( config_file, for_restart = False ):
     print("log_email = ",bkp_config["log_email"], file=config_file)
     print("error_email = ",bkp_config["error_email"], file=config_file)
     print("threads = ",bkp_config["threads"], file=config_file)
-    print("smtp_server = ",bkp_config["smtp_server"], file=config_file)
-    print("smtp_username = ",bkp_config["smtp_username"], file=config_file)
-    print("smtp_password = ",bkp_config["smtp_password"], file=config_file)
     print("ssh_username = ",bkp_config["ssh_username"], file=config_file)
     print("ssh_password = ",bkp_config["ssh_password"], file=config_file)
     if for_restart:
@@ -1035,8 +1018,9 @@ def save_config( config_file, for_restart = False ):
         print("end_time = ",bkp_config["end_time"], file=config_file)
     print("end_config = True", file=config_file)
     return 0
-    
+
 def configure ():
+    bkp_config = {}
     """ prompt for configuration parameters to build initial ~/.bkp/bkp_config """
     bkp_config["bucket"] = input("Enter the name of your Amazon S3 bucket, file path, or ssh path:")
     bkp_config["dirs"] = input("Enter a semicolon (;) delimited list of directories to backup (will include subdirectories):").split(";")
@@ -1044,28 +1028,25 @@ def configure ():
     bkp_config["exclude_dirs"] = input("Enter a semicolon (;) delimited list of directories to exclude (including subdirectories):").split(";")
     bkp_config["log_email"] = input("Enter an e-mail address to send log files to:")
     bkp_config["error_email"] = input("Enter an e-mail address to send errors to:")
-    bkp_config["smtp_server"] = input("Enter your smtp server name:")
-    bkp_config["smtp_username"] = input("Enter your smtp user name:")
-    bkp_config["smtp_password"] = input("Enter your smtp password:")
     bkp_config["ssh_username"] = input("Enter your ssh user name:")
     bkp_config["ssh_password"] = input("Enter your ssh password:")
     bkp_config["threads"] = input("Enter the number of threads to use for transfers:")
-                
+
     bkp_dir = os.path.expanduser("~/.bkp")
     if not os.path.exists(bkp_dir):
         os.mkdir(bkp_dir)
-    save_config(open(os.path.join(bkp_dir,"bkp_config"), "w"))
-    return 0                    
+    save_config(bkp_config,open(os.path.join(bkp_dir,"bkp_config"), "w"))
+    return 0
 
 def config( config_file, verbose = False ):
     """ load configuration for a backup from a config file """
-    global bkp_config
+    bkp_config = {}
     config_path = os.path.expanduser(config_file)
     for l in open(config_path,"r"):
         l = l.strip()
         if l :
             key, value = l.split("=",1)
-            key = key.strip().lower() 
+            key = key.strip().lower()
             if key == "end_config":
                 break
             value = value.strip()
@@ -1074,26 +1055,17 @@ def config( config_file, verbose = False ):
             if verbose:
                 print("config key =",key,"value =", value, file=sys.stderr)
             bkp_config[key] = value
-            
+
     bucket = bkp_config["bucket"]
     if not (bucket.startswith("ssh://") or bucket.startswith("file://") or bucket.startswith("s3://")):
         bkp_config["bucket"] = "s3://"+bucket
-    return
+    return bkp_config
 </code></pre>
   </div>
 
   </header>
 
   <section id="section-items">
-    <h2 class="section-title" id="header-variables">Module variables</h2>
-      <div class="item">
-      <p id="bkp_core.bkp_conf.bkp_config" class="name">var <span class="ident">bkp_config</span></p>
-      
-  
-  <div class="source_cont">
-</div>
-
-      </div>
 
     <h2 class="section-title" id="header-functions">Functions</h2>
       
@@ -1111,13 +1083,13 @@ def config( config_file, verbose = False ):
   <div id="source-bkp_core.bkp_conf.config" class="source">
     <pre><code>def config( config_file, verbose = False ):
     """ load configuration for a backup from a config file """
-    global bkp_config
+    bkp_config = {}
     config_path = os.path.expanduser(config_file)
     for l in open(config_path,"r"):
         l = l.strip()
         if l :
             key, value = l.split("=",1)
-            key = key.strip().lower() 
+            key = key.strip().lower()
             if key == "end_config":
                 break
             value = value.strip()
@@ -1126,11 +1098,11 @@ def config( config_file, verbose = False ):
             if verbose:
                 print("config key =",key,"value =", value, file=sys.stderr)
             bkp_config[key] = value
-            
+
     bucket = bkp_config["bucket"]
     if not (bucket.startswith("ssh://") or bucket.startswith("file://") or bucket.startswith("s3://")):
         bkp_config["bucket"] = "s3://"+bucket
-    return
+    return bkp_config
 </code></pre>
   </div>
 </div>
@@ -1146,11 +1118,11 @@ def config( config_file, verbose = False ):
 
     
   
-    <div class="desc"><p>prompt for configuration parameters to build initial ~/.bkp/bkp_config</p></div>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-bkp_core.bkp_conf.configure', this);">Show source &equiv;</a></p>
   <div id="source-bkp_core.bkp_conf.configure" class="source">
     <pre><code>def configure ():
+    bkp_config = {}
     """ prompt for configuration parameters to build initial ~/.bkp/bkp_config """
     bkp_config["bucket"] = input("Enter the name of your Amazon S3 bucket, file path, or ssh path:")
     bkp_config["dirs"] = input("Enter a semicolon (;) delimited list of directories to backup (will include subdirectories):").split(";")
@@ -1158,39 +1130,15 @@ def config( config_file, verbose = False ):
     bkp_config["exclude_dirs"] = input("Enter a semicolon (;) delimited list of directories to exclude (including subdirectories):").split(";")
     bkp_config["log_email"] = input("Enter an e-mail address to send log files to:")
     bkp_config["error_email"] = input("Enter an e-mail address to send errors to:")
-    bkp_config["smtp_server"] = input("Enter your smtp server name:")
-    bkp_config["smtp_username"] = input("Enter your smtp user name:")
-    bkp_config["smtp_password"] = input("Enter your smtp password:")
     bkp_config["ssh_username"] = input("Enter your ssh user name:")
     bkp_config["ssh_password"] = input("Enter your ssh password:")
     bkp_config["threads"] = input("Enter the number of threads to use for transfers:")
-                
+
     bkp_dir = os.path.expanduser("~/.bkp")
     if not os.path.exists(bkp_dir):
         os.mkdir(bkp_dir)
-    save_config(open(os.path.join(bkp_dir,"bkp_config"), "w"))
-    return 0                    
-</code></pre>
-  </div>
-</div>
-
-  </div>
-  
-      
-  <div class="item">
-    <div class="name def" id="bkp_core.bkp_conf.get_config">
-    <p>def <span class="ident">get_config</span>(</p><p>)</p>
-    </div>
-    
-
-    
-  
-  <div class="source_cont">
-  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-bkp_core.bkp_conf.get_config', this);">Show source &equiv;</a></p>
-  <div id="source-bkp_core.bkp_conf.get_config" class="source">
-    <pre><code>def get_config():
-    global bkp_config
-    return bkp_config
+    save_config(bkp_config,open(os.path.join(bkp_dir,"bkp_config"), "w"))
+    return 0
 </code></pre>
   </div>
 </div>
@@ -1200,7 +1148,7 @@ def config( config_file, verbose = False ):
       
   <div class="item">
     <div class="name def" id="bkp_core.bkp_conf.save_config">
-    <p>def <span class="ident">save_config</span>(</p><p>config_file, for_restart=False)</p>
+    <p>def <span class="ident">save_config</span>(</p><p>bkp_config, config_file, for_restart=False)</p>
     </div>
     
 
@@ -1210,7 +1158,7 @@ def config( config_file, verbose = False ):
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-bkp_core.bkp_conf.save_config', this);">Show source &equiv;</a></p>
   <div id="source-bkp_core.bkp_conf.save_config" class="source">
-    <pre><code>def save_config( config_file, for_restart = False ):
+    <pre><code>def save_config( bkp_config, config_file, for_restart = False ):
     """ save the configuration to the file object passed as a parameter """
     print("bucket =", bkp_config["bucket"], file=config_file)
     print("dirs = ", ";".join(bkp_config["dirs"]), file=config_file)
@@ -1219,9 +1167,6 @@ def config( config_file, verbose = False ):
     print("log_email = ",bkp_config["log_email"], file=config_file)
     print("error_email = ",bkp_config["error_email"], file=config_file)
     print("threads = ",bkp_config["threads"], file=config_file)
-    print("smtp_server = ",bkp_config["smtp_server"], file=config_file)
-    print("smtp_username = ",bkp_config["smtp_username"], file=config_file)
-    print("smtp_password = ",bkp_config["smtp_password"], file=config_file)
     print("ssh_username = ",bkp_config["ssh_username"], file=config_file)
     print("ssh_password = ",bkp_config["ssh_password"], file=config_file)
     if for_restart:

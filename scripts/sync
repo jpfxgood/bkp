@@ -10,11 +10,16 @@ from bkp_core import sync_conf
 import traceback
 from bkp_core import stackdump
 from optparse import OptionParser
+from bkp_core.version import __version__
 import signal
 
 def main(options, args):
     """ The main driver for the sync utility """
     os.set_blocking(sys.stderr.fileno(),1)
+    
+    if options.version:
+        print("sync version %s"%__version__)
+        return 0
 
     if options.configure:
         return sync_conf.configure()
@@ -35,6 +40,7 @@ if __name__ == '__main__':
     parser = OptionParser(usage="usage: %prog [options]", description="A syncronization script for syncronizing directories with remote directories on {file or sftp}, configuration in ~/.sync/sync_config")
     parser.add_option("-c","--configure", dest="configure", action="store_true", default=False, help="Prompt to create initial ~/.sync/sync_config")
     parser.add_option("-v","--verbose", dest="verbose", action="store_true", default=False, help="Log all activity to console")
+    parser.add_option("-V","--version", dest="version", action="store_true", default=False, help="Print the version of the script and exit")
     parser.add_option("-d","--dryrun", dest="dryrun", action="store_true", default=False, help="Do everything except actually perform actions")
     parser.add_option("-f","--file", dest="config_file",default="~/.sync/sync_config", help="Load config from this file default is ~/.sync/sync_config")
 

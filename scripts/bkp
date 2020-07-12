@@ -9,6 +9,7 @@ import re
 from optparse import OptionParser
 from bkp_core import bkp_mod
 from bkp_core import bkp_conf
+from bkp_core.version import __version__
 import traceback
 import signal
 from bkp_core.util import mail_error
@@ -16,6 +17,10 @@ from bkp_core.util import mail_error
 def main(options, args):
     """ The main driver for the bkp utility """
     os.set_blocking(sys.stderr.fileno(),1)
+
+    if options.version:
+        print("bkp version %s"%__version__)
+        return 0
 
     if options.configure:
         return bkp_conf.configure()
@@ -51,6 +56,7 @@ if __name__ == '__main__':
     parser = OptionParser(usage="usage: %prog [options]", description="A backup script for backing up files to {s3,file, or sftp}, configuration in ~/.bkp/bkp_config")
     parser.add_option("-c","--configure", dest="configure", action="store_true", default=False, help="Prompt to create initial ~/.bkp/bkp_config")
     parser.add_option("-v","--verbose", dest="verbose", action="store_true", default=False, help="Log all activity to console")
+    parser.add_option("-V","--version", dest="version", action="store_true", default=False, help="Print the version of the script and exit")
     parser.add_option("-d","--dryrun", dest="dryrun", action="store_true", default=False, help="Do everything except actually perform actions")
     parser.add_option("-f","--file", dest="config_file",default="~/.bkp/bkp_config", help="Load config from this file default is ~/.bkp/bkp_config")
     parser.add_option("-r","--restart", dest="restart_file",default="",help="Restart backup from this backup log file")

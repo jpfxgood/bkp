@@ -1,7 +1,7 @@
 Overview
 ========
 
-This set of utilities is my own home grown attept to enable a local or offsite backup that runs automatically and backs up changed files over time. It has grown to include syncrhonization as well allowing a set of directories to be synced with a target server. 
+This set of utilities is my own home grown attept to enable a local or offsite backup that runs automatically and backs up changed files over time. It has grown to include syncrhonization as well allowing a set of directories to be synced with a target server.
 
 Initially it was developed to work with the Amazon S3 storage service that is part of the Amazon Web Servvices platform, but then was expanded to allow for using sftp and local file systems.
 
@@ -20,6 +20,16 @@ It is recommended that you capture this output and review it to make sure the ac
 Then since the first backup or sync is usually the largest it is suggestd to run a non dryrun with the verbose output to monitor progress and let that run to completion.
 
 After this initial run then bkp or sync can be added to a scheduler like cron and the incremental work will happend in the background.
+
+Installation
+============
+
+You can just check out this repo and put the scripts directory on your path... and the top level directory on your PYTHONPATH or...
+
+Assuming you have Python 3 (>= version 3.6.9) installed and pip:
+    python3 -m pip install bkp-sync
+
+Note: this will add the scripts to your ~/.local/bin, you may need to add this to your path...
 
 Backup
 ======
@@ -70,9 +80,6 @@ In bkp_config the properties have the following meaning:
     log_email = Every successful backup will e-mail the backup log to this e-mail address
     error_email = Every failed backup will e-mail the exception to this e-mail address
     threads = Number of file transfer threads to use to process copies, recommended 5 for sftp and 10 for other targets
-    smtp_server = Name of the smtp server to connect to for sending e-mail
-    smtp_username = Name of the user to log in to smtp with
-    smtp_password = Password of the user to log in to smtp with
     ssh_username = Name of the user to log in to ssh with
     ssh_password = Password of the user to log in to ssh with
 
@@ -122,7 +129,7 @@ Most of the options are self expanatory, more information below.
 
     -m MACHINE, --machine=MACHINE If you are restoring onto a machine whose machine name is different this is the source machine's name.
     This is the name returned by python's platform.node() method and the linux hostname command.
-    
+
     -p RESTORE_PATH, --path=RESTORE_PATH If you are restoring to a different directory than the original backup path, then this is the new root path.
     All target paths will be created as subdirectories of this path.
 
@@ -130,10 +137,10 @@ Sync
 ====
 
     Usage: sync [options]
-    
+
     A synchronization script for synchronizing local and remote directories in {sftp, or file}, configuration in
     ~/.sync/sync_config
-    
+
     Options:
       -h, --help            show this help message and exit
       -c, --configure       Prompt to create initial ~/.sync/sync_config
@@ -144,7 +151,7 @@ Sync
                             ~/.sync/sync_config
 
 Sync compares the a list of local directories on the local machine with their counterparts on the remote machine and if they are newer it puts them to the remote machine, if they are older it gets them from the remote machine, and if there are files on the remote machine that don't exist it will get them.
-These actions are subject to the exlude_files and exclude_dirs filters in the configuration. 
+These actions are subject to the exlude_files and exclude_dirs filters in the configuration.
 Any files deleted on the client machine (the one running sync) will not be synced in the future, but they will not be removed from the remote machine.
 
 Sync config template:
@@ -185,3 +192,68 @@ Example crontab
     # m h  dom mon dow   command
     0 6,10,14,18,22 * * * /bkp/bkp
     */30 * * * * /bkp/sync
+
+Contributing
+============
+
+If you're interested in contributing these are the instructions. Please understand that while you retain the copyright for any of your work, once it is contributed it is licensed under the same MIT license as the rest of the project.
+
+To get set up you should do the following:
+
+  *   Create your own fork of the repository on github [https://guides.github.com/activities/forking/]
+  *   Clone this repo to your local machine ( see same directions )
+  *   Make changes and test them, the regression tests run with the runtests script need to pass
+  *   Sometimes you may need to add new tests if your functionality isn't covered in the existing tests
+  *   Please update this README or send us a request to udpate the wiki with documentation
+  *   Create and send a pull request upstream and we'll review the change and decide if it should go in, we may have changes or additions before we accept it. Not every change will be accepted, but you are free to use your change from your own fork.
+
+Some of the finer details of the dev environment:
+
+  *   You need Python 3.6.9 ( or better I've tested up to 3.8)  available on your machine
+  *   I'd recommend creating a local python environment using venv something like:
+    *    python3 -m pip install venv
+    *    in your checkout directory: python3 -m venv .
+       *    when you start working in the directory: source bin/activate
+          *    first time do: python3 -m pip install -r requirements.txt
+          *    and: python3 -m pip install -r dev\_requirements.txt
+    *    ./runtests will run the tests you can select individual tests using -k see the pytest documentation for other useful options
+  *   make sure that when you're running your changes that PYTHONPATH is set to your checkout directory
+  *   there are some environment variables required by the tests:
+    *    SSH\_USERNAME = username for a test ssh/sftp server
+    *    SSH\_PASSWORD = password for a test ssh/sftp server
+    *    SSH\_BASEPATH = target folder expressed as ssh://host:port/directory/subdirectory, you should be comfortable with anything below this path being deleted
+    *    S3\_BUCKET = a reference to an AWS S3 bucket to write to, you should be comfortable with everything in this bucket being deleted, should be of the form: s3://bucketname
+    *    FILE\_BASEPATH = a reference to a file system path for testing, you should be comfortable with anything below this path being deleted, form is a fully qualified path
+    *    S3\_CONFIG = fully qualified path and filename for your s3cmd config file
+    *    TEST\_EMAIL = an e-mail address that tests will send result and error e-mails to
+  *   You'll need to configure s3cmd with the credentials for AWS s3
+
+If you happen to use Microsoft Visual Studio Code here is a template for launching and debugging both tests and the code, put this in launch.json for your working folder:
+
+    {
+        // Use IntelliSense to learn about possible attributes.
+        // Hover to view descriptions of existing attributes.
+        // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+        "version": "0.2.0",
+        "configurations": [
+            {
+                "name": "Python: Current File",
+                "type": "python",
+                "request": "launch",
+                "program": "/home/yourhome/bkp-git/scripts/bkp",
+                "args": ["--help"],
+                "env": { "PYTHONPATH":"." },
+                "console": "externalTerminal"
+            },
+            {
+                "name": "Python: Pytest",
+                "type": "python",
+                "request": "launch",
+                "module": "pytest",
+                "args": [ "tests", "-k", "test_rstr_mod_s3" ],
+                "env" : { "PYTHONPATH":".", "FILE_BASEPATH":"/home/yourhome/tmp", "TEST_EMAIL": "test-email@yourserver.com", "SSH_BASEPATH":"ssh://your-ssh-server:22/home/yourhome/ssh_tmp", "SSH_USERNAME":"your_user_name",
+    "SSH_PASSWORD":"*******", "S3_BUCKET":"s3://your_bucket", "S3_CONFIG":"/home/yourhome/.s3cfg" },
+                "console": "externalTerminal"
+            }
+        ]
+    }

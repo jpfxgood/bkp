@@ -851,77 +851,6 @@ table {
 
   </style>
 
-  <style type="text/css">
-  .codehilite .hll { background-color: #ffffcc }
-.codehilite  { background: #f8f8f8; }
-.codehilite .c { color: #408080; font-style: italic } /* Comment */
-.codehilite .err { border: 1px solid #FF0000 } /* Error */
-.codehilite .k { color: #008000; font-weight: bold } /* Keyword */
-.codehilite .o { color: #666666 } /* Operator */
-.codehilite .ch { color: #408080; font-style: italic } /* Comment.Hashbang */
-.codehilite .cm { color: #408080; font-style: italic } /* Comment.Multiline */
-.codehilite .cp { color: #BC7A00 } /* Comment.Preproc */
-.codehilite .cpf { color: #408080; font-style: italic } /* Comment.PreprocFile */
-.codehilite .c1 { color: #408080; font-style: italic } /* Comment.Single */
-.codehilite .cs { color: #408080; font-style: italic } /* Comment.Special */
-.codehilite .gd { color: #A00000 } /* Generic.Deleted */
-.codehilite .ge { font-style: italic } /* Generic.Emph */
-.codehilite .gr { color: #FF0000 } /* Generic.Error */
-.codehilite .gh { color: #000080; font-weight: bold } /* Generic.Heading */
-.codehilite .gi { color: #00A000 } /* Generic.Inserted */
-.codehilite .go { color: #888888 } /* Generic.Output */
-.codehilite .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
-.codehilite .gs { font-weight: bold } /* Generic.Strong */
-.codehilite .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
-.codehilite .gt { color: #0044DD } /* Generic.Traceback */
-.codehilite .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
-.codehilite .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
-.codehilite .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
-.codehilite .kp { color: #008000 } /* Keyword.Pseudo */
-.codehilite .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
-.codehilite .kt { color: #B00040 } /* Keyword.Type */
-.codehilite .m { color: #666666 } /* Literal.Number */
-.codehilite .s { color: #BA2121 } /* Literal.String */
-.codehilite .na { color: #7D9029 } /* Name.Attribute */
-.codehilite .nb { color: #008000 } /* Name.Builtin */
-.codehilite .nc { color: #0000FF; font-weight: bold } /* Name.Class */
-.codehilite .no { color: #880000 } /* Name.Constant */
-.codehilite .nd { color: #AA22FF } /* Name.Decorator */
-.codehilite .ni { color: #999999; font-weight: bold } /* Name.Entity */
-.codehilite .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
-.codehilite .nf { color: #0000FF } /* Name.Function */
-.codehilite .nl { color: #A0A000 } /* Name.Label */
-.codehilite .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
-.codehilite .nt { color: #008000; font-weight: bold } /* Name.Tag */
-.codehilite .nv { color: #19177C } /* Name.Variable */
-.codehilite .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
-.codehilite .w { color: #bbbbbb } /* Text.Whitespace */
-.codehilite .mb { color: #666666 } /* Literal.Number.Bin */
-.codehilite .mf { color: #666666 } /* Literal.Number.Float */
-.codehilite .mh { color: #666666 } /* Literal.Number.Hex */
-.codehilite .mi { color: #666666 } /* Literal.Number.Integer */
-.codehilite .mo { color: #666666 } /* Literal.Number.Oct */
-.codehilite .sa { color: #BA2121 } /* Literal.String.Affix */
-.codehilite .sb { color: #BA2121 } /* Literal.String.Backtick */
-.codehilite .sc { color: #BA2121 } /* Literal.String.Char */
-.codehilite .dl { color: #BA2121 } /* Literal.String.Delimiter */
-.codehilite .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
-.codehilite .s2 { color: #BA2121 } /* Literal.String.Double */
-.codehilite .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
-.codehilite .sh { color: #BA2121 } /* Literal.String.Heredoc */
-.codehilite .si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
-.codehilite .sx { color: #008000 } /* Literal.String.Other */
-.codehilite .sr { color: #BB6688 } /* Literal.String.Regex */
-.codehilite .s1 { color: #BA2121 } /* Literal.String.Single */
-.codehilite .ss { color: #19177C } /* Literal.String.Symbol */
-.codehilite .bp { color: #008000 } /* Name.Builtin.Pseudo */
-.codehilite .fm { color: #0000FF } /* Name.Function.Magic */
-.codehilite .vc { color: #19177C } /* Name.Variable.Class */
-.codehilite .vg { color: #19177C } /* Name.Variable.Global */
-.codehilite .vi { color: #19177C } /* Name.Variable.Instance */
-.codehilite .vm { color: #19177C } /* Name.Variable.Magic */
-.codehilite .il { color: #666666 } /* Literal.Number.Integer.Long */
-  </style>
 
   <style type="text/css">
   
@@ -1089,252 +1018,251 @@ table {
   
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-bkp_core.rstr_mod', this);">Show source &equiv;</a></p>
   <div id="source-bkp_core.rstr_mod" class="source">
-    <div class="codehilite"><pre><span></span><span class="c1"># Copyright 2013-2014 James P Goodwin bkp@jlgoodwin.com</span>
-<span class="sd">&quot;&quot;&quot; module to implement shared functions for the rstr tool &quot;&quot;&quot;</span>
-<span class="kn">import</span> <span class="nn">sys</span>
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">tempfile</span>
-<span class="kn">import</span> <span class="nn">re</span>
-<span class="kn">import</span> <span class="nn">traceback</span>
-<span class="kn">import</span> <span class="nn">queue</span>
-<span class="kn">import</span> <span class="nn">threading</span>
-<span class="kn">import</span> <span class="nn">platform</span>
-<span class="kn">import</span> <span class="nn">time</span>
-<span class="kn">import</span> <span class="nn">subprocess</span>
-<span class="kn">import</span> <span class="nn">datetime</span>
-<span class="kn">import</span> <span class="nn">urllib.request</span><span class="o">,</span> <span class="nn">urllib.parse</span><span class="o">,</span> <span class="nn">urllib.error</span>
-<span class="kn">import</span> <span class="nn">io</span>
-<span class="kn">from</span> <span class="nn">bkp_core</span> <span class="kn">import</span> <span class="n">bkp_mod</span>
-<span class="kn">from</span> <span class="nn">bkp_core</span> <span class="kn">import</span> <span class="n">bkp_conf</span>
-<span class="kn">from</span> <span class="nn">bkp_core.util</span> <span class="kn">import</span> <span class="n">get_contents</span>
-<span class="kn">from</span> <span class="nn">bkp_core.fs_mod</span> <span class="kn">import</span> <span class="n">fs_get</span><span class="p">,</span><span class="n">fs_put</span><span class="p">,</span><span class="n">fs_ls</span>
-<span class="kn">from</span> <span class="nn">bkp_core.logger</span> <span class="kn">import</span> <span class="n">Logger</span>
+    <pre><code># Copyright 2013-2014 James P Goodwin bkp@jlgoodwin.com
+""" module to implement shared functions for the rstr tool """
+import sys
+import os
+import tempfile
+import re
+import traceback
+import queue
+import threading
+import platform
+import time
+import subprocess
+import datetime
+import urllib.request, urllib.parse, urllib.error
+import io
+from bkp_core import bkp_mod
+from bkp_core import bkp_conf
+from bkp_core.util import get_contents
+from bkp_core.fs_mod import fs_get,fs_put,fs_ls
+from bkp_core.logger import Logger
 
-<span class="k">class</span> <span class="nc">Restore</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot; class to represent parameters about a restore candidate &quot;&quot;&quot;</span>
+class Restore:
+    """ class to represent parameters about a restore candidate """
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">r_path</span><span class="p">,</span> <span class="n">l_path</span><span class="p">,</span> <span class="n">t_path</span><span class="p">,</span> <span class="n">time</span> <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; constructor takes remote path, orignal local path, target local path, and the for the file as a float &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">remote_path</span> <span class="o">=</span> <span class="n">r_path</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">original_path</span> <span class="o">=</span> <span class="n">l_path</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">local_path</span> <span class="o">=</span> <span class="n">t_path</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">time</span> <span class="o">=</span> <span class="n">time</span>
+    def __init__(self, r_path, l_path, t_path, time ):
+        """ constructor takes remote path, orignal local path, target local path, and the for the file as a float """
+        self.remote_path = r_path
+        self.original_path = l_path
+        self.local_path = t_path
+        self.time = time
 
-<span class="k">class</span> <span class="nc">RestoreJob</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">dryrun</span> <span class="o">=</span> <span class="kc">False</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span> <span class="o">=</span> <span class="kc">False</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">init</span><span class="p">(</span> <span class="n">config</span> <span class="p">)</span>
+class RestoreJob:
+    def __init__( self, config):
+        self.dryrun = False
+        self.verbose = False
+        self.init( config )
 
-    <span class="k">def</span> <span class="nf">init</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">config</span> <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; initialize the internal state for another run &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">config</span> <span class="o">=</span> <span class="n">config</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">restore_worker_thread_pool</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">restore_work_queue</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="n">Queue</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">restore_workers_stop</span> <span class="o">=</span> <span class="kc">False</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span> <span class="o">=</span> <span class="n">Logger</span><span class="p">()</span>
+    def init( self, config ):
+        """ initialize the internal state for another run """
+        self.config = config
+        self.restore_worker_thread_pool = []
+        self.restore_work_queue = queue.Queue()
+        self.restore_workers_stop = False
+        self.logger = Logger()
 
-    <span class="k">def</span> <span class="nf">set_dryrun</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">dr</span> <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; set the dryrun flag to true to have it just log all the actions but not perform them &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">dryrun</span> <span class="o">=</span> <span class="n">dr</span>
+    def set_dryrun( self, dr ):
+        """ set the dryrun flag to true to have it just log all the actions but not perform them """
+        self.dryrun = dr
 
-    <span class="k">def</span> <span class="nf">set_verbose</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">vb</span> <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; set the verbose flag to log a lot more detail about the process &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span> <span class="o">=</span> <span class="n">vb</span>
+    def set_verbose( self, vb ):
+        """ set the verbose flag to log a lot more detail about the process """
+        self.verbose = vb
 
-    <span class="k">def</span> <span class="nf">perform_restore</span><span class="p">(</span> <span class="bp">self</span> <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; worker thread body that pulls restore actions off the queue and performs them &quot;&quot;&quot;</span>
-        <span class="k">while</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">restore_workers_stop</span><span class="p">:</span>
-            <span class="k">try</span><span class="p">:</span>
-                <span class="n">params</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">restore_work_queue</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-                <span class="k">try</span><span class="p">:</span>
-                    <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">dryrun</span><span class="p">:</span>
-                        <span class="n">fs_get</span><span class="p">(</span> <span class="n">params</span><span class="o">.</span><span class="n">remote_path</span><span class="p">,</span> <span class="n">params</span><span class="o">.</span><span class="n">local_path</span><span class="p">,</span> <span class="k">lambda</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span> <span class="p">)</span>
-                        <span class="n">os</span><span class="o">.</span><span class="n">utime</span><span class="p">(</span> <span class="n">params</span><span class="o">.</span><span class="n">local_path</span><span class="p">,</span> <span class="p">(</span><span class="n">params</span><span class="o">.</span><span class="n">time</span><span class="p">,</span> <span class="n">params</span><span class="o">.</span><span class="n">time</span><span class="p">))</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">log</span><span class="p">(</span> <span class="s2">&quot;Restored </span><span class="si">%s</span><span class="s2"> to </span><span class="si">%s</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">params</span><span class="o">.</span><span class="n">remote_path</span><span class="p">,</span><span class="n">params</span><span class="o">.</span><span class="n">local_path</span><span class="p">))</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">restore_work_queue</span><span class="o">.</span><span class="n">task_done</span><span class="p">()</span>
-                <span class="k">except</span><span class="p">:</span>
-                    <span class="n">tb</span> <span class="o">=</span> <span class="n">traceback</span><span class="o">.</span><span class="n">format_exc</span><span class="p">()</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">log</span><span class="p">(</span> <span class="n">tb</span> <span class="p">)</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">restore_work_queue</span><span class="o">.</span><span class="n">task_done</span><span class="p">()</span>
-            <span class="k">except</span> <span class="n">queue</span><span class="o">.</span><span class="n">Empty</span><span class="p">:</span>
-                <span class="k">continue</span>
+    def perform_restore( self ):
+        """ worker thread body that pulls restore actions off the queue and performs them """
+        while not self.restore_workers_stop:
+            try:
+                params = self.restore_work_queue.get(True,1)
+                try:
+                    if not self.dryrun:
+                        fs_get( params.remote_path, params.local_path, lambda: self.config )
+                        os.utime( params.local_path, (params.time, params.time))
+                    self.logger.log( "Restored %s to %s"%(params.remote_path,params.local_path))
+                    self.restore_work_queue.task_done()
+                except:
+                    tb = traceback.format_exc()
+                    self.logger.log( tb )
+                    self.restore_work_queue.task_done()
+            except queue.Empty:
+                continue
 
-    <span class="k">def</span> <span class="nf">start_restore_workers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; start the right number of restore worker threads to perform the restoring &quot;&quot;&quot;</span>
-        <span class="n">num_threads</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;threads&quot;</span><span class="p">])</span>
+    def start_restore_workers(self):
+        """ start the right number of restore worker threads to perform the restoring """
+        num_threads = int(self.config["threads"])
 
-        <span class="k">while</span> <span class="n">num_threads</span><span class="p">:</span>
-            <span class="n">t</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">perform_restore</span><span class="p">)</span>
-            <span class="n">t</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">restore_worker_thread_pool</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
-            <span class="n">num_threads</span> <span class="o">=</span> <span class="n">num_threads</span> <span class="o">-</span> <span class="mi">1</span>
+        while num_threads:
+            t = threading.Thread(target=self.perform_restore)
+            t.start()
+            self.restore_worker_thread_pool.append(t)
+            num_threads = num_threads - 1
 
-    <span class="k">def</span> <span class="nf">stop_restore_workers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; set a flag that causes all of the restore workers to exit &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">restore_workers_stop</span> <span class="o">=</span> <span class="kc">True</span>
+    def stop_restore_workers(self):
+        """ set a flag that causes all of the restore workers to exit """
+        self.restore_workers_stop = True
 
-    <span class="k">def</span> <span class="nf">wait_for_restore_workers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; wait until the restore queue clears &quot;&quot;&quot;</span>
+    def wait_for_restore_workers(self):
+        """ wait until the restore queue clears """
 
-        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">restore_work_queue</span><span class="o">.</span><span class="n">empty</span><span class="p">():</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">restore_work_queue</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">stop_restore_workers</span><span class="p">()</span>
-        <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">restore_worker_thread_pool</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">r</span><span class="o">.</span><span class="n">is_alive</span><span class="p">():</span>
-                <span class="n">r</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">restore_worker_thread_pool</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">restore_worker_stop</span> <span class="o">=</span> <span class="kc">False</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">restore_work_queue</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="n">Queue</span><span class="p">()</span>
+        if not self.restore_work_queue.empty():
+            self.restore_work_queue.join()
+        self.stop_restore_workers()
+        for r in self.restore_worker_thread_pool:
+            if r.is_alive():
+                r.join()
+        self.restore_worker_thread_pool = []
+        self.restore_worker_stop = False
+        self.restore_work_queue = queue.Queue()
 
-    <span class="k">def</span> <span class="nf">restore</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">machine</span><span class="o">=</span><span class="n">platform</span><span class="o">.</span><span class="n">node</span><span class="p">(),</span> <span class="n">restore_path</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">exclude_pats</span> <span class="o">=</span> <span class="p">[],</span> <span class="n">asof</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">restore_pats</span> <span class="o">=</span> <span class="p">[]</span> <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; main restore driver, will loop over all backups for this server and restore all files to the restore path that match the restore_pats and are not excluded by the exlcude patterns up to the asof date &quot;&quot;&quot;</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="c1"># initialize our internal state to begin a new run</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">)</span>
+    def restore( self, machine=platform.node(), restore_path = "", exclude_pats = [], asof = "", restore_pats = [] ):
+        """ main restore driver, will loop over all backups for this server and restore all files to the restore path that match the restore_pats and are not excluded by the exlcude patterns up to the asof date """
+        try:
+            # initialize our internal state to begin a new run
+            self.init(self.config)
 
-            <span class="c1"># start the logger</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">start_logger</span><span class="p">()</span>
+            # start the logger
+            self.logger.start_logger()
 
-            <span class="c1"># expand user path references in restore_path</span>
-            <span class="n">restore_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="n">restore_path</span><span class="p">)</span>
+            # expand user path references in restore_path
+            restore_path = os.path.expanduser(restore_path)
 
-            <span class="c1"># if asof is not specified then restore as of now</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="n">asof</span><span class="p">:</span>
-                <span class="n">end_time_t</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">localtime</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">())</span>
-                <span class="n">asof</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%04d</span><span class="s2">.</span><span class="si">%02d</span><span class="s2">.</span><span class="si">%02d</span><span class="s2">.</span><span class="si">%02d</span><span class="s2">.</span><span class="si">%02d</span><span class="s2">.</span><span class="si">%02d</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">end_time_t</span><span class="o">.</span><span class="n">tm_year</span><span class="p">,</span> <span class="n">end_time_t</span><span class="o">.</span><span class="n">tm_mon</span><span class="p">,</span> <span class="n">end_time_t</span><span class="o">.</span><span class="n">tm_mday</span><span class="p">,</span> <span class="n">end_time_t</span><span class="o">.</span><span class="n">tm_hour</span><span class="p">,</span> <span class="n">end_time_t</span><span class="o">.</span><span class="n">tm_min</span><span class="p">,</span> <span class="n">end_time_t</span><span class="o">.</span><span class="n">tm_sec</span><span class="p">)</span>
+            # if asof is not specified then restore as of now
+            if not asof:
+                end_time_t = time.localtime(time.time())
+                asof = "%04d.%02d.%02d.%02d.%02d.%02d"%(end_time_t.tm_year, end_time_t.tm_mon, end_time_t.tm_mday, end_time_t.tm_hour, end_time_t.tm_min, end_time_t.tm_sec)
 
-            <span class="c1"># get asof as a time value</span>
-            <span class="n">asof_time</span> <span class="o">=</span> <span class="n">bkp_mod</span><span class="o">.</span><span class="n">timestamp2time</span><span class="p">(</span> <span class="n">asof</span> <span class="p">)</span>
+            # get asof as a time value
+            asof_time = bkp_mod.timestamp2time( asof )
 
-            <span class="c1"># the backups for a given machine will be in s3://bucket/bkp/machine_name</span>
-            <span class="n">machine_path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;bucket&quot;</span><span class="p">]</span><span class="o">+</span><span class="s2">&quot;/bkp/&quot;</span><span class="o">+</span><span class="n">machine</span>
+            # the backups for a given machine will be in s3://bucket/bkp/machine_name
+            machine_path = self.config["bucket"]+"/bkp/"+machine
 
-            <span class="k">try</span><span class="p">:</span>
-                <span class="c1"># get backup paths and timestamps returns Backup objects with  (time, timestamp, path)</span>
-                <span class="n">backups</span> <span class="o">=</span> <span class="n">bkp_mod</span><span class="o">.</span><span class="n">get_backups</span><span class="p">(</span> <span class="n">machine_path</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span> <span class="p">)</span>
+            try:
+                # get backup paths and timestamps returns Backup objects with  (time, timestamp, path)
+                backups = bkp_mod.get_backups( machine_path, self.config, self.verbose )
 
-                <span class="c1"># loop over the backups, process the log files and collect the correct versions of matching files</span>
-                <span class="n">restore_map</span> <span class="o">=</span> <span class="p">{}</span>
-                <span class="k">for</span> <span class="n">bk</span> <span class="ow">in</span> <span class="n">backups</span><span class="p">:</span>
-                    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
-                        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;Examining backup: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">bk</span><span class="o">.</span><span class="n">path</span><span class="p">))</span>
+                # loop over the backups, process the log files and collect the correct versions of matching files
+                restore_map = {}
+                for bk in backups:
+                    if self.verbose:
+                        self.logger.log("Examining backup: %s"%(bk.path))
 
-                    <span class="c1"># if the backup is after the asof date then skip it</span>
-                    <span class="k">if</span> <span class="n">bk</span><span class="o">.</span><span class="n">time</span> <span class="o">&gt;</span> <span class="n">asof_time</span><span class="p">:</span>
-                        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
-                            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;Skipping because it is newer than asof backup: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">bk</span><span class="o">.</span><span class="n">path</span><span class="p">))</span>
-                        <span class="k">continue</span>
+                    # if the backup is after the asof date then skip it
+                    if bk.time > asof_time:
+                        if self.verbose:
+                            self.logger.log("Skipping because it is newer than asof backup: %s"%(bk.path))
+                        continue
 
-                    <span class="c1"># fetch the contents of the backup log</span>
-                    <span class="n">contents</span> <span class="o">=</span> <span class="n">get_contents</span><span class="p">(</span><span class="n">machine_path</span><span class="p">,</span><span class="n">bk</span><span class="o">.</span><span class="n">timestamp</span><span class="o">+</span><span class="s2">&quot;/bkp/bkp.&quot;</span><span class="o">+</span><span class="n">bk</span><span class="o">.</span><span class="n">timestamp</span><span class="o">+</span><span class="s2">&quot;.log&quot;</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">,</span> <span class="k">lambda</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">)</span>
+                    # fetch the contents of the backup log
+                    contents = get_contents(machine_path,bk.timestamp+"/bkp/bkp."+bk.timestamp+".log",self.verbose, lambda: self.config)
 
-                    <span class="c1"># collect the newest version less than the asof time and apply all the filters</span>
-                    <span class="c1"># if there&#39;s a backup log then we do this the easy way</span>
-                    <span class="k">if</span> <span class="n">contents</span><span class="p">:</span>
-                        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
-                            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;Found log file and processing it&quot;</span><span class="p">)</span>
+                    # collect the newest version less than the asof time and apply all the filters
+                    # if there's a backup log then we do this the easy way
+                    if contents:
+                        if self.verbose:
+                            self.logger.log("Found log file and processing it")
 
-                        <span class="n">past_config</span> <span class="o">=</span> <span class="kc">False</span>
-                        <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">io</span><span class="o">.</span><span class="n">StringIO</span><span class="p">(</span><span class="n">contents</span><span class="p">):</span>
-                            <span class="k">if</span> <span class="ow">not</span> <span class="n">past_config</span><span class="p">:</span>
-                                <span class="k">if</span> <span class="n">l</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;end_config&quot;</span><span class="p">):</span>
-                                    <span class="n">past_config</span> <span class="o">=</span> <span class="kc">True</span>
-                            <span class="k">else</span><span class="p">:</span>
-                                <span class="n">local_path</span><span class="p">,</span><span class="n">remote_path</span><span class="p">,</span><span class="n">status</span><span class="p">,</span><span class="n">msg</span> <span class="o">=</span> <span class="n">l</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;;&quot;</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
-                                <span class="k">if</span> <span class="n">status</span> <span class="o">==</span> <span class="s2">&quot;error&quot;</span><span class="p">:</span>
-                                    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
-                                        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;Skipping because of error: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">local_path</span><span class="p">))</span>
-                                    <span class="k">continue</span>
-                                <span class="k">if</span> <span class="n">local_path</span> <span class="ow">in</span> <span class="n">restore_map</span> <span class="ow">and</span> <span class="n">restore_map</span><span class="p">[</span><span class="n">local_path</span><span class="p">]</span><span class="o">.</span><span class="n">time</span> <span class="o">&gt;</span> <span class="n">bk</span><span class="o">.</span><span class="n">time</span><span class="p">:</span>
-                                    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
-                                        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;Skipping because we already have a newer one: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">local_path</span><span class="p">))</span>
-                                    <span class="k">continue</span>
-                                <span class="n">exclude</span> <span class="o">=</span> <span class="kc">False</span>
-                                <span class="k">for</span> <span class="n">ex</span> <span class="ow">in</span> <span class="n">exclude_pats</span><span class="p">:</span>
-                                    <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">ex</span><span class="p">,</span><span class="n">local_path</span><span class="p">):</span>
-                                        <span class="n">exclude</span> <span class="o">=</span> <span class="kc">True</span>
-                                        <span class="k">break</span>
-                                <span class="k">if</span> <span class="n">exclude</span><span class="p">:</span>
-                                    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
-                                        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;Skipping because of exclude </span><span class="si">%s</span><span class="s2"> </span><span class="si">%s</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">ex</span><span class="p">,</span><span class="n">local_path</span><span class="p">))</span>
-                                    <span class="k">continue</span>
-                                <span class="n">restore</span> <span class="o">=</span> <span class="kc">False</span>
-                                <span class="k">for</span> <span class="n">rs</span> <span class="ow">in</span> <span class="n">restore_pats</span><span class="p">:</span>
-                                    <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">rs</span><span class="p">,</span><span class="n">local_path</span><span class="p">):</span>
-                                        <span class="n">restore</span> <span class="o">=</span> <span class="kc">True</span>
-                                        <span class="k">break</span>
-                                <span class="k">if</span> <span class="ow">not</span> <span class="n">restore</span><span class="p">:</span>
-                                    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
-                                        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;Skipping because not included: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">local_path</span><span class="p">))</span>
-                                    <span class="k">continue</span>
-                                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
-                                    <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;Including: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">local_path</span><span class="p">))</span>
+                        past_config = False
+                        for l in io.StringIO(contents):
+                            if not past_config:
+                                if l.startswith("end_config"):
+                                    past_config = True
+                            else:
+                                local_path,remote_path,status,msg = l.split(";",3)
+                                if status == "error":
+                                    if self.verbose:
+                                        self.logger.log("Skipping because of error: %s"%(local_path))
+                                    continue
+                                if local_path in restore_map and restore_map[local_path].time > bk.time:
+                                    if self.verbose:
+                                        self.logger.log("Skipping because we already have a newer one: %s"%(local_path))
+                                    continue
+                                exclude = False
+                                for ex in exclude_pats:
+                                    if re.match(ex,local_path):
+                                        exclude = True
+                                        break
+                                if exclude:
+                                    if self.verbose:
+                                        self.logger.log("Skipping because of exclude %s %s"%(ex,local_path))
+                                    continue
+                                restore = False
+                                for rs in restore_pats:
+                                    if re.match(rs,local_path):
+                                        restore = True
+                                        break
+                                if not restore:
+                                    if self.verbose:
+                                        self.logger.log("Skipping because not included: %s"%(local_path))
+                                    continue
+                                if self.verbose:
+                                    self.logger.log("Including: %s"%(local_path))
 
-                                <span class="n">restore_map</span><span class="p">[</span><span class="n">local_path</span><span class="p">]</span> <span class="o">=</span> <span class="n">Restore</span><span class="p">(</span><span class="n">remote_path</span><span class="p">,</span><span class="n">local_path</span><span class="p">,</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">restore_path</span><span class="p">,</span><span class="n">local_path</span><span class="p">[</span><span class="mi">1</span><span class="p">:]),</span><span class="n">bk</span><span class="o">.</span><span class="n">time</span><span class="p">)</span>
-                    <span class="k">else</span><span class="p">:</span>
-                        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
-                            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;No log file doing a recursive ls of </span><span class="si">%s</span><span class="s2">&quot;</span><span class="o">%</span><span class="n">bk</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
-                        <span class="c1"># ok this is a screwed up one that doesn&#39;t have a log so recurse using ls and build the list off of that</span>
-                        <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">io</span><span class="o">.</span><span class="n">StringIO</span><span class="p">(</span><span class="n">fs_ls</span><span class="p">(</span><span class="n">bk</span><span class="o">.</span><span class="n">path</span><span class="p">,</span><span class="kc">True</span><span class="p">,</span> <span class="k">lambda</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">)):</span>
-                            <span class="n">prefix</span><span class="p">,</span><span class="n">path</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">bk</span><span class="o">.</span><span class="n">timestamp</span><span class="p">,</span><span class="n">l</span><span class="p">)</span>
-                            <span class="n">path</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
-                            <span class="n">local_path</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">url2pathname</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
-                            <span class="n">remote_path</span> <span class="o">=</span> <span class="n">bk</span><span class="o">.</span><span class="n">path</span> <span class="o">+</span> <span class="n">path</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
-                            <span class="k">if</span> <span class="n">local_path</span> <span class="ow">in</span> <span class="n">restore_map</span><span class="p">:</span>
-                                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
-                                    <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">log</span><span class="p">(</span> <span class="s2">&quot;Found in map: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">local_path</span><span class="p">))</span>
-                                <span class="k">if</span> <span class="n">restore_map</span><span class="p">[</span><span class="n">local_path</span><span class="p">]</span><span class="o">.</span><span class="n">time</span> <span class="o">&gt;</span> <span class="n">bk</span><span class="o">.</span><span class="n">time</span><span class="p">:</span>
-                                    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
-                                        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;Skipping because we already have a newer one </span><span class="si">%s</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">local_path</span><span class="p">))</span>
-                                    <span class="k">continue</span>
-                            <span class="n">exclude</span> <span class="o">=</span> <span class="kc">False</span>
-                            <span class="k">for</span> <span class="n">ex</span> <span class="ow">in</span> <span class="n">exclude_pats</span><span class="p">:</span>
-                                <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">ex</span><span class="p">,</span><span class="n">local_path</span><span class="p">):</span>
-                                    <span class="n">exclude</span> <span class="o">=</span> <span class="kc">True</span>
-                                    <span class="k">break</span>
-                            <span class="k">if</span> <span class="n">exclude</span><span class="p">:</span>
-                                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
-                                    <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;Skipping because of exclude </span><span class="si">%s</span><span class="s2"> </span><span class="si">%s</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">ex</span><span class="p">,</span><span class="n">local_path</span><span class="p">))</span>
-                                <span class="k">continue</span>
-                            <span class="n">restore</span> <span class="o">=</span> <span class="kc">False</span>
-                            <span class="k">for</span> <span class="n">rs</span> <span class="ow">in</span> <span class="n">restore_pats</span><span class="p">:</span>
-                                <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">rs</span><span class="p">,</span><span class="n">local_path</span><span class="p">):</span>
-                                    <span class="n">restore</span> <span class="o">=</span> <span class="kc">True</span>
-                                    <span class="k">break</span>
-                            <span class="k">if</span> <span class="ow">not</span> <span class="n">restore</span><span class="p">:</span>
-                                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
-                                    <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;Skipping because not included </span><span class="si">%s</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">local_path</span><span class="p">))</span>
-                                <span class="k">continue</span>
-                            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
-                                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;Including: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">local_path</span><span class="p">))</span>
-                            <span class="n">restore_map</span><span class="p">[</span><span class="n">local_path</span><span class="p">]</span> <span class="o">=</span> <span class="n">Restore</span><span class="p">(</span><span class="n">remote_path</span><span class="p">,</span><span class="n">local_path</span><span class="p">,</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">restore_path</span><span class="p">,</span><span class="n">local_path</span><span class="p">[</span><span class="mi">1</span><span class="p">:]),</span><span class="n">bk</span><span class="o">.</span><span class="n">time</span><span class="p">)</span>
-            <span class="k">except</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;Exception while processing: &quot;</span><span class="o">+</span><span class="n">traceback</span><span class="o">.</span><span class="n">format_exc</span><span class="p">())</span>
+                                restore_map[local_path] = Restore(remote_path,local_path,os.path.join(restore_path,local_path[1:]),bk.time)
+                    else:
+                        if self.verbose:
+                            self.logger.log("No log file doing a recursive ls of %s"%bk.path)
+                        # ok this is a screwed up one that doesn't have a log so recurse using ls and build the list off of that
+                        for l in io.StringIO(fs_ls(bk.path,True, lambda: self.config)):
+                            prefix,path = re.split(bk.timestamp,l)
+                            path = path.strip()
+                            local_path = urllib.request.url2pathname(path)
+                            remote_path = bk.path + path[1:]
+                            if local_path in restore_map:
+                                if self.verbose:
+                                    self.logger.log( "Found in map: %s"%(local_path))
+                                if restore_map[local_path].time > bk.time:
+                                    if self.verbose:
+                                        self.logger.log("Skipping because we already have a newer one %s"%(local_path))
+                                    continue
+                            exclude = False
+                            for ex in exclude_pats:
+                                if re.match(ex,local_path):
+                                    exclude = True
+                                    break
+                            if exclude:
+                                if self.verbose:
+                                    self.logger.log("Skipping because of exclude %s %s"%(ex,local_path))
+                                continue
+                            restore = False
+                            for rs in restore_pats:
+                                if re.match(rs,local_path):
+                                    restore = True
+                                    break
+                            if not restore:
+                                if self.verbose:
+                                    self.logger.log("Skipping because not included %s"%(local_path))
+                                continue
+                            if self.verbose:
+                                self.logger.log("Including: %s"%(local_path))
+                            restore_map[local_path] = Restore(remote_path,local_path,os.path.join(restore_path,local_path[1:]),bk.time)
+            except:
+                self.logger.log("Exception while processing: "+traceback.format_exc())
 
-            <span class="c1"># if we have things to restore then go for it</span>
-            <span class="k">if</span> <span class="n">restore_map</span><span class="p">:</span>
-                <span class="c1"># start up the restore workers</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">start_restore_workers</span><span class="p">()</span>
+            # if we have things to restore then go for it
+            if restore_map:
+                # start up the restore workers
+                self.start_restore_workers()
 
-                <span class="c1"># enqueue all of the restore tasks</span>
-                <span class="k">for</span> <span class="n">rest</span> <span class="ow">in</span> <span class="n">restore_map</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">restore_work_queue</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">rest</span><span class="p">)</span>
+                # enqueue all of the restore tasks
+                for rest in restore_map.values():
+                    self.restore_work_queue.put(rest)
 
-                <span class="c1"># wait for the restore workers</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">wait_for_restore_workers</span><span class="p">()</span>
+                # wait for the restore workers
+                self.wait_for_restore_workers()
 
-            <span class="c1"># wait for logging to complete</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">wait_for_logger</span><span class="p">()</span>
-        <span class="k">except</span><span class="p">:</span>
-            <span class="c1"># stop the restore workers</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">stop_restore_workers</span><span class="p">()</span>
+            # wait for logging to complete
+            self.logger.wait_for_logger()
+        except:
+            # stop the restore workers
+            self.stop_restore_workers()
 
-            <span class="c1"># stop the restore logger</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">stop_logger</span><span class="p">()</span>
-            <span class="k">raise</span>
-</pre></div>
-
+            # stop the restore logger
+            self.logger.stop_logger()
+            raise
+</code></pre>
   </div>
 
   </header>
@@ -1352,17 +1280,16 @@ table {
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-bkp_core.rstr_mod.Restore', this);">Show source &equiv;</a></p>
   <div id="source-bkp_core.rstr_mod.Restore" class="source">
-    <div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">Restore</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot; class to represent parameters about a restore candidate &quot;&quot;&quot;</span>
+    <pre><code>class Restore:
+    """ class to represent parameters about a restore candidate """
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">r_path</span><span class="p">,</span> <span class="n">l_path</span><span class="p">,</span> <span class="n">t_path</span><span class="p">,</span> <span class="n">time</span> <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; constructor takes remote path, orignal local path, target local path, and the for the file as a float &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">remote_path</span> <span class="o">=</span> <span class="n">r_path</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">original_path</span> <span class="o">=</span> <span class="n">l_path</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">local_path</span> <span class="o">=</span> <span class="n">t_path</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">time</span> <span class="o">=</span> <span class="n">time</span>
-</pre></div>
-
+    def __init__(self, r_path, l_path, t_path, time ):
+        """ constructor takes remote path, orignal local path, target local path, and the for the file as a float """
+        self.remote_path = r_path
+        self.original_path = l_path
+        self.local_path = t_path
+        self.time = time
+</code></pre>
   </div>
 </div>
 
@@ -1387,14 +1314,13 @@ table {
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-bkp_core.rstr_mod.Restore.__init__', this);">Show source &equiv;</a></p>
   <div id="source-bkp_core.rstr_mod.Restore.__init__" class="source">
-    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">r_path</span><span class="p">,</span> <span class="n">l_path</span><span class="p">,</span> <span class="n">t_path</span><span class="p">,</span> <span class="n">time</span> <span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; constructor takes remote path, orignal local path, target local path, and the for the file as a float &quot;&quot;&quot;</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">remote_path</span> <span class="o">=</span> <span class="n">r_path</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">original_path</span> <span class="o">=</span> <span class="n">l_path</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">local_path</span> <span class="o">=</span> <span class="n">t_path</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">time</span> <span class="o">=</span> <span class="n">time</span>
-</pre></div>
-
+    <pre><code>def __init__(self, r_path, l_path, t_path, time ):
+    """ constructor takes remote path, orignal local path, target local path, and the for the file as a float """
+    self.remote_path = r_path
+    self.original_path = l_path
+    self.local_path = t_path
+    self.time = time
+</code></pre>
   </div>
 </div>
 
@@ -1451,221 +1377,220 @@ table {
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-bkp_core.rstr_mod.RestoreJob', this);">Show source &equiv;</a></p>
   <div id="source-bkp_core.rstr_mod.RestoreJob" class="source">
-    <div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">RestoreJob</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">dryrun</span> <span class="o">=</span> <span class="kc">False</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span> <span class="o">=</span> <span class="kc">False</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">init</span><span class="p">(</span> <span class="n">config</span> <span class="p">)</span>
+    <pre><code>class RestoreJob:
+    def __init__( self, config):
+        self.dryrun = False
+        self.verbose = False
+        self.init( config )
 
-    <span class="k">def</span> <span class="nf">init</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">config</span> <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; initialize the internal state for another run &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">config</span> <span class="o">=</span> <span class="n">config</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">restore_worker_thread_pool</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">restore_work_queue</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="n">Queue</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">restore_workers_stop</span> <span class="o">=</span> <span class="kc">False</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span> <span class="o">=</span> <span class="n">Logger</span><span class="p">()</span>
+    def init( self, config ):
+        """ initialize the internal state for another run """
+        self.config = config
+        self.restore_worker_thread_pool = []
+        self.restore_work_queue = queue.Queue()
+        self.restore_workers_stop = False
+        self.logger = Logger()
 
-    <span class="k">def</span> <span class="nf">set_dryrun</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">dr</span> <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; set the dryrun flag to true to have it just log all the actions but not perform them &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">dryrun</span> <span class="o">=</span> <span class="n">dr</span>
+    def set_dryrun( self, dr ):
+        """ set the dryrun flag to true to have it just log all the actions but not perform them """
+        self.dryrun = dr
 
-    <span class="k">def</span> <span class="nf">set_verbose</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">vb</span> <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; set the verbose flag to log a lot more detail about the process &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span> <span class="o">=</span> <span class="n">vb</span>
+    def set_verbose( self, vb ):
+        """ set the verbose flag to log a lot more detail about the process """
+        self.verbose = vb
 
-    <span class="k">def</span> <span class="nf">perform_restore</span><span class="p">(</span> <span class="bp">self</span> <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; worker thread body that pulls restore actions off the queue and performs them &quot;&quot;&quot;</span>
-        <span class="k">while</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">restore_workers_stop</span><span class="p">:</span>
-            <span class="k">try</span><span class="p">:</span>
-                <span class="n">params</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">restore_work_queue</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-                <span class="k">try</span><span class="p">:</span>
-                    <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">dryrun</span><span class="p">:</span>
-                        <span class="n">fs_get</span><span class="p">(</span> <span class="n">params</span><span class="o">.</span><span class="n">remote_path</span><span class="p">,</span> <span class="n">params</span><span class="o">.</span><span class="n">local_path</span><span class="p">,</span> <span class="k">lambda</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span> <span class="p">)</span>
-                        <span class="n">os</span><span class="o">.</span><span class="n">utime</span><span class="p">(</span> <span class="n">params</span><span class="o">.</span><span class="n">local_path</span><span class="p">,</span> <span class="p">(</span><span class="n">params</span><span class="o">.</span><span class="n">time</span><span class="p">,</span> <span class="n">params</span><span class="o">.</span><span class="n">time</span><span class="p">))</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">log</span><span class="p">(</span> <span class="s2">&quot;Restored </span><span class="si">%s</span><span class="s2"> to </span><span class="si">%s</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">params</span><span class="o">.</span><span class="n">remote_path</span><span class="p">,</span><span class="n">params</span><span class="o">.</span><span class="n">local_path</span><span class="p">))</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">restore_work_queue</span><span class="o">.</span><span class="n">task_done</span><span class="p">()</span>
-                <span class="k">except</span><span class="p">:</span>
-                    <span class="n">tb</span> <span class="o">=</span> <span class="n">traceback</span><span class="o">.</span><span class="n">format_exc</span><span class="p">()</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">log</span><span class="p">(</span> <span class="n">tb</span> <span class="p">)</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">restore_work_queue</span><span class="o">.</span><span class="n">task_done</span><span class="p">()</span>
-            <span class="k">except</span> <span class="n">queue</span><span class="o">.</span><span class="n">Empty</span><span class="p">:</span>
-                <span class="k">continue</span>
+    def perform_restore( self ):
+        """ worker thread body that pulls restore actions off the queue and performs them """
+        while not self.restore_workers_stop:
+            try:
+                params = self.restore_work_queue.get(True,1)
+                try:
+                    if not self.dryrun:
+                        fs_get( params.remote_path, params.local_path, lambda: self.config )
+                        os.utime( params.local_path, (params.time, params.time))
+                    self.logger.log( "Restored %s to %s"%(params.remote_path,params.local_path))
+                    self.restore_work_queue.task_done()
+                except:
+                    tb = traceback.format_exc()
+                    self.logger.log( tb )
+                    self.restore_work_queue.task_done()
+            except queue.Empty:
+                continue
 
-    <span class="k">def</span> <span class="nf">start_restore_workers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; start the right number of restore worker threads to perform the restoring &quot;&quot;&quot;</span>
-        <span class="n">num_threads</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;threads&quot;</span><span class="p">])</span>
+    def start_restore_workers(self):
+        """ start the right number of restore worker threads to perform the restoring """
+        num_threads = int(self.config["threads"])
 
-        <span class="k">while</span> <span class="n">num_threads</span><span class="p">:</span>
-            <span class="n">t</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">perform_restore</span><span class="p">)</span>
-            <span class="n">t</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">restore_worker_thread_pool</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
-            <span class="n">num_threads</span> <span class="o">=</span> <span class="n">num_threads</span> <span class="o">-</span> <span class="mi">1</span>
+        while num_threads:
+            t = threading.Thread(target=self.perform_restore)
+            t.start()
+            self.restore_worker_thread_pool.append(t)
+            num_threads = num_threads - 1
 
-    <span class="k">def</span> <span class="nf">stop_restore_workers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; set a flag that causes all of the restore workers to exit &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">restore_workers_stop</span> <span class="o">=</span> <span class="kc">True</span>
+    def stop_restore_workers(self):
+        """ set a flag that causes all of the restore workers to exit """
+        self.restore_workers_stop = True
 
-    <span class="k">def</span> <span class="nf">wait_for_restore_workers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; wait until the restore queue clears &quot;&quot;&quot;</span>
+    def wait_for_restore_workers(self):
+        """ wait until the restore queue clears """
 
-        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">restore_work_queue</span><span class="o">.</span><span class="n">empty</span><span class="p">():</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">restore_work_queue</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">stop_restore_workers</span><span class="p">()</span>
-        <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">restore_worker_thread_pool</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">r</span><span class="o">.</span><span class="n">is_alive</span><span class="p">():</span>
-                <span class="n">r</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">restore_worker_thread_pool</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">restore_worker_stop</span> <span class="o">=</span> <span class="kc">False</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">restore_work_queue</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="n">Queue</span><span class="p">()</span>
+        if not self.restore_work_queue.empty():
+            self.restore_work_queue.join()
+        self.stop_restore_workers()
+        for r in self.restore_worker_thread_pool:
+            if r.is_alive():
+                r.join()
+        self.restore_worker_thread_pool = []
+        self.restore_worker_stop = False
+        self.restore_work_queue = queue.Queue()
 
-    <span class="k">def</span> <span class="nf">restore</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">machine</span><span class="o">=</span><span class="n">platform</span><span class="o">.</span><span class="n">node</span><span class="p">(),</span> <span class="n">restore_path</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">exclude_pats</span> <span class="o">=</span> <span class="p">[],</span> <span class="n">asof</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">restore_pats</span> <span class="o">=</span> <span class="p">[]</span> <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; main restore driver, will loop over all backups for this server and restore all files to the restore path that match the restore_pats and are not excluded by the exlcude patterns up to the asof date &quot;&quot;&quot;</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="c1"># initialize our internal state to begin a new run</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">)</span>
+    def restore( self, machine=platform.node(), restore_path = "", exclude_pats = [], asof = "", restore_pats = [] ):
+        """ main restore driver, will loop over all backups for this server and restore all files to the restore path that match the restore_pats and are not excluded by the exlcude patterns up to the asof date """
+        try:
+            # initialize our internal state to begin a new run
+            self.init(self.config)
 
-            <span class="c1"># start the logger</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">start_logger</span><span class="p">()</span>
+            # start the logger
+            self.logger.start_logger()
 
-            <span class="c1"># expand user path references in restore_path</span>
-            <span class="n">restore_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="n">restore_path</span><span class="p">)</span>
+            # expand user path references in restore_path
+            restore_path = os.path.expanduser(restore_path)
 
-            <span class="c1"># if asof is not specified then restore as of now</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="n">asof</span><span class="p">:</span>
-                <span class="n">end_time_t</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">localtime</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">())</span>
-                <span class="n">asof</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%04d</span><span class="s2">.</span><span class="si">%02d</span><span class="s2">.</span><span class="si">%02d</span><span class="s2">.</span><span class="si">%02d</span><span class="s2">.</span><span class="si">%02d</span><span class="s2">.</span><span class="si">%02d</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">end_time_t</span><span class="o">.</span><span class="n">tm_year</span><span class="p">,</span> <span class="n">end_time_t</span><span class="o">.</span><span class="n">tm_mon</span><span class="p">,</span> <span class="n">end_time_t</span><span class="o">.</span><span class="n">tm_mday</span><span class="p">,</span> <span class="n">end_time_t</span><span class="o">.</span><span class="n">tm_hour</span><span class="p">,</span> <span class="n">end_time_t</span><span class="o">.</span><span class="n">tm_min</span><span class="p">,</span> <span class="n">end_time_t</span><span class="o">.</span><span class="n">tm_sec</span><span class="p">)</span>
+            # if asof is not specified then restore as of now
+            if not asof:
+                end_time_t = time.localtime(time.time())
+                asof = "%04d.%02d.%02d.%02d.%02d.%02d"%(end_time_t.tm_year, end_time_t.tm_mon, end_time_t.tm_mday, end_time_t.tm_hour, end_time_t.tm_min, end_time_t.tm_sec)
 
-            <span class="c1"># get asof as a time value</span>
-            <span class="n">asof_time</span> <span class="o">=</span> <span class="n">bkp_mod</span><span class="o">.</span><span class="n">timestamp2time</span><span class="p">(</span> <span class="n">asof</span> <span class="p">)</span>
+            # get asof as a time value
+            asof_time = bkp_mod.timestamp2time( asof )
 
-            <span class="c1"># the backups for a given machine will be in s3://bucket/bkp/machine_name</span>
-            <span class="n">machine_path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;bucket&quot;</span><span class="p">]</span><span class="o">+</span><span class="s2">&quot;/bkp/&quot;</span><span class="o">+</span><span class="n">machine</span>
+            # the backups for a given machine will be in s3://bucket/bkp/machine_name
+            machine_path = self.config["bucket"]+"/bkp/"+machine
 
-            <span class="k">try</span><span class="p">:</span>
-                <span class="c1"># get backup paths and timestamps returns Backup objects with  (time, timestamp, path)</span>
-                <span class="n">backups</span> <span class="o">=</span> <span class="n">bkp_mod</span><span class="o">.</span><span class="n">get_backups</span><span class="p">(</span> <span class="n">machine_path</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span> <span class="p">)</span>
+            try:
+                # get backup paths and timestamps returns Backup objects with  (time, timestamp, path)
+                backups = bkp_mod.get_backups( machine_path, self.config, self.verbose )
 
-                <span class="c1"># loop over the backups, process the log files and collect the correct versions of matching files</span>
-                <span class="n">restore_map</span> <span class="o">=</span> <span class="p">{}</span>
-                <span class="k">for</span> <span class="n">bk</span> <span class="ow">in</span> <span class="n">backups</span><span class="p">:</span>
-                    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
-                        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;Examining backup: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">bk</span><span class="o">.</span><span class="n">path</span><span class="p">))</span>
+                # loop over the backups, process the log files and collect the correct versions of matching files
+                restore_map = {}
+                for bk in backups:
+                    if self.verbose:
+                        self.logger.log("Examining backup: %s"%(bk.path))
 
-                    <span class="c1"># if the backup is after the asof date then skip it</span>
-                    <span class="k">if</span> <span class="n">bk</span><span class="o">.</span><span class="n">time</span> <span class="o">&gt;</span> <span class="n">asof_time</span><span class="p">:</span>
-                        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
-                            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;Skipping because it is newer than asof backup: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">bk</span><span class="o">.</span><span class="n">path</span><span class="p">))</span>
-                        <span class="k">continue</span>
+                    # if the backup is after the asof date then skip it
+                    if bk.time > asof_time:
+                        if self.verbose:
+                            self.logger.log("Skipping because it is newer than asof backup: %s"%(bk.path))
+                        continue
 
-                    <span class="c1"># fetch the contents of the backup log</span>
-                    <span class="n">contents</span> <span class="o">=</span> <span class="n">get_contents</span><span class="p">(</span><span class="n">machine_path</span><span class="p">,</span><span class="n">bk</span><span class="o">.</span><span class="n">timestamp</span><span class="o">+</span><span class="s2">&quot;/bkp/bkp.&quot;</span><span class="o">+</span><span class="n">bk</span><span class="o">.</span><span class="n">timestamp</span><span class="o">+</span><span class="s2">&quot;.log&quot;</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">,</span> <span class="k">lambda</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">)</span>
+                    # fetch the contents of the backup log
+                    contents = get_contents(machine_path,bk.timestamp+"/bkp/bkp."+bk.timestamp+".log",self.verbose, lambda: self.config)
 
-                    <span class="c1"># collect the newest version less than the asof time and apply all the filters</span>
-                    <span class="c1"># if there&#39;s a backup log then we do this the easy way</span>
-                    <span class="k">if</span> <span class="n">contents</span><span class="p">:</span>
-                        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
-                            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;Found log file and processing it&quot;</span><span class="p">)</span>
+                    # collect the newest version less than the asof time and apply all the filters
+                    # if there's a backup log then we do this the easy way
+                    if contents:
+                        if self.verbose:
+                            self.logger.log("Found log file and processing it")
 
-                        <span class="n">past_config</span> <span class="o">=</span> <span class="kc">False</span>
-                        <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">io</span><span class="o">.</span><span class="n">StringIO</span><span class="p">(</span><span class="n">contents</span><span class="p">):</span>
-                            <span class="k">if</span> <span class="ow">not</span> <span class="n">past_config</span><span class="p">:</span>
-                                <span class="k">if</span> <span class="n">l</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;end_config&quot;</span><span class="p">):</span>
-                                    <span class="n">past_config</span> <span class="o">=</span> <span class="kc">True</span>
-                            <span class="k">else</span><span class="p">:</span>
-                                <span class="n">local_path</span><span class="p">,</span><span class="n">remote_path</span><span class="p">,</span><span class="n">status</span><span class="p">,</span><span class="n">msg</span> <span class="o">=</span> <span class="n">l</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;;&quot;</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
-                                <span class="k">if</span> <span class="n">status</span> <span class="o">==</span> <span class="s2">&quot;error&quot;</span><span class="p">:</span>
-                                    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
-                                        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;Skipping because of error: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">local_path</span><span class="p">))</span>
-                                    <span class="k">continue</span>
-                                <span class="k">if</span> <span class="n">local_path</span> <span class="ow">in</span> <span class="n">restore_map</span> <span class="ow">and</span> <span class="n">restore_map</span><span class="p">[</span><span class="n">local_path</span><span class="p">]</span><span class="o">.</span><span class="n">time</span> <span class="o">&gt;</span> <span class="n">bk</span><span class="o">.</span><span class="n">time</span><span class="p">:</span>
-                                    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
-                                        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;Skipping because we already have a newer one: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">local_path</span><span class="p">))</span>
-                                    <span class="k">continue</span>
-                                <span class="n">exclude</span> <span class="o">=</span> <span class="kc">False</span>
-                                <span class="k">for</span> <span class="n">ex</span> <span class="ow">in</span> <span class="n">exclude_pats</span><span class="p">:</span>
-                                    <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">ex</span><span class="p">,</span><span class="n">local_path</span><span class="p">):</span>
-                                        <span class="n">exclude</span> <span class="o">=</span> <span class="kc">True</span>
-                                        <span class="k">break</span>
-                                <span class="k">if</span> <span class="n">exclude</span><span class="p">:</span>
-                                    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
-                                        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;Skipping because of exclude </span><span class="si">%s</span><span class="s2"> </span><span class="si">%s</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">ex</span><span class="p">,</span><span class="n">local_path</span><span class="p">))</span>
-                                    <span class="k">continue</span>
-                                <span class="n">restore</span> <span class="o">=</span> <span class="kc">False</span>
-                                <span class="k">for</span> <span class="n">rs</span> <span class="ow">in</span> <span class="n">restore_pats</span><span class="p">:</span>
-                                    <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">rs</span><span class="p">,</span><span class="n">local_path</span><span class="p">):</span>
-                                        <span class="n">restore</span> <span class="o">=</span> <span class="kc">True</span>
-                                        <span class="k">break</span>
-                                <span class="k">if</span> <span class="ow">not</span> <span class="n">restore</span><span class="p">:</span>
-                                    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
-                                        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;Skipping because not included: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">local_path</span><span class="p">))</span>
-                                    <span class="k">continue</span>
-                                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
-                                    <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;Including: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">local_path</span><span class="p">))</span>
+                        past_config = False
+                        for l in io.StringIO(contents):
+                            if not past_config:
+                                if l.startswith("end_config"):
+                                    past_config = True
+                            else:
+                                local_path,remote_path,status,msg = l.split(";",3)
+                                if status == "error":
+                                    if self.verbose:
+                                        self.logger.log("Skipping because of error: %s"%(local_path))
+                                    continue
+                                if local_path in restore_map and restore_map[local_path].time > bk.time:
+                                    if self.verbose:
+                                        self.logger.log("Skipping because we already have a newer one: %s"%(local_path))
+                                    continue
+                                exclude = False
+                                for ex in exclude_pats:
+                                    if re.match(ex,local_path):
+                                        exclude = True
+                                        break
+                                if exclude:
+                                    if self.verbose:
+                                        self.logger.log("Skipping because of exclude %s %s"%(ex,local_path))
+                                    continue
+                                restore = False
+                                for rs in restore_pats:
+                                    if re.match(rs,local_path):
+                                        restore = True
+                                        break
+                                if not restore:
+                                    if self.verbose:
+                                        self.logger.log("Skipping because not included: %s"%(local_path))
+                                    continue
+                                if self.verbose:
+                                    self.logger.log("Including: %s"%(local_path))
 
-                                <span class="n">restore_map</span><span class="p">[</span><span class="n">local_path</span><span class="p">]</span> <span class="o">=</span> <span class="n">Restore</span><span class="p">(</span><span class="n">remote_path</span><span class="p">,</span><span class="n">local_path</span><span class="p">,</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">restore_path</span><span class="p">,</span><span class="n">local_path</span><span class="p">[</span><span class="mi">1</span><span class="p">:]),</span><span class="n">bk</span><span class="o">.</span><span class="n">time</span><span class="p">)</span>
-                    <span class="k">else</span><span class="p">:</span>
-                        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
-                            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;No log file doing a recursive ls of </span><span class="si">%s</span><span class="s2">&quot;</span><span class="o">%</span><span class="n">bk</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
-                        <span class="c1"># ok this is a screwed up one that doesn&#39;t have a log so recurse using ls and build the list off of that</span>
-                        <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">io</span><span class="o">.</span><span class="n">StringIO</span><span class="p">(</span><span class="n">fs_ls</span><span class="p">(</span><span class="n">bk</span><span class="o">.</span><span class="n">path</span><span class="p">,</span><span class="kc">True</span><span class="p">,</span> <span class="k">lambda</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">)):</span>
-                            <span class="n">prefix</span><span class="p">,</span><span class="n">path</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">bk</span><span class="o">.</span><span class="n">timestamp</span><span class="p">,</span><span class="n">l</span><span class="p">)</span>
-                            <span class="n">path</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
-                            <span class="n">local_path</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">url2pathname</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
-                            <span class="n">remote_path</span> <span class="o">=</span> <span class="n">bk</span><span class="o">.</span><span class="n">path</span> <span class="o">+</span> <span class="n">path</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
-                            <span class="k">if</span> <span class="n">local_path</span> <span class="ow">in</span> <span class="n">restore_map</span><span class="p">:</span>
-                                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
-                                    <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">log</span><span class="p">(</span> <span class="s2">&quot;Found in map: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">local_path</span><span class="p">))</span>
-                                <span class="k">if</span> <span class="n">restore_map</span><span class="p">[</span><span class="n">local_path</span><span class="p">]</span><span class="o">.</span><span class="n">time</span> <span class="o">&gt;</span> <span class="n">bk</span><span class="o">.</span><span class="n">time</span><span class="p">:</span>
-                                    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
-                                        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;Skipping because we already have a newer one </span><span class="si">%s</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">local_path</span><span class="p">))</span>
-                                    <span class="k">continue</span>
-                            <span class="n">exclude</span> <span class="o">=</span> <span class="kc">False</span>
-                            <span class="k">for</span> <span class="n">ex</span> <span class="ow">in</span> <span class="n">exclude_pats</span><span class="p">:</span>
-                                <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">ex</span><span class="p">,</span><span class="n">local_path</span><span class="p">):</span>
-                                    <span class="n">exclude</span> <span class="o">=</span> <span class="kc">True</span>
-                                    <span class="k">break</span>
-                            <span class="k">if</span> <span class="n">exclude</span><span class="p">:</span>
-                                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
-                                    <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;Skipping because of exclude </span><span class="si">%s</span><span class="s2"> </span><span class="si">%s</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">ex</span><span class="p">,</span><span class="n">local_path</span><span class="p">))</span>
-                                <span class="k">continue</span>
-                            <span class="n">restore</span> <span class="o">=</span> <span class="kc">False</span>
-                            <span class="k">for</span> <span class="n">rs</span> <span class="ow">in</span> <span class="n">restore_pats</span><span class="p">:</span>
-                                <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">rs</span><span class="p">,</span><span class="n">local_path</span><span class="p">):</span>
-                                    <span class="n">restore</span> <span class="o">=</span> <span class="kc">True</span>
-                                    <span class="k">break</span>
-                            <span class="k">if</span> <span class="ow">not</span> <span class="n">restore</span><span class="p">:</span>
-                                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
-                                    <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;Skipping because not included </span><span class="si">%s</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">local_path</span><span class="p">))</span>
-                                <span class="k">continue</span>
-                            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
-                                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;Including: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">local_path</span><span class="p">))</span>
-                            <span class="n">restore_map</span><span class="p">[</span><span class="n">local_path</span><span class="p">]</span> <span class="o">=</span> <span class="n">Restore</span><span class="p">(</span><span class="n">remote_path</span><span class="p">,</span><span class="n">local_path</span><span class="p">,</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">restore_path</span><span class="p">,</span><span class="n">local_path</span><span class="p">[</span><span class="mi">1</span><span class="p">:]),</span><span class="n">bk</span><span class="o">.</span><span class="n">time</span><span class="p">)</span>
-            <span class="k">except</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;Exception while processing: &quot;</span><span class="o">+</span><span class="n">traceback</span><span class="o">.</span><span class="n">format_exc</span><span class="p">())</span>
+                                restore_map[local_path] = Restore(remote_path,local_path,os.path.join(restore_path,local_path[1:]),bk.time)
+                    else:
+                        if self.verbose:
+                            self.logger.log("No log file doing a recursive ls of %s"%bk.path)
+                        # ok this is a screwed up one that doesn't have a log so recurse using ls and build the list off of that
+                        for l in io.StringIO(fs_ls(bk.path,True, lambda: self.config)):
+                            prefix,path = re.split(bk.timestamp,l)
+                            path = path.strip()
+                            local_path = urllib.request.url2pathname(path)
+                            remote_path = bk.path + path[1:]
+                            if local_path in restore_map:
+                                if self.verbose:
+                                    self.logger.log( "Found in map: %s"%(local_path))
+                                if restore_map[local_path].time > bk.time:
+                                    if self.verbose:
+                                        self.logger.log("Skipping because we already have a newer one %s"%(local_path))
+                                    continue
+                            exclude = False
+                            for ex in exclude_pats:
+                                if re.match(ex,local_path):
+                                    exclude = True
+                                    break
+                            if exclude:
+                                if self.verbose:
+                                    self.logger.log("Skipping because of exclude %s %s"%(ex,local_path))
+                                continue
+                            restore = False
+                            for rs in restore_pats:
+                                if re.match(rs,local_path):
+                                    restore = True
+                                    break
+                            if not restore:
+                                if self.verbose:
+                                    self.logger.log("Skipping because not included %s"%(local_path))
+                                continue
+                            if self.verbose:
+                                self.logger.log("Including: %s"%(local_path))
+                            restore_map[local_path] = Restore(remote_path,local_path,os.path.join(restore_path,local_path[1:]),bk.time)
+            except:
+                self.logger.log("Exception while processing: "+traceback.format_exc())
 
-            <span class="c1"># if we have things to restore then go for it</span>
-            <span class="k">if</span> <span class="n">restore_map</span><span class="p">:</span>
-                <span class="c1"># start up the restore workers</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">start_restore_workers</span><span class="p">()</span>
+            # if we have things to restore then go for it
+            if restore_map:
+                # start up the restore workers
+                self.start_restore_workers()
 
-                <span class="c1"># enqueue all of the restore tasks</span>
-                <span class="k">for</span> <span class="n">rest</span> <span class="ow">in</span> <span class="n">restore_map</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">restore_work_queue</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">rest</span><span class="p">)</span>
+                # enqueue all of the restore tasks
+                for rest in restore_map.values():
+                    self.restore_work_queue.put(rest)
 
-                <span class="c1"># wait for the restore workers</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">wait_for_restore_workers</span><span class="p">()</span>
+                # wait for the restore workers
+                self.wait_for_restore_workers()
 
-            <span class="c1"># wait for logging to complete</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">wait_for_logger</span><span class="p">()</span>
-        <span class="k">except</span><span class="p">:</span>
-            <span class="c1"># stop the restore workers</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">stop_restore_workers</span><span class="p">()</span>
+            # wait for logging to complete
+            self.logger.wait_for_logger()
+        except:
+            # stop the restore workers
+            self.stop_restore_workers()
 
-            <span class="c1"># stop the restore logger</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">stop_logger</span><span class="p">()</span>
-            <span class="k">raise</span>
-</pre></div>
-
+            # stop the restore logger
+            self.logger.stop_logger()
+            raise
+</code></pre>
   </div>
 </div>
 
@@ -1690,12 +1615,11 @@ table {
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-bkp_core.rstr_mod.RestoreJob.__init__', this);">Show source &equiv;</a></p>
   <div id="source-bkp_core.rstr_mod.RestoreJob.__init__" class="source">
-    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">):</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">dryrun</span> <span class="o">=</span> <span class="kc">False</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span> <span class="o">=</span> <span class="kc">False</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">init</span><span class="p">(</span> <span class="n">config</span> <span class="p">)</span>
-</pre></div>
-
+    <pre><code>def __init__( self, config):
+    self.dryrun = False
+    self.verbose = False
+    self.init( config )
+</code></pre>
   </div>
 </div>
 
@@ -1714,15 +1638,14 @@ table {
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-bkp_core.rstr_mod.RestoreJob.init', this);">Show source &equiv;</a></p>
   <div id="source-bkp_core.rstr_mod.RestoreJob.init" class="source">
-    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">init</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">config</span> <span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; initialize the internal state for another run &quot;&quot;&quot;</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">config</span> <span class="o">=</span> <span class="n">config</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">restore_worker_thread_pool</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">restore_work_queue</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="n">Queue</span><span class="p">()</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">restore_workers_stop</span> <span class="o">=</span> <span class="kc">False</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">logger</span> <span class="o">=</span> <span class="n">Logger</span><span class="p">()</span>
-</pre></div>
-
+    <pre><code>def init( self, config ):
+    """ initialize the internal state for another run """
+    self.config = config
+    self.restore_worker_thread_pool = []
+    self.restore_work_queue = queue.Queue()
+    self.restore_workers_stop = False
+    self.logger = Logger()
+</code></pre>
   </div>
 </div>
 
@@ -1741,25 +1664,24 @@ table {
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-bkp_core.rstr_mod.RestoreJob.perform_restore', this);">Show source &equiv;</a></p>
   <div id="source-bkp_core.rstr_mod.RestoreJob.perform_restore" class="source">
-    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">perform_restore</span><span class="p">(</span> <span class="bp">self</span> <span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; worker thread body that pulls restore actions off the queue and performs them &quot;&quot;&quot;</span>
-    <span class="k">while</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">restore_workers_stop</span><span class="p">:</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="n">params</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">restore_work_queue</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-            <span class="k">try</span><span class="p">:</span>
-                <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">dryrun</span><span class="p">:</span>
-                    <span class="n">fs_get</span><span class="p">(</span> <span class="n">params</span><span class="o">.</span><span class="n">remote_path</span><span class="p">,</span> <span class="n">params</span><span class="o">.</span><span class="n">local_path</span><span class="p">,</span> <span class="k">lambda</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span> <span class="p">)</span>
-                    <span class="n">os</span><span class="o">.</span><span class="n">utime</span><span class="p">(</span> <span class="n">params</span><span class="o">.</span><span class="n">local_path</span><span class="p">,</span> <span class="p">(</span><span class="n">params</span><span class="o">.</span><span class="n">time</span><span class="p">,</span> <span class="n">params</span><span class="o">.</span><span class="n">time</span><span class="p">))</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">log</span><span class="p">(</span> <span class="s2">&quot;Restored </span><span class="si">%s</span><span class="s2"> to </span><span class="si">%s</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">params</span><span class="o">.</span><span class="n">remote_path</span><span class="p">,</span><span class="n">params</span><span class="o">.</span><span class="n">local_path</span><span class="p">))</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">restore_work_queue</span><span class="o">.</span><span class="n">task_done</span><span class="p">()</span>
-            <span class="k">except</span><span class="p">:</span>
-                <span class="n">tb</span> <span class="o">=</span> <span class="n">traceback</span><span class="o">.</span><span class="n">format_exc</span><span class="p">()</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">log</span><span class="p">(</span> <span class="n">tb</span> <span class="p">)</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">restore_work_queue</span><span class="o">.</span><span class="n">task_done</span><span class="p">()</span>
-        <span class="k">except</span> <span class="n">queue</span><span class="o">.</span><span class="n">Empty</span><span class="p">:</span>
-            <span class="k">continue</span>
-</pre></div>
-
+    <pre><code>def perform_restore( self ):
+    """ worker thread body that pulls restore actions off the queue and performs them """
+    while not self.restore_workers_stop:
+        try:
+            params = self.restore_work_queue.get(True,1)
+            try:
+                if not self.dryrun:
+                    fs_get( params.remote_path, params.local_path, lambda: self.config )
+                    os.utime( params.local_path, (params.time, params.time))
+                self.logger.log( "Restored %s to %s"%(params.remote_path,params.local_path))
+                self.restore_work_queue.task_done()
+            except:
+                tb = traceback.format_exc()
+                self.logger.log( tb )
+                self.restore_work_queue.task_done()
+        except queue.Empty:
+            continue
+</code></pre>
   </div>
 </div>
 
@@ -1768,7 +1690,7 @@ table {
             
   <div class="item">
     <div class="name def" id="bkp_core.rstr_mod.RestoreJob.restore">
-    <p>def <span class="ident">restore</span>(</p><p>self, machine=&#39;james-Lemur&#39;, restore_path=&#39;&#39;, exclude_pats=[], asof=&#39;&#39;, restore_pats=[])</p>
+    <p>def <span class="ident">restore</span>(</p><p>self, machine=&#39;james-server1&#39;, restore_path=&#39;&#39;, exclude_pats=[], asof=&#39;&#39;, restore_pats=[])</p>
     </div>
     
 
@@ -1778,137 +1700,136 @@ table {
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-bkp_core.rstr_mod.RestoreJob.restore', this);">Show source &equiv;</a></p>
   <div id="source-bkp_core.rstr_mod.RestoreJob.restore" class="source">
-    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">restore</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">machine</span><span class="o">=</span><span class="n">platform</span><span class="o">.</span><span class="n">node</span><span class="p">(),</span> <span class="n">restore_path</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">exclude_pats</span> <span class="o">=</span> <span class="p">[],</span> <span class="n">asof</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">restore_pats</span> <span class="o">=</span> <span class="p">[]</span> <span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; main restore driver, will loop over all backups for this server and restore all files to the restore path that match the restore_pats and are not excluded by the exlcude patterns up to the asof date &quot;&quot;&quot;</span>
-    <span class="k">try</span><span class="p">:</span>
-        <span class="c1"># initialize our internal state to begin a new run</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">)</span>
-        <span class="c1"># start the logger</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">start_logger</span><span class="p">()</span>
-        <span class="c1"># expand user path references in restore_path</span>
-        <span class="n">restore_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="n">restore_path</span><span class="p">)</span>
-        <span class="c1"># if asof is not specified then restore as of now</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">asof</span><span class="p">:</span>
-            <span class="n">end_time_t</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">localtime</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">())</span>
-            <span class="n">asof</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%04d</span><span class="s2">.</span><span class="si">%02d</span><span class="s2">.</span><span class="si">%02d</span><span class="s2">.</span><span class="si">%02d</span><span class="s2">.</span><span class="si">%02d</span><span class="s2">.</span><span class="si">%02d</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">end_time_t</span><span class="o">.</span><span class="n">tm_year</span><span class="p">,</span> <span class="n">end_time_t</span><span class="o">.</span><span class="n">tm_mon</span><span class="p">,</span> <span class="n">end_time_t</span><span class="o">.</span><span class="n">tm_mday</span><span class="p">,</span> <span class="n">end_time_t</span><span class="o">.</span><span class="n">tm_hour</span><span class="p">,</span> <span class="n">end_time_t</span><span class="o">.</span><span class="n">tm_min</span><span class="p">,</span> <span class="n">end_time_t</span><span class="o">.</span><span class="n">tm_sec</span><span class="p">)</span>
-        <span class="c1"># get asof as a time value</span>
-        <span class="n">asof_time</span> <span class="o">=</span> <span class="n">bkp_mod</span><span class="o">.</span><span class="n">timestamp2time</span><span class="p">(</span> <span class="n">asof</span> <span class="p">)</span>
-        <span class="c1"># the backups for a given machine will be in s3://bucket/bkp/machine_name</span>
-        <span class="n">machine_path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;bucket&quot;</span><span class="p">]</span><span class="o">+</span><span class="s2">&quot;/bkp/&quot;</span><span class="o">+</span><span class="n">machine</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="c1"># get backup paths and timestamps returns Backup objects with  (time, timestamp, path)</span>
-            <span class="n">backups</span> <span class="o">=</span> <span class="n">bkp_mod</span><span class="o">.</span><span class="n">get_backups</span><span class="p">(</span> <span class="n">machine_path</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span> <span class="p">)</span>
-            <span class="c1"># loop over the backups, process the log files and collect the correct versions of matching files</span>
-            <span class="n">restore_map</span> <span class="o">=</span> <span class="p">{}</span>
-            <span class="k">for</span> <span class="n">bk</span> <span class="ow">in</span> <span class="n">backups</span><span class="p">:</span>
-                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;Examining backup: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">bk</span><span class="o">.</span><span class="n">path</span><span class="p">))</span>
-                <span class="c1"># if the backup is after the asof date then skip it</span>
-                <span class="k">if</span> <span class="n">bk</span><span class="o">.</span><span class="n">time</span> <span class="o">&gt;</span> <span class="n">asof_time</span><span class="p">:</span>
-                    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
-                        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;Skipping because it is newer than asof backup: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">bk</span><span class="o">.</span><span class="n">path</span><span class="p">))</span>
-                    <span class="k">continue</span>
-                <span class="c1"># fetch the contents of the backup log</span>
-                <span class="n">contents</span> <span class="o">=</span> <span class="n">get_contents</span><span class="p">(</span><span class="n">machine_path</span><span class="p">,</span><span class="n">bk</span><span class="o">.</span><span class="n">timestamp</span><span class="o">+</span><span class="s2">&quot;/bkp/bkp.&quot;</span><span class="o">+</span><span class="n">bk</span><span class="o">.</span><span class="n">timestamp</span><span class="o">+</span><span class="s2">&quot;.log&quot;</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">,</span> <span class="k">lambda</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">)</span>
-                <span class="c1"># collect the newest version less than the asof time and apply all the filters</span>
-                <span class="c1"># if there&#39;s a backup log then we do this the easy way</span>
-                <span class="k">if</span> <span class="n">contents</span><span class="p">:</span>
-                    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
-                        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;Found log file and processing it&quot;</span><span class="p">)</span>
-                    <span class="n">past_config</span> <span class="o">=</span> <span class="kc">False</span>
-                    <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">io</span><span class="o">.</span><span class="n">StringIO</span><span class="p">(</span><span class="n">contents</span><span class="p">):</span>
-                        <span class="k">if</span> <span class="ow">not</span> <span class="n">past_config</span><span class="p">:</span>
-                            <span class="k">if</span> <span class="n">l</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;end_config&quot;</span><span class="p">):</span>
-                                <span class="n">past_config</span> <span class="o">=</span> <span class="kc">True</span>
-                        <span class="k">else</span><span class="p">:</span>
-                            <span class="n">local_path</span><span class="p">,</span><span class="n">remote_path</span><span class="p">,</span><span class="n">status</span><span class="p">,</span><span class="n">msg</span> <span class="o">=</span> <span class="n">l</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;;&quot;</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
-                            <span class="k">if</span> <span class="n">status</span> <span class="o">==</span> <span class="s2">&quot;error&quot;</span><span class="p">:</span>
-                                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
-                                    <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;Skipping because of error: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">local_path</span><span class="p">))</span>
-                                <span class="k">continue</span>
-                            <span class="k">if</span> <span class="n">local_path</span> <span class="ow">in</span> <span class="n">restore_map</span> <span class="ow">and</span> <span class="n">restore_map</span><span class="p">[</span><span class="n">local_path</span><span class="p">]</span><span class="o">.</span><span class="n">time</span> <span class="o">&gt;</span> <span class="n">bk</span><span class="o">.</span><span class="n">time</span><span class="p">:</span>
-                                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
-                                    <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;Skipping because we already have a newer one: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">local_path</span><span class="p">))</span>
-                                <span class="k">continue</span>
-                            <span class="n">exclude</span> <span class="o">=</span> <span class="kc">False</span>
-                            <span class="k">for</span> <span class="n">ex</span> <span class="ow">in</span> <span class="n">exclude_pats</span><span class="p">:</span>
-                                <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">ex</span><span class="p">,</span><span class="n">local_path</span><span class="p">):</span>
-                                    <span class="n">exclude</span> <span class="o">=</span> <span class="kc">True</span>
-                                    <span class="k">break</span>
-                            <span class="k">if</span> <span class="n">exclude</span><span class="p">:</span>
-                                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
-                                    <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;Skipping because of exclude </span><span class="si">%s</span><span class="s2"> </span><span class="si">%s</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">ex</span><span class="p">,</span><span class="n">local_path</span><span class="p">))</span>
-                                <span class="k">continue</span>
-                            <span class="n">restore</span> <span class="o">=</span> <span class="kc">False</span>
-                            <span class="k">for</span> <span class="n">rs</span> <span class="ow">in</span> <span class="n">restore_pats</span><span class="p">:</span>
-                                <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">rs</span><span class="p">,</span><span class="n">local_path</span><span class="p">):</span>
-                                    <span class="n">restore</span> <span class="o">=</span> <span class="kc">True</span>
-                                    <span class="k">break</span>
-                            <span class="k">if</span> <span class="ow">not</span> <span class="n">restore</span><span class="p">:</span>
-                                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
-                                    <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;Skipping because not included: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">local_path</span><span class="p">))</span>
-                                <span class="k">continue</span>
-                            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
-                                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;Including: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">local_path</span><span class="p">))</span>
-                            <span class="n">restore_map</span><span class="p">[</span><span class="n">local_path</span><span class="p">]</span> <span class="o">=</span> <span class="n">Restore</span><span class="p">(</span><span class="n">remote_path</span><span class="p">,</span><span class="n">local_path</span><span class="p">,</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">restore_path</span><span class="p">,</span><span class="n">local_path</span><span class="p">[</span><span class="mi">1</span><span class="p">:]),</span><span class="n">bk</span><span class="o">.</span><span class="n">time</span><span class="p">)</span>
-                <span class="k">else</span><span class="p">:</span>
-                    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
-                        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;No log file doing a recursive ls of </span><span class="si">%s</span><span class="s2">&quot;</span><span class="o">%</span><span class="n">bk</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
-                    <span class="c1"># ok this is a screwed up one that doesn&#39;t have a log so recurse using ls and build the list off of that</span>
-                    <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">io</span><span class="o">.</span><span class="n">StringIO</span><span class="p">(</span><span class="n">fs_ls</span><span class="p">(</span><span class="n">bk</span><span class="o">.</span><span class="n">path</span><span class="p">,</span><span class="kc">True</span><span class="p">,</span> <span class="k">lambda</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">)):</span>
-                        <span class="n">prefix</span><span class="p">,</span><span class="n">path</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">bk</span><span class="o">.</span><span class="n">timestamp</span><span class="p">,</span><span class="n">l</span><span class="p">)</span>
-                        <span class="n">path</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
-                        <span class="n">local_path</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">url2pathname</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
-                        <span class="n">remote_path</span> <span class="o">=</span> <span class="n">bk</span><span class="o">.</span><span class="n">path</span> <span class="o">+</span> <span class="n">path</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
-                        <span class="k">if</span> <span class="n">local_path</span> <span class="ow">in</span> <span class="n">restore_map</span><span class="p">:</span>
-                            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
-                                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">log</span><span class="p">(</span> <span class="s2">&quot;Found in map: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">local_path</span><span class="p">))</span>
-                            <span class="k">if</span> <span class="n">restore_map</span><span class="p">[</span><span class="n">local_path</span><span class="p">]</span><span class="o">.</span><span class="n">time</span> <span class="o">&gt;</span> <span class="n">bk</span><span class="o">.</span><span class="n">time</span><span class="p">:</span>
-                                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
-                                    <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;Skipping because we already have a newer one </span><span class="si">%s</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">local_path</span><span class="p">))</span>
-                                <span class="k">continue</span>
-                        <span class="n">exclude</span> <span class="o">=</span> <span class="kc">False</span>
-                        <span class="k">for</span> <span class="n">ex</span> <span class="ow">in</span> <span class="n">exclude_pats</span><span class="p">:</span>
-                            <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">ex</span><span class="p">,</span><span class="n">local_path</span><span class="p">):</span>
-                                <span class="n">exclude</span> <span class="o">=</span> <span class="kc">True</span>
-                                <span class="k">break</span>
-                        <span class="k">if</span> <span class="n">exclude</span><span class="p">:</span>
-                            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
-                                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;Skipping because of exclude </span><span class="si">%s</span><span class="s2"> </span><span class="si">%s</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">ex</span><span class="p">,</span><span class="n">local_path</span><span class="p">))</span>
-                            <span class="k">continue</span>
-                        <span class="n">restore</span> <span class="o">=</span> <span class="kc">False</span>
-                        <span class="k">for</span> <span class="n">rs</span> <span class="ow">in</span> <span class="n">restore_pats</span><span class="p">:</span>
-                            <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">rs</span><span class="p">,</span><span class="n">local_path</span><span class="p">):</span>
-                                <span class="n">restore</span> <span class="o">=</span> <span class="kc">True</span>
-                                <span class="k">break</span>
-                        <span class="k">if</span> <span class="ow">not</span> <span class="n">restore</span><span class="p">:</span>
-                            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
-                                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;Skipping because not included </span><span class="si">%s</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">local_path</span><span class="p">))</span>
-                            <span class="k">continue</span>
-                        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
-                            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;Including: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">local_path</span><span class="p">))</span>
-                        <span class="n">restore_map</span><span class="p">[</span><span class="n">local_path</span><span class="p">]</span> <span class="o">=</span> <span class="n">Restore</span><span class="p">(</span><span class="n">remote_path</span><span class="p">,</span><span class="n">local_path</span><span class="p">,</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">restore_path</span><span class="p">,</span><span class="n">local_path</span><span class="p">[</span><span class="mi">1</span><span class="p">:]),</span><span class="n">bk</span><span class="o">.</span><span class="n">time</span><span class="p">)</span>
-        <span class="k">except</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;Exception while processing: &quot;</span><span class="o">+</span><span class="n">traceback</span><span class="o">.</span><span class="n">format_exc</span><span class="p">())</span>
-        <span class="c1"># if we have things to restore then go for it</span>
-        <span class="k">if</span> <span class="n">restore_map</span><span class="p">:</span>
-            <span class="c1"># start up the restore workers</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">start_restore_workers</span><span class="p">()</span>
-            <span class="c1"># enqueue all of the restore tasks</span>
-            <span class="k">for</span> <span class="n">rest</span> <span class="ow">in</span> <span class="n">restore_map</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">restore_work_queue</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">rest</span><span class="p">)</span>
-            <span class="c1"># wait for the restore workers</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">wait_for_restore_workers</span><span class="p">()</span>
-        <span class="c1"># wait for logging to complete</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">wait_for_logger</span><span class="p">()</span>
-    <span class="k">except</span><span class="p">:</span>
-        <span class="c1"># stop the restore workers</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">stop_restore_workers</span><span class="p">()</span>
-        <span class="c1"># stop the restore logger</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">stop_logger</span><span class="p">()</span>
-        <span class="k">raise</span>
-</pre></div>
-
+    <pre><code>def restore( self, machine=platform.node(), restore_path = "", exclude_pats = [], asof = "", restore_pats = [] ):
+    """ main restore driver, will loop over all backups for this server and restore all files to the restore path that match the restore_pats and are not excluded by the exlcude patterns up to the asof date """
+    try:
+        # initialize our internal state to begin a new run
+        self.init(self.config)
+        # start the logger
+        self.logger.start_logger()
+        # expand user path references in restore_path
+        restore_path = os.path.expanduser(restore_path)
+        # if asof is not specified then restore as of now
+        if not asof:
+            end_time_t = time.localtime(time.time())
+            asof = "%04d.%02d.%02d.%02d.%02d.%02d"%(end_time_t.tm_year, end_time_t.tm_mon, end_time_t.tm_mday, end_time_t.tm_hour, end_time_t.tm_min, end_time_t.tm_sec)
+        # get asof as a time value
+        asof_time = bkp_mod.timestamp2time( asof )
+        # the backups for a given machine will be in s3://bucket/bkp/machine_name
+        machine_path = self.config["bucket"]+"/bkp/"+machine
+        try:
+            # get backup paths and timestamps returns Backup objects with  (time, timestamp, path)
+            backups = bkp_mod.get_backups( machine_path, self.config, self.verbose )
+            # loop over the backups, process the log files and collect the correct versions of matching files
+            restore_map = {}
+            for bk in backups:
+                if self.verbose:
+                    self.logger.log("Examining backup: %s"%(bk.path))
+                # if the backup is after the asof date then skip it
+                if bk.time > asof_time:
+                    if self.verbose:
+                        self.logger.log("Skipping because it is newer than asof backup: %s"%(bk.path))
+                    continue
+                # fetch the contents of the backup log
+                contents = get_contents(machine_path,bk.timestamp+"/bkp/bkp."+bk.timestamp+".log",self.verbose, lambda: self.config)
+                # collect the newest version less than the asof time and apply all the filters
+                # if there's a backup log then we do this the easy way
+                if contents:
+                    if self.verbose:
+                        self.logger.log("Found log file and processing it")
+                    past_config = False
+                    for l in io.StringIO(contents):
+                        if not past_config:
+                            if l.startswith("end_config"):
+                                past_config = True
+                        else:
+                            local_path,remote_path,status,msg = l.split(";",3)
+                            if status == "error":
+                                if self.verbose:
+                                    self.logger.log("Skipping because of error: %s"%(local_path))
+                                continue
+                            if local_path in restore_map and restore_map[local_path].time > bk.time:
+                                if self.verbose:
+                                    self.logger.log("Skipping because we already have a newer one: %s"%(local_path))
+                                continue
+                            exclude = False
+                            for ex in exclude_pats:
+                                if re.match(ex,local_path):
+                                    exclude = True
+                                    break
+                            if exclude:
+                                if self.verbose:
+                                    self.logger.log("Skipping because of exclude %s %s"%(ex,local_path))
+                                continue
+                            restore = False
+                            for rs in restore_pats:
+                                if re.match(rs,local_path):
+                                    restore = True
+                                    break
+                            if not restore:
+                                if self.verbose:
+                                    self.logger.log("Skipping because not included: %s"%(local_path))
+                                continue
+                            if self.verbose:
+                                self.logger.log("Including: %s"%(local_path))
+                            restore_map[local_path] = Restore(remote_path,local_path,os.path.join(restore_path,local_path[1:]),bk.time)
+                else:
+                    if self.verbose:
+                        self.logger.log("No log file doing a recursive ls of %s"%bk.path)
+                    # ok this is a screwed up one that doesn't have a log so recurse using ls and build the list off of that
+                    for l in io.StringIO(fs_ls(bk.path,True, lambda: self.config)):
+                        prefix,path = re.split(bk.timestamp,l)
+                        path = path.strip()
+                        local_path = urllib.request.url2pathname(path)
+                        remote_path = bk.path + path[1:]
+                        if local_path in restore_map:
+                            if self.verbose:
+                                self.logger.log( "Found in map: %s"%(local_path))
+                            if restore_map[local_path].time > bk.time:
+                                if self.verbose:
+                                    self.logger.log("Skipping because we already have a newer one %s"%(local_path))
+                                continue
+                        exclude = False
+                        for ex in exclude_pats:
+                            if re.match(ex,local_path):
+                                exclude = True
+                                break
+                        if exclude:
+                            if self.verbose:
+                                self.logger.log("Skipping because of exclude %s %s"%(ex,local_path))
+                            continue
+                        restore = False
+                        for rs in restore_pats:
+                            if re.match(rs,local_path):
+                                restore = True
+                                break
+                        if not restore:
+                            if self.verbose:
+                                self.logger.log("Skipping because not included %s"%(local_path))
+                            continue
+                        if self.verbose:
+                            self.logger.log("Including: %s"%(local_path))
+                        restore_map[local_path] = Restore(remote_path,local_path,os.path.join(restore_path,local_path[1:]),bk.time)
+        except:
+            self.logger.log("Exception while processing: "+traceback.format_exc())
+        # if we have things to restore then go for it
+        if restore_map:
+            # start up the restore workers
+            self.start_restore_workers()
+            # enqueue all of the restore tasks
+            for rest in restore_map.values():
+                self.restore_work_queue.put(rest)
+            # wait for the restore workers
+            self.wait_for_restore_workers()
+        # wait for logging to complete
+        self.logger.wait_for_logger()
+    except:
+        # stop the restore workers
+        self.stop_restore_workers()
+        # stop the restore logger
+        self.logger.stop_logger()
+        raise
+</code></pre>
   </div>
 </div>
 
@@ -1927,11 +1848,10 @@ table {
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-bkp_core.rstr_mod.RestoreJob.set_dryrun', this);">Show source &equiv;</a></p>
   <div id="source-bkp_core.rstr_mod.RestoreJob.set_dryrun" class="source">
-    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">set_dryrun</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">dr</span> <span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; set the dryrun flag to true to have it just log all the actions but not perform them &quot;&quot;&quot;</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">dryrun</span> <span class="o">=</span> <span class="n">dr</span>
-</pre></div>
-
+    <pre><code>def set_dryrun( self, dr ):
+    """ set the dryrun flag to true to have it just log all the actions but not perform them """
+    self.dryrun = dr
+</code></pre>
   </div>
 </div>
 
@@ -1950,11 +1870,10 @@ table {
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-bkp_core.rstr_mod.RestoreJob.set_verbose', this);">Show source &equiv;</a></p>
   <div id="source-bkp_core.rstr_mod.RestoreJob.set_verbose" class="source">
-    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">set_verbose</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">vb</span> <span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; set the verbose flag to log a lot more detail about the process &quot;&quot;&quot;</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span> <span class="o">=</span> <span class="n">vb</span>
-</pre></div>
-
+    <pre><code>def set_verbose( self, vb ):
+    """ set the verbose flag to log a lot more detail about the process """
+    self.verbose = vb
+</code></pre>
   </div>
 </div>
 
@@ -1973,16 +1892,15 @@ table {
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-bkp_core.rstr_mod.RestoreJob.start_restore_workers', this);">Show source &equiv;</a></p>
   <div id="source-bkp_core.rstr_mod.RestoreJob.start_restore_workers" class="source">
-    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">start_restore_workers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; start the right number of restore worker threads to perform the restoring &quot;&quot;&quot;</span>
-    <span class="n">num_threads</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;threads&quot;</span><span class="p">])</span>
-    <span class="k">while</span> <span class="n">num_threads</span><span class="p">:</span>
-        <span class="n">t</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">perform_restore</span><span class="p">)</span>
-        <span class="n">t</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">restore_worker_thread_pool</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
-        <span class="n">num_threads</span> <span class="o">=</span> <span class="n">num_threads</span> <span class="o">-</span> <span class="mi">1</span>
-</pre></div>
-
+    <pre><code>def start_restore_workers(self):
+    """ start the right number of restore worker threads to perform the restoring """
+    num_threads = int(self.config["threads"])
+    while num_threads:
+        t = threading.Thread(target=self.perform_restore)
+        t.start()
+        self.restore_worker_thread_pool.append(t)
+        num_threads = num_threads - 1
+</code></pre>
   </div>
 </div>
 
@@ -2001,11 +1919,10 @@ table {
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-bkp_core.rstr_mod.RestoreJob.stop_restore_workers', this);">Show source &equiv;</a></p>
   <div id="source-bkp_core.rstr_mod.RestoreJob.stop_restore_workers" class="source">
-    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">stop_restore_workers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; set a flag that causes all of the restore workers to exit &quot;&quot;&quot;</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">restore_workers_stop</span> <span class="o">=</span> <span class="kc">True</span>
-</pre></div>
-
+    <pre><code>def stop_restore_workers(self):
+    """ set a flag that causes all of the restore workers to exit """
+    self.restore_workers_stop = True
+</code></pre>
   </div>
 </div>
 
@@ -2024,19 +1941,18 @@ table {
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-bkp_core.rstr_mod.RestoreJob.wait_for_restore_workers', this);">Show source &equiv;</a></p>
   <div id="source-bkp_core.rstr_mod.RestoreJob.wait_for_restore_workers" class="source">
-    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">wait_for_restore_workers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; wait until the restore queue clears &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">restore_work_queue</span><span class="o">.</span><span class="n">empty</span><span class="p">():</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">restore_work_queue</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">stop_restore_workers</span><span class="p">()</span>
-    <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">restore_worker_thread_pool</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">r</span><span class="o">.</span><span class="n">is_alive</span><span class="p">():</span>
-            <span class="n">r</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">restore_worker_thread_pool</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">restore_worker_stop</span> <span class="o">=</span> <span class="kc">False</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">restore_work_queue</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="n">Queue</span><span class="p">()</span>
-</pre></div>
-
+    <pre><code>def wait_for_restore_workers(self):
+    """ wait until the restore queue clears """
+    if not self.restore_work_queue.empty():
+        self.restore_work_queue.join()
+    self.stop_restore_workers()
+    for r in self.restore_worker_thread_pool:
+        if r.is_alive():
+            r.join()
+    self.restore_worker_thread_pool = []
+    self.restore_worker_stop = False
+    self.restore_work_queue = queue.Queue()
+</code></pre>
   </div>
 </div>
 

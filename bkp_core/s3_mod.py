@@ -62,7 +62,7 @@ def s3_ls( path, recurse=False ):
     final_output = StringIO()
     for l in StringIO(output):
         l = l.strip()
-        parts = re.split(r'\s*',l,3)
+        parts = re.split(r'\s+',l,3)
         if parts[0] == "DIR":
             dirs.append(parts[-1])
         else:

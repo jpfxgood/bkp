@@ -851,77 +851,6 @@ table {
 
   </style>
 
-  <style type="text/css">
-  .codehilite .hll { background-color: #ffffcc }
-.codehilite  { background: #f8f8f8; }
-.codehilite .c { color: #408080; font-style: italic } /* Comment */
-.codehilite .err { border: 1px solid #FF0000 } /* Error */
-.codehilite .k { color: #008000; font-weight: bold } /* Keyword */
-.codehilite .o { color: #666666 } /* Operator */
-.codehilite .ch { color: #408080; font-style: italic } /* Comment.Hashbang */
-.codehilite .cm { color: #408080; font-style: italic } /* Comment.Multiline */
-.codehilite .cp { color: #BC7A00 } /* Comment.Preproc */
-.codehilite .cpf { color: #408080; font-style: italic } /* Comment.PreprocFile */
-.codehilite .c1 { color: #408080; font-style: italic } /* Comment.Single */
-.codehilite .cs { color: #408080; font-style: italic } /* Comment.Special */
-.codehilite .gd { color: #A00000 } /* Generic.Deleted */
-.codehilite .ge { font-style: italic } /* Generic.Emph */
-.codehilite .gr { color: #FF0000 } /* Generic.Error */
-.codehilite .gh { color: #000080; font-weight: bold } /* Generic.Heading */
-.codehilite .gi { color: #00A000 } /* Generic.Inserted */
-.codehilite .go { color: #888888 } /* Generic.Output */
-.codehilite .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
-.codehilite .gs { font-weight: bold } /* Generic.Strong */
-.codehilite .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
-.codehilite .gt { color: #0044DD } /* Generic.Traceback */
-.codehilite .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
-.codehilite .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
-.codehilite .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
-.codehilite .kp { color: #008000 } /* Keyword.Pseudo */
-.codehilite .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
-.codehilite .kt { color: #B00040 } /* Keyword.Type */
-.codehilite .m { color: #666666 } /* Literal.Number */
-.codehilite .s { color: #BA2121 } /* Literal.String */
-.codehilite .na { color: #7D9029 } /* Name.Attribute */
-.codehilite .nb { color: #008000 } /* Name.Builtin */
-.codehilite .nc { color: #0000FF; font-weight: bold } /* Name.Class */
-.codehilite .no { color: #880000 } /* Name.Constant */
-.codehilite .nd { color: #AA22FF } /* Name.Decorator */
-.codehilite .ni { color: #999999; font-weight: bold } /* Name.Entity */
-.codehilite .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
-.codehilite .nf { color: #0000FF } /* Name.Function */
-.codehilite .nl { color: #A0A000 } /* Name.Label */
-.codehilite .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
-.codehilite .nt { color: #008000; font-weight: bold } /* Name.Tag */
-.codehilite .nv { color: #19177C } /* Name.Variable */
-.codehilite .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
-.codehilite .w { color: #bbbbbb } /* Text.Whitespace */
-.codehilite .mb { color: #666666 } /* Literal.Number.Bin */
-.codehilite .mf { color: #666666 } /* Literal.Number.Float */
-.codehilite .mh { color: #666666 } /* Literal.Number.Hex */
-.codehilite .mi { color: #666666 } /* Literal.Number.Integer */
-.codehilite .mo { color: #666666 } /* Literal.Number.Oct */
-.codehilite .sa { color: #BA2121 } /* Literal.String.Affix */
-.codehilite .sb { color: #BA2121 } /* Literal.String.Backtick */
-.codehilite .sc { color: #BA2121 } /* Literal.String.Char */
-.codehilite .dl { color: #BA2121 } /* Literal.String.Delimiter */
-.codehilite .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
-.codehilite .s2 { color: #BA2121 } /* Literal.String.Double */
-.codehilite .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
-.codehilite .sh { color: #BA2121 } /* Literal.String.Heredoc */
-.codehilite .si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
-.codehilite .sx { color: #008000 } /* Literal.String.Other */
-.codehilite .sr { color: #BB6688 } /* Literal.String.Regex */
-.codehilite .s1 { color: #BA2121 } /* Literal.String.Single */
-.codehilite .ss { color: #19177C } /* Literal.String.Symbol */
-.codehilite .bp { color: #008000 } /* Name.Builtin.Pseudo */
-.codehilite .fm { color: #0000FF } /* Name.Function.Magic */
-.codehilite .vc { color: #19177C } /* Name.Variable.Class */
-.codehilite .vg { color: #19177C } /* Name.Variable.Global */
-.codehilite .vi { color: #19177C } /* Name.Variable.Instance */
-.codehilite .vm { color: #19177C } /* Name.Variable.Magic */
-.codehilite .il { color: #666666 } /* Literal.Number.Integer.Long */
-  </style>
 
   <style type="text/css">
   
@@ -1079,70 +1008,69 @@ table {
   
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-bkp_core.logger', this);">Show source &equiv;</a></p>
   <div id="source-bkp_core.logger" class="source">
-    <div class="codehilite"><pre><span></span><span class="c1"># Copyright 2013-2014 James P Goodwin bkp@jlgoodwin.com</span>
-<span class="kn">import</span> <span class="nn">sys</span>
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">traceback</span>
-<span class="kn">import</span> <span class="nn">queue</span>
-<span class="kn">import</span> <span class="nn">threading</span>
+    <pre><code># Copyright 2013-2014 James P Goodwin bkp@jlgoodwin.com
+import sys
+import os
+import traceback
+import queue
+import threading
 
-<span class="k">class</span> <span class="nc">Logger</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span> <span class="bp">self</span> <span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">logger_thread</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">logger_stop</span> <span class="o">=</span> <span class="kc">False</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">logger_queue</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="n">Queue</span><span class="p">()</span>
+class Logger:
+    def __init__( self ):
+        self.logger_thread = None
+        self.logger_stop = False
+        self.logger_queue = queue.Queue()
 
-    <span class="k">def</span> <span class="nf">perform_log</span><span class="p">(</span> <span class="bp">self</span> <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; read from the restore logging queue and print messages to stderr &quot;&quot;&quot;</span>
-        <span class="k">while</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">stopped</span><span class="p">():</span>
-            <span class="n">line</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-            <span class="k">if</span> <span class="n">line</span><span class="p">:</span>
-                <span class="k">try</span><span class="p">:</span>
-                    <span class="nb">print</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
-                <span class="k">except</span><span class="p">:</span>
-                    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Invalid Log Line!&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+    def perform_log( self ):
+        """ read from the restore logging queue and print messages to stderr """
+        while not self.stopped():
+            line = self.get()
+            if line:
+                try:
+                    print(line, file=sys.stderr)
+                except:
+                    print("Invalid Log Line!", file=sys.stderr)
 
-    <span class="k">def</span> <span class="nf">start_logger</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">action</span> <span class="o">=</span> <span class="kc">None</span> <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; start the restore logger thread &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">action</span><span class="p">:</span>
-            <span class="n">action</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">perform_log</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">logger_thread</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">action</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">logger_thread</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+    def start_logger( self, action = None ):
+        """ start the restore logger thread """
+        if not action:
+            action = self.perform_log
+        self.logger_thread = threading.Thread(target=action)
+        self.logger_thread.start()
 
-    <span class="k">def</span> <span class="nf">stop_logger</span><span class="p">(</span> <span class="bp">self</span> <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; stop the restore logger &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">logger_stop</span> <span class="o">=</span> <span class="kc">True</span>
+    def stop_logger( self ):
+        """ stop the restore logger """
+        self.logger_stop = True
 
-    <span class="k">def</span> <span class="nf">wait_for_logger</span><span class="p">(</span> <span class="bp">self</span> <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; wait until the restore log queue is empty &quot;&quot;&quot;</span>
+    def wait_for_logger( self ):
+        """ wait until the restore log queue is empty """
 
-        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">logger_queue</span><span class="o">.</span><span class="n">empty</span><span class="p">():</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">logger_queue</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">stop_logger</span><span class="p">()</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">logger_thread</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">logger_thread</span><span class="o">.</span><span class="n">is_alive</span><span class="p">():</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">logger_thread</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">logger_thread</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">logger_stop</span> <span class="o">=</span> <span class="kc">False</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">logger_queue</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="n">Queue</span><span class="p">()</span>
+        if not self.logger_queue.empty():
+            self.logger_queue.join()
+        self.stop_logger()
+        if self.logger_thread and self.logger_thread.is_alive():
+            self.logger_thread.join()
+        self.logger_thread = None
+        self.logger_stop = False
+        self.logger_queue = queue.Queue()
 
-    <span class="k">def</span> <span class="nf">log</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">msg</span> <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; log a message to the restore logger &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">logger_queue</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+    def log( self, msg ):
+        """ log a message to the restore logger """
+        self.logger_queue.put(msg)
 
-    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span> <span class="bp">self</span> <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; get a message off the queue &quot;&quot;&quot;</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="n">line</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">logger_queue</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">logger_queue</span><span class="o">.</span><span class="n">task_done</span><span class="p">()</span>
-        <span class="k">except</span> <span class="n">queue</span><span class="o">.</span><span class="n">Empty</span><span class="p">:</span>
-            <span class="n">line</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="k">return</span> <span class="n">line</span>
+    def get( self ):
+        """ get a message off the queue """
+        try:
+            line = self.logger_queue.get(True,1)
+            self.logger_queue.task_done()
+        except queue.Empty:
+            line = None
+        return line
 
-    <span class="k">def</span> <span class="nf">stopped</span><span class="p">(</span> <span class="bp">self</span> <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; test to see if we need to stop &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">logger_stop</span>
-</pre></div>
-
+    def stopped( self ):
+        """ test to see if we need to stop """
+        return self.logger_stop
+</code></pre>
   </div>
 
   </header>
@@ -1159,63 +1087,62 @@ table {
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-bkp_core.logger.Logger', this);">Show source &equiv;</a></p>
   <div id="source-bkp_core.logger.Logger" class="source">
-    <div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">Logger</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span> <span class="bp">self</span> <span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">logger_thread</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">logger_stop</span> <span class="o">=</span> <span class="kc">False</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">logger_queue</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="n">Queue</span><span class="p">()</span>
+    <pre><code>class Logger:
+    def __init__( self ):
+        self.logger_thread = None
+        self.logger_stop = False
+        self.logger_queue = queue.Queue()
 
-    <span class="k">def</span> <span class="nf">perform_log</span><span class="p">(</span> <span class="bp">self</span> <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; read from the restore logging queue and print messages to stderr &quot;&quot;&quot;</span>
-        <span class="k">while</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">stopped</span><span class="p">():</span>
-            <span class="n">line</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-            <span class="k">if</span> <span class="n">line</span><span class="p">:</span>
-                <span class="k">try</span><span class="p">:</span>
-                    <span class="nb">print</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
-                <span class="k">except</span><span class="p">:</span>
-                    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Invalid Log Line!&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+    def perform_log( self ):
+        """ read from the restore logging queue and print messages to stderr """
+        while not self.stopped():
+            line = self.get()
+            if line:
+                try:
+                    print(line, file=sys.stderr)
+                except:
+                    print("Invalid Log Line!", file=sys.stderr)
 
-    <span class="k">def</span> <span class="nf">start_logger</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">action</span> <span class="o">=</span> <span class="kc">None</span> <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; start the restore logger thread &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">action</span><span class="p">:</span>
-            <span class="n">action</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">perform_log</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">logger_thread</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">action</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">logger_thread</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+    def start_logger( self, action = None ):
+        """ start the restore logger thread """
+        if not action:
+            action = self.perform_log
+        self.logger_thread = threading.Thread(target=action)
+        self.logger_thread.start()
 
-    <span class="k">def</span> <span class="nf">stop_logger</span><span class="p">(</span> <span class="bp">self</span> <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; stop the restore logger &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">logger_stop</span> <span class="o">=</span> <span class="kc">True</span>
+    def stop_logger( self ):
+        """ stop the restore logger """
+        self.logger_stop = True
 
-    <span class="k">def</span> <span class="nf">wait_for_logger</span><span class="p">(</span> <span class="bp">self</span> <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; wait until the restore log queue is empty &quot;&quot;&quot;</span>
+    def wait_for_logger( self ):
+        """ wait until the restore log queue is empty """
 
-        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">logger_queue</span><span class="o">.</span><span class="n">empty</span><span class="p">():</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">logger_queue</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">stop_logger</span><span class="p">()</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">logger_thread</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">logger_thread</span><span class="o">.</span><span class="n">is_alive</span><span class="p">():</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">logger_thread</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">logger_thread</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">logger_stop</span> <span class="o">=</span> <span class="kc">False</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">logger_queue</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="n">Queue</span><span class="p">()</span>
+        if not self.logger_queue.empty():
+            self.logger_queue.join()
+        self.stop_logger()
+        if self.logger_thread and self.logger_thread.is_alive():
+            self.logger_thread.join()
+        self.logger_thread = None
+        self.logger_stop = False
+        self.logger_queue = queue.Queue()
 
-    <span class="k">def</span> <span class="nf">log</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">msg</span> <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; log a message to the restore logger &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">logger_queue</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+    def log( self, msg ):
+        """ log a message to the restore logger """
+        self.logger_queue.put(msg)
 
-    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span> <span class="bp">self</span> <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; get a message off the queue &quot;&quot;&quot;</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="n">line</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">logger_queue</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">logger_queue</span><span class="o">.</span><span class="n">task_done</span><span class="p">()</span>
-        <span class="k">except</span> <span class="n">queue</span><span class="o">.</span><span class="n">Empty</span><span class="p">:</span>
-            <span class="n">line</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="k">return</span> <span class="n">line</span>
+    def get( self ):
+        """ get a message off the queue """
+        try:
+            line = self.logger_queue.get(True,1)
+            self.logger_queue.task_done()
+        except queue.Empty:
+            line = None
+        return line
 
-    <span class="k">def</span> <span class="nf">stopped</span><span class="p">(</span> <span class="bp">self</span> <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; test to see if we need to stop &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">logger_stop</span>
-</pre></div>
-
+    def stopped( self ):
+        """ test to see if we need to stop """
+        return self.logger_stop
+</code></pre>
   </div>
 </div>
 
@@ -1240,12 +1167,11 @@ table {
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-bkp_core.logger.Logger.__init__', this);">Show source &equiv;</a></p>
   <div id="source-bkp_core.logger.Logger.__init__" class="source">
-    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span> <span class="bp">self</span> <span class="p">):</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">logger_thread</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">logger_stop</span> <span class="o">=</span> <span class="kc">False</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">logger_queue</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="n">Queue</span><span class="p">()</span>
-</pre></div>
-
+    <pre><code>def __init__( self ):
+    self.logger_thread = None
+    self.logger_stop = False
+    self.logger_queue = queue.Queue()
+</code></pre>
   </div>
 </div>
 
@@ -1264,16 +1190,15 @@ table {
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-bkp_core.logger.Logger.get', this);">Show source &equiv;</a></p>
   <div id="source-bkp_core.logger.Logger.get" class="source">
-    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">get</span><span class="p">(</span> <span class="bp">self</span> <span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; get a message off the queue &quot;&quot;&quot;</span>
-    <span class="k">try</span><span class="p">:</span>
-        <span class="n">line</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">logger_queue</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">logger_queue</span><span class="o">.</span><span class="n">task_done</span><span class="p">()</span>
-    <span class="k">except</span> <span class="n">queue</span><span class="o">.</span><span class="n">Empty</span><span class="p">:</span>
-        <span class="n">line</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="k">return</span> <span class="n">line</span>
-</pre></div>
-
+    <pre><code>def get( self ):
+    """ get a message off the queue """
+    try:
+        line = self.logger_queue.get(True,1)
+        self.logger_queue.task_done()
+    except queue.Empty:
+        line = None
+    return line
+</code></pre>
   </div>
 </div>
 
@@ -1292,11 +1217,10 @@ table {
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-bkp_core.logger.Logger.log', this);">Show source &equiv;</a></p>
   <div id="source-bkp_core.logger.Logger.log" class="source">
-    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">log</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">msg</span> <span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; log a message to the restore logger &quot;&quot;&quot;</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">logger_queue</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
-</pre></div>
-
+    <pre><code>def log( self, msg ):
+    """ log a message to the restore logger """
+    self.logger_queue.put(msg)
+</code></pre>
   </div>
 </div>
 
@@ -1315,17 +1239,16 @@ table {
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-bkp_core.logger.Logger.perform_log', this);">Show source &equiv;</a></p>
   <div id="source-bkp_core.logger.Logger.perform_log" class="source">
-    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">perform_log</span><span class="p">(</span> <span class="bp">self</span> <span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; read from the restore logging queue and print messages to stderr &quot;&quot;&quot;</span>
-    <span class="k">while</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">stopped</span><span class="p">():</span>
-        <span class="n">line</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-        <span class="k">if</span> <span class="n">line</span><span class="p">:</span>
-            <span class="k">try</span><span class="p">:</span>
-                <span class="nb">print</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
-            <span class="k">except</span><span class="p">:</span>
-                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Invalid Log Line!&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
-</pre></div>
-
+    <pre><code>def perform_log( self ):
+    """ read from the restore logging queue and print messages to stderr """
+    while not self.stopped():
+        line = self.get()
+        if line:
+            try:
+                print(line, file=sys.stderr)
+            except:
+                print("Invalid Log Line!", file=sys.stderr)
+</code></pre>
   </div>
 </div>
 
@@ -1344,14 +1267,13 @@ table {
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-bkp_core.logger.Logger.start_logger', this);">Show source &equiv;</a></p>
   <div id="source-bkp_core.logger.Logger.start_logger" class="source">
-    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">start_logger</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">action</span> <span class="o">=</span> <span class="kc">None</span> <span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; start the restore logger thread &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">action</span><span class="p">:</span>
-        <span class="n">action</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">perform_log</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">logger_thread</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">action</span><span class="p">)</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">logger_thread</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
-</pre></div>
-
+    <pre><code>def start_logger( self, action = None ):
+    """ start the restore logger thread """
+    if not action:
+        action = self.perform_log
+    self.logger_thread = threading.Thread(target=action)
+    self.logger_thread.start()
+</code></pre>
   </div>
 </div>
 
@@ -1370,11 +1292,10 @@ table {
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-bkp_core.logger.Logger.stop_logger', this);">Show source &equiv;</a></p>
   <div id="source-bkp_core.logger.Logger.stop_logger" class="source">
-    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">stop_logger</span><span class="p">(</span> <span class="bp">self</span> <span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; stop the restore logger &quot;&quot;&quot;</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">logger_stop</span> <span class="o">=</span> <span class="kc">True</span>
-</pre></div>
-
+    <pre><code>def stop_logger( self ):
+    """ stop the restore logger """
+    self.logger_stop = True
+</code></pre>
   </div>
 </div>
 
@@ -1393,11 +1314,10 @@ table {
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-bkp_core.logger.Logger.stopped', this);">Show source &equiv;</a></p>
   <div id="source-bkp_core.logger.Logger.stopped" class="source">
-    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">stopped</span><span class="p">(</span> <span class="bp">self</span> <span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; test to see if we need to stop &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">logger_stop</span>
-</pre></div>
-
+    <pre><code>def stopped( self ):
+    """ test to see if we need to stop """
+    return self.logger_stop
+</code></pre>
   </div>
 </div>
 
@@ -1416,18 +1336,17 @@ table {
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-bkp_core.logger.Logger.wait_for_logger', this);">Show source &equiv;</a></p>
   <div id="source-bkp_core.logger.Logger.wait_for_logger" class="source">
-    <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">wait_for_logger</span><span class="p">(</span> <span class="bp">self</span> <span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; wait until the restore log queue is empty &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">logger_queue</span><span class="o">.</span><span class="n">empty</span><span class="p">():</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">logger_queue</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">stop_logger</span><span class="p">()</span>
-    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">logger_thread</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">logger_thread</span><span class="o">.</span><span class="n">is_alive</span><span class="p">():</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">logger_thread</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">logger_thread</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">logger_stop</span> <span class="o">=</span> <span class="kc">False</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">logger_queue</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="n">Queue</span><span class="p">()</span>
-</pre></div>
-
+    <pre><code>def wait_for_logger( self ):
+    """ wait until the restore log queue is empty """
+    if not self.logger_queue.empty():
+        self.logger_queue.join()
+    self.stop_logger()
+    if self.logger_thread and self.logger_thread.is_alive():
+        self.logger_thread.join()
+    self.logger_thread = None
+    self.logger_stop = False
+    self.logger_queue = queue.Queue()
+</code></pre>
   </div>
 </div>
 
